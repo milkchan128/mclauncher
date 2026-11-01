@@ -48,7 +48,7 @@ test('배포 구성의 로딩 완료 신호는 화면 준비 후 한 번만 전�
     }
 })
 
-test('실제 Electron에서 첫 실행·재실행 모두 로고를 벗어나 Microsoft 로그인 화면에 도달한다', { timeout: 60000 }, async t => {
+test('실제 Electron에서 첫 실행·재실행과 설치 전 모드 목록·설치 상태·중복 제거를 확인한다', { timeout: 60000 }, async t => {
     const electron = require('electron')
     if(!await fs.pathExists(electron)){
         t.skip('Electron 실행 파일이 설치되어 있지 않다')
@@ -82,7 +82,43 @@ app.on('browser-window-created', (_event, win) => {
                     return 'unexpected'
                 })()
             \`)
-            if(state === 'login'){ console.log('STARTUP_LOGIN_READY'); app.exit(0); return }
+            if(state === 'login'){
+                const before = await win.webContents.executeJavaScript(\`
+                    (async () => {
+                        await prepareModsTab()
+                        return {
+                            count: document.querySelectorAll('.settingsManagedMod').length,
+                            installed: document.querySelectorAll('.settingsManagedMod[enabled]').length,
+                            firstPath: (await require('./assets/js/modpack').getManagedMods((await DistroAPI.getDistribution()).getMainServer().modules))[0].path,
+                            firstSize: (await DistroAPI.getDistribution()).getMainServer().modules.find(module => module.rawModule.type === 'File').rawModule.artifact.size
+                        }
+                    })()
+                \`)
+                if(before.count !== 367 || before.installed !== 0 || !before.firstPath.startsWith(__dirname + path.sep)){
+                    console.error('Missing mod list before installation', before.count, before.installed); app.exit(1); return
+                }
+                if(process.env.MLKC_STARTUP_SCREENSHOT){
+                    await win.webContents.executeJavaScript("switchView(getCurrentView(), VIEWS.settings, 0, 0, () => settingsNavItemListener(document.querySelector('[rSc=settingsTabMods]'), false))")
+                    await new Promise(resolve => setTimeout(resolve, 250))
+                    fs.writeFileSync(process.env.MLKC_STARTUP_SCREENSHOT, (await win.webContents.capturePage()).toPNG())
+                }
+                fs.mkdirSync(path.dirname(before.firstPath), { recursive: true })
+                fs.writeFileSync(before.firstPath, Buffer.alloc(before.firstSize))
+                const ownMod = path.join(path.dirname(before.firstPath), 'my-extra.jar')
+                fs.writeFileSync(ownMod, 'user mod fixture')
+                const after = await win.webContents.executeJavaScript(\`
+                    (async () => {
+                        await reloadDropinMods()
+                        return {
+                            installed: document.querySelectorAll('.settingsManagedMod[enabled]').length,
+                            dropin: document.querySelectorAll('#settingsDropinModsContent .settingsDropinMod').length
+                        }
+                    })()
+                \`)
+                fs.unlinkSync(before.firstPath); fs.unlinkSync(ownMod)
+                if(after.installed !== 1 || after.dropin !== 1){ console.error('Incorrect mod status or duplicate list', after); app.exit(1); return }
+                console.log('STARTUP_LOGIN_READY'); app.exit(0); return
+            }
             await new Promise(resolve => setTimeout(resolve, 100))
         }
         console.error('Startup remained on the loading screen'); app.exit(1)

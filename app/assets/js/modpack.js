@@ -19,6 +19,25 @@ async function matches(file, expected, algorithm = 'sha256'){
     return await fs.pathExists(file) && await checksum(file, algorithm) === expected
 }
 
+async function getManagedMods(modules){
+    const mods = []
+    for(const module of modules){
+        if(module.rawModule.type === 'File' && /^mods\/.+\.(jar|zip|litemod)$/i.test(module.rawModule.artifact.path?.replaceAll('\\', '/') || '')){
+            const filePath = module.getPath()
+            let installed = false
+            try {
+                const file = await fs.stat(filePath)
+                installed = file.isFile() && file.size === module.rawModule.artifact.size
+            } catch(error){
+                if(error.code !== 'ENOENT' && error.code !== 'ENOTDIR') throw error
+            }
+            mods.push({ name: module.rawModule.name, fileName: path.basename(filePath), path: filePath, installed })
+        }
+        if(module.subModules?.length) mods.push(...await getManagedMods(module.subModules))
+    }
+    return mods
+}
+
 async function ensureDownload(spec, target){
     if(await matches(target, spec.sha256)){
         return
@@ -125,4 +144,4 @@ async function prepareModpack({ commonDir, instanceDir, cacheDir, javaExecutable
     await fs.copy(path.join(__dirname, '..', 'modpack', 'forge-version.json'), path.join(commonDir, 'versions', versionId, `${versionId}.json`))
 }
 
-module.exports = { prepareModpack, extractOverrides, ensureDownload, matches }
+module.exports = { prepareModpack, extractOverrides, ensureDownload, matches, getManagedMods }

@@ -11,7 +11,7 @@ const { once } = require('node:events')
 const Zip = require('adm-zip')
 const { HeliosDistribution } = require('helios-core/common')
 const { DistributionIndexProcessor, downloadQueue } = require('helios-core/dl')
-const { extractOverrides, ensureDownload } = require('../app/assets/js/modpack')
+const { extractOverrides, ensureDownload, getManagedMods } = require('../app/assets/js/modpack')
 const raw = require('../app/assets/modpack/distribution.json')
 
 test('Society 4.1.5A의 367개 모드와 Forge 47.4.0이 mc.mlkc.kr 전용으로 구성된다', () => {
@@ -33,6 +33,29 @@ test('Society 4.1.5A의 367개 모드와 Forge 47.4.0이 mc.mlkc.kr 전용으로
         assert.equal(new URL(mod.rawModule.artifact.url).protocol, 'https:')
     }
     assert.equal(server.modules[0].rawModule.id, 'net.minecraftforge:lowcodelanguage:1.20.1-47.4.0')
+})
+
+test('설치 전에도 필수 모드 367개를 표시하고 파일 유무·크기로 설치 상태를 구분한다', async t => {
+    const root = await fs.mkdtemp(path.join(os.tmpdir(), 'mlkc-mod-list-'))
+    t.after(() => fs.remove(root))
+    const distribution = new HeliosDistribution(raw, path.join(root, 'common'), path.join(root, 'instances'))
+    const modules = distribution.getMainServer().modules
+    let mods = await getManagedMods(modules)
+    assert.equal(mods.length, 367)
+    assert.ok(mods.every(mod => !mod.installed))
+    assert.ok(mods.every(mod => mod.name && /\.(jar|zip|litemod)$/i.test(mod.fileName)))
+    const target = mods[0].path
+    await fs.ensureDir(target)
+    assert.equal((await getManagedMods(modules))[0].installed, false)
+    await fs.remove(target)
+    await fs.outputFile(target, 'partial file')
+    assert.equal((await getManagedMods(modules))[0].installed, false)
+    await fs.outputFile(target, Buffer.alloc(modules.find(module => module.rawModule.type === 'File').rawModule.artifact.size))
+    mods = await getManagedMods(modules)
+    assert.equal(mods[0].installed, true)
+    assert.equal(mods.filter(mod => mod.installed).length, 1)
+    await fs.remove(target)
+    assert.equal((await getManagedMods(modules))[0].installed, false)
 })
 
 test('실제 모드 다운로드 엔진이 누락·손상 파일만 받아 설치하고 사용자 파일은 보존한다', async t => {

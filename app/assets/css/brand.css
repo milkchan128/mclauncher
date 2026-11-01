@@ -74,6 +74,37 @@ body {
     to { opacity: 1; }
 }
 
+.settingsManagedMod .settingsModMainWrapper,
+.settingsManagedMod .settingsModDetails {
+    min-width: 0;
+}
+
+.settingsManagedMod .settingsModName,
+.settingsManagedModFile {
+    overflow-wrap: anywhere;
+}
+
+.settingsManagedModFile {
+    color: #c6bed0;
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+.settingsManagedMod .settingsModStatus {
+    flex-shrink: 0;
+    background-color: #9a91a7;
+}
+
+.settingsModInstallState {
+    flex-shrink: 0;
+    margin-left: 18px;
+    color: var(--brand-accent);
+}
+
+.settingsManagedMod[enabled] .settingsModInstallState {
+    color: #bddf9b;
+}
+
 @media (prefers-reduced-motion: reduce) {
     #loadSpinnerImage {
         animation: none;

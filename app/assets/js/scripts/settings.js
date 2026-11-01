@@ -668,6 +668,8 @@ document.getElementById('settingsGameHeight').addEventListener('keydown', (e) =>
  */
 
 const settingsModsContainer = document.getElementById('settingsModsContainer')
+let settingsManagedModPaths = new Set()
+const modPathKey = file => process.platform === 'win32' ? path.resolve(file).toLowerCase() : path.resolve(file)
 
 /**
  * Resolve and update the mods on the UI.
@@ -678,10 +680,38 @@ async function resolveModsForUI(){
     const distro = await DistroAPI.getDistribution()
     const servConf = ConfigManager.getModConfiguration(serv)
 
-    const modStr = parseModulesForUI(distro.getServerById(serv).modules, false, servConf.mods)
-
+    const modules = distro.getServerById(serv).modules
+    const modStr = parseModulesForUI(modules, false, servConf.mods)
     document.getElementById('settingsReqModsContent').innerHTML = modStr.reqMods
     document.getElementById('settingsOptModsContent').innerHTML = modStr.optMods
+    await resolveManagedModsForUI(modules)
+}
+
+async function resolveManagedModsForUI(modules){
+    const managedMods = await require('./assets/js/modpack').getManagedMods(modules)
+    settingsManagedModPaths = new Set(managedMods.map(mod => modPathKey(mod.path)))
+
+    const requiredMods = document.getElementById('settingsReqModsContent')
+    requiredMods.querySelectorAll('.settingsManagedMod').forEach(row => row.remove())
+    for(const mod of managedMods){
+        const row = document.createElement('div')
+        row.className = 'settingsBaseMod settingsMod settingsManagedMod'
+        if(mod.installed) row.setAttribute('enabled', '')
+        row.innerHTML = `<div class="settingsModContent">
+            <div class="settingsModMainWrapper">
+                <div class="settingsModStatus"></div>
+                <div class="settingsModDetails">
+                    <span class="settingsModName"></span>
+                    <span class="settingsManagedModFile"></span>
+                </div>
+            </div>
+            <span class="settingsModInstallState"></span>
+        </div>`
+        row.querySelector('.settingsModName').textContent = mod.name
+        row.querySelector('.settingsManagedModFile').textContent = mod.fileName
+        row.querySelector('.settingsModInstallState').textContent = Lang.queryJS(`settings.mods.${mod.installed ? 'installed' : 'notInstalled'}`)
+        requiredMods.appendChild(row)
+    }
 }
 
 /**
@@ -821,6 +851,7 @@ async function resolveDropinModsForUI(){
     const serv = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
     CACHE_SETTINGS_MODS_DIR = path.join(ConfigManager.getInstanceDirectory(), serv.rawServer.id, 'mods')
     CACHE_DROPIN_MODS = DropinModUtil.scanForDropinMods(CACHE_SETTINGS_MODS_DIR, serv.rawServer.minecraftVersion)
+        .filter(mod => !settingsManagedModPaths.has(modPathKey(path.join(CACHE_SETTINGS_MODS_DIR, mod.fullName.replace(/\.disabled$/i, '')))))
 
     let dropinMods = ''
 
@@ -941,6 +972,8 @@ document.addEventListener('keydown', async (e) => {
 })
 
 async function reloadDropinMods(){
+    const server = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
+    await resolveManagedModsForUI(server.modules)
     await resolveDropinModsForUI()
     bindDropinModsRemoveButton()
     bindDropinModFileSystemButton()
