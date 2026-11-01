@@ -141,7 +141,7 @@
             </StackPanel>
             <StackPanel VerticalAlignment="Bottom">
               <TextBlock Text="밀튜디오&#x0a;클라이언트" Foreground="#FCFAFF" FontSize="35" LineHeight="48" FontWeight="SemiBold" Margin="0,0,0,20"/>
-              <TextBlock Text="Society: Sunlit Valley" Foreground="#E1D9EA" FontSize="15"/>
+              <TextBlock Text="함께 시작하는 마인크래프트" Foreground="#E1D9EA" FontSize="15"/>
               <TextBlock Text="mc.mlkc.kr" Foreground="#CDB9EE" FontSize="14" Margin="0,8,0,0"/>
             </StackPanel>
           </Grid>

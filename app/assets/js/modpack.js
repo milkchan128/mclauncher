@@ -84,7 +84,7 @@ async function extractOverrides(archive, instanceDir){
 async function prepareModpack({ commonDir, instanceDir, cacheDir, javaExecutable, onProgress }){
     const readyFile = path.join(instanceDir, '.mlkc-pack-version')
     if(!await fs.pathExists(readyFile) || await fs.readFile(readyFile, 'utf8') !== pack.version){
-        onProgress('Society: Sunlit Valley 설정 파일을 준비하고 있습니다…')
+        onProgress('서버 접속에 필요한 설정 파일을 준비하고 있습니다…')
         const archive = path.join(cacheDir, `society-${pack.version}.zip`)
         await ensureDownload(pack.archive, archive)
         const manifest = JSON.parse(new AdmZip(archive).readAsText('manifest.json'))
