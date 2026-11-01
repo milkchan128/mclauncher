@@ -171,3 +171,19 @@ body {
 #loadingContainer[startup-error] #loadSpinnerImage {
     animation: none;
 }
+
+#accountRestoreSelect {
+    display: block;
+    margin: 16px auto 0;
+    padding: 6px;
+    color: var(--brand-accent);
+    background: none;
+    border: 0;
+    font: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#accountRestoreSelect:focus-visible {
+    outline: 2px solid var(--brand-accent);
+}

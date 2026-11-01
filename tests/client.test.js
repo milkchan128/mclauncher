@@ -29,6 +29,25 @@ function loadWithMocks(file, mocks, globals = {}){
     return module.exports
 }
 
+function loadConfig(folder){
+    const config = loadWithMocks('app/assets/js/configmanager.js', {
+        '@electron/remote': { app: { getPath: () => folder } },
+        'helios-core': { LoggerUtil: { getLogger: () => quietLogger } }
+    }, { process: { env: { APPDATA: folder }, platform: 'win32' } })
+    config.load()
+    return config
+}
+
+function loadAuth(config, methods = {}){
+    return loadWithMocks('app/assets/js/authmanager.js', {
+        './configmanager': config,
+        './ipcconstants': { AZURE_CLIENT_ID: 'fixture' },
+        './langloader': { queryJS: key => key },
+        'helios-core': { LoggerUtil: { getLogger: () => quietLogger } },
+        'helios-core/microsoft': { MicrosoftAuth: methods, MicrosoftErrorCode: require('helios-core/microsoft').MicrosoftErrorCode }
+    })
+}
+
 test('Mojang 저장 기록을 삭제하지 않고 Microsoft 계정만 선택할 수 있다', async t => {
     const folder = await fs.mkdtemp(path.join(os.tmpdir(), 'mlkc-auth-'))
     t.after(() => fs.remove(folder))
@@ -61,8 +80,10 @@ test('인증 관리자는 Mojang 로그인을 제공하지 않고 유효한 Micr
     assert.equal(auth.addMojangAccount, undefined)
     assert.equal(auth.removeMojangAccount, undefined)
     assert.equal(await auth.validateSelected(), false)
-    account = { type: 'microsoft', expiresAt: Date.now() + 60000 }
+    account = { type: 'microsoft', accessToken: 'fixture-token', expiresAt: Date.now() + 60000 }
     assert.equal(await auth.validateSelected(), true)
+    account = { type: 'microsoft' }
+    assert.equal(await auth.validateSelected(), false)
 })
 
 test('업데이터를 한 번만 초기화하고 다운로드 상태와 설치 동작을 전달한다', async () => {
@@ -101,6 +122,62 @@ test('업데이터를 한 번만 초기화하고 다운로드 상태와 설치 �
     assert.ok(notices.some(n => n[1] === 'download-progress' && n[2].percent === 57))
     assert.ok(notices.some(n => n[1] === 'update-downloaded' && n[2].version === '1.0.1'))
     assert.ok(notices.some(n => n[1] === 'realerror' && n[2].code === 'ENOTFOUND'))
+})
+
+test('저장된 Microsoft 세션을 재실행 후 복원하고 명시적 로그아웃은 유지한다', async t => {
+    const folder = await fs.mkdtemp(path.join(os.tmpdir(), 'mlkc-remember-auth-'))
+    t.after(() => fs.remove(folder))
+    const config = loadConfig(folder)
+    config.addMicrosoftAuthAccount('fixture-user', 'fixture-mc', 'FixtureUser', Date.now() + 60000, 'fixture-ms', 'fixture-refresh', Date.now() + 60000)
+    config.save()
+    const restored = loadConfig(folder)
+    const auth = loadAuth(restored)
+    assert.equal(restored.getSelectedAccount().uuid, 'fixture-user')
+    assert.equal(await auth.validateSelected(), true)
+    await auth.removeMicrosoftAccount('fixture-user')
+    assert.equal(loadConfig(folder).getSelectedAccount(), undefined)
+})
+
+test('만료된 세션을 자동 갱신하고 새 refresh token을 저장하거나 기존 값을 보존한다', async t => {
+    const folder = await fs.mkdtemp(path.join(os.tmpdir(), 'mlkc-refresh-auth-'))
+    t.after(() => fs.remove(folder))
+    const success = data => ({ responseStatus: 0, data })
+    for(const mode of ['full', 'no-rotation', 'minecraft-only']){
+        const config = loadConfig(folder)
+        const msExpiry = mode === 'minecraft-only' ? Date.now() + 60000 : Date.now() - 1000
+        config.addMicrosoftAuthAccount('fixture-user', 'old-mc', 'FixtureUser', Date.now() - 1000, 'old-ms', 'old-refresh', msExpiry)
+        config.save()
+        let refreshes = 0
+        const auth = loadAuth(loadConfig(folder), {
+            getAccessToken: async (token, refresh) => {
+                assert.equal(token, 'old-refresh')
+                assert.equal(refresh, true)
+                refreshes++
+                return success({ access_token: 'new-ms', refresh_token: mode === 'full' ? 'new-refresh' : undefined, expires_in: 3600 })
+            },
+            getXBLToken: async () => success({}),
+            getXSTSToken: async () => success({}),
+            getMCAccessToken: async () => success({ access_token: 'new-mc', expires_in: 3600 }),
+            getMCProfile: async () => success({ id: 'fixture-user', name: 'FixtureUser' })
+        })
+        assert.equal(await auth.validateSelected(), true)
+        const saved = loadConfig(folder).getSelectedAccount()
+        assert.equal(saved.accessToken, 'new-mc')
+        assert.ok(saved.expiresAt > Date.now())
+        assert.equal(saved.microsoft.refresh_token, mode === 'full' ? 'new-refresh' : 'old-refresh')
+        assert.equal(refreshes, mode === 'minecraft-only' ? 0 : 1)
+    }
+})
+
+test('세션 갱신 실패 시 저장된 계정과 토큰을 삭제하지 않는다', async t => {
+    const folder = await fs.mkdtemp(path.join(os.tmpdir(), 'mlkc-offline-auth-'))
+    t.after(() => fs.remove(folder))
+    const config = loadConfig(folder)
+    config.addMicrosoftAuthAccount('fixture-user', 'old-mc', 'FixtureUser', Date.now() - 1000, 'old-ms', 'old-refresh', Date.now() - 1000)
+    config.save()
+    const auth = loadAuth(loadConfig(folder), { getAccessToken: async () => ({ responseStatus: 1, microsoftErrorCode: 0 }) })
+    assert.equal(await auth.validateSelected(), false)
+    assert.equal(loadConfig(folder).getSelectedAccount().microsoft.refresh_token, 'old-refresh')
 })
 
 test('실제 NSIS 시작 업데이터가 파일 검증 후 설치를 요청하고 손상 파일은 로그인 전에 거부한다', async t => {

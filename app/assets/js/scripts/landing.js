@@ -566,6 +566,10 @@ async function dlAsync(login = true) {
     const versionData = await mojangIndexProcessor.getVersionJson()
 
     if(login) {
+        if(!await validateSelectedAccount()){
+            toggleLaunchArea(false)
+            return
+        }
         const authUser = ConfigManager.getSelectedAccount()
         loggerLaunchSuite.info(`Sending selected account (${authUser.displayName}) to ProcessBuilder.`)
         let pb = new ProcessBuilder(serv, versionData, modLoaderData, authUser, remote.app.getVersion())

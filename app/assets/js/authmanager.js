@@ -176,7 +176,7 @@ async function validateSelectedMicrosoftAccount(){
     const current = ConfigManager.getSelectedAccount()
     const now = new Date().getTime()
     const mcExpiresAt = current.expiresAt
-    const mcExpired = now >= mcExpiresAt
+    const mcExpired = !current.accessToken || !Number.isFinite(mcExpiresAt) || now >= mcExpiresAt
 
     if(!mcExpired) {
         return true
@@ -184,10 +184,12 @@ async function validateSelectedMicrosoftAccount(){
 
     // MC token expired. Check MS token.
 
+    if(!current.microsoft) return false
     const msExpiresAt = current.microsoft.expires_at
-    const msExpired = now >= msExpiresAt
+    const msExpired = !current.microsoft.access_token || !Number.isFinite(msExpiresAt) || now >= msExpiresAt
 
     if(msExpired) {
+        if(!current.microsoft.refresh_token) return false
         // MS expired, do full refresh.
         try {
             const res = await fullMicrosoftAuthFlow(current.microsoft.refresh_token, AUTH_MODE.MS_REFRESH)
@@ -196,7 +198,7 @@ async function validateSelectedMicrosoftAccount(){
                 current.uuid,
                 res.mcToken.access_token,
                 res.accessToken.access_token,
-                res.accessToken.refresh_token,
+                res.accessToken.refresh_token || current.microsoft.refresh_token,
                 calculateExpiryDate(now, res.accessToken.expires_in),
                 calculateExpiryDate(now, res.mcToken.expires_in)
             )

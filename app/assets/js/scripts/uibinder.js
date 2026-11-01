@@ -64,6 +64,15 @@ async function showMainUI(data){
         ipcRenderer.send('autoUpdateAction', 'initAutoUpdater', ConfigManager.getAllowPrerelease())
     }
 
+    const hasSavedAccount = ConfigManager.getSelectedAccount() != null
+    let isLoggedIn = false
+    if(hasSavedAccount){
+        document.getElementById('startupUpdatePanel').style.display = 'flex'
+        document.getElementById('startupUpdateStatus').textContent = Lang.queryJS('uibinder.accountRestore.loading')
+        isLoggedIn = await AuthManager.validateSelected()
+        if(isLoggedIn) updateSelectedAccount(ConfigManager.getSelectedAccount())
+    }
+
     await prepareSettings(true)
     updateSelectedServer(data.getServerById(ConfigManager.getSelectedServer()))
     refreshServerStatus()
@@ -71,15 +80,7 @@ async function showMainUI(data){
         document.getElementById('frameBar').style.backgroundColor = 'rgba(0, 0, 0, 0.5)'
         $('#main').show()
 
-        const isLoggedIn = Object.keys(ConfigManager.getAuthAccounts()).length > 0
-
-        // If this is enabled in a development environment we'll get ratelimited.
-        // The relaunch frequency is usually far too high.
-        if(!isDev && isLoggedIn){
-            validateSelectedAccount()
-        }
-
-        if(ConfigManager.isFirstLaunch()){
+        if(ConfigManager.isFirstLaunch() && !hasSavedAccount){
             currentView = VIEWS.welcome
             $(VIEWS.welcome).fadeIn(1000)
         } else {
@@ -98,6 +99,7 @@ async function showMainUI(data){
         setTimeout(() => {
             $('#loadingContainer').fadeOut(500, () => {
                 $('#loadSpinnerImage').removeClass('rotating')
+                if(hasSavedAccount && !isLoggedIn) showAccountRestoreError()
             })
         }, 250)
         
@@ -324,70 +326,48 @@ function mergeModConfiguration(o, n, nReq = false){
 }
 
 async function validateSelectedAccount(){
-    const selectedAcc = ConfigManager.getSelectedAccount()
-    if(selectedAcc != null){
-        const val = await AuthManager.validateSelected()
-        if(!val){
-            ConfigManager.removeAuthAccount(selectedAcc.uuid)
-            ConfigManager.save()
-            const accLen = Object.keys(ConfigManager.getAuthAccounts()).length
-            setOverlayContent(
-                Lang.queryJS('uibinder.validateAccount.failedMessageTitle'),
-                accLen > 0
-                    ? Lang.queryJS('uibinder.validateAccount.failedMessage', { 'account': selectedAcc.displayName })
-                    : Lang.queryJS('uibinder.validateAccount.failedMessageSelectAnotherAccount', { 'account': selectedAcc.displayName }),
-                Lang.queryJS('uibinder.validateAccount.loginButton'),
-                Lang.queryJS('uibinder.validateAccount.selectAnotherAccountButton')
-            )
-            setOverlayHandler(() => {
-
-                loginOptionsViewOnLoginSuccess = getCurrentView()
-                loginOptionsViewOnLoginCancel = VIEWS.loginOptions
-
-                if(accLen > 0) {
-                    loginOptionsViewOnCancel = getCurrentView()
-                    loginOptionsViewCancelHandler = () => {
-                        ConfigManager.addMicrosoftAuthAccount(
-                            selectedAcc.uuid,
-                            selectedAcc.accessToken,
-                            selectedAcc.username,
-                            selectedAcc.expiresAt,
-                            selectedAcc.microsoft.access_token,
-                            selectedAcc.microsoft.refresh_token,
-                            selectedAcc.microsoft.expires_at
-                        )
-                        ConfigManager.save()
-                        validateSelectedAccount()
-                    }
-                    loginOptionsCancelEnabled(true)
-                } else {
-                    loginOptionsCancelEnabled(false)
-                }
-                toggleOverlay(false)
-                switchView(getCurrentView(), VIEWS.loginOptions)
-            })
-            setDismissHandler(() => {
-                if(accLen > 1){
-                    prepareAccountSelectionList()
-                    $('#overlayContent').fadeOut(250, () => {
-                        bindOverlayKeys(true, 'accountSelectContent', true)
-                        $('#accountSelectContent').fadeIn(250)
-                    })
-                } else {
-                    const accountsObj = ConfigManager.getAuthAccounts()
-                    const accounts = Array.from(Object.keys(accountsObj), v => accountsObj[v])
-                    // This function validates the account switch.
-                    setSelectedAccount(accounts[0].uuid)
-                    toggleOverlay(false)
-                }
-            })
-            toggleOverlay(true, accLen > 0)
-        } else {
-            return true
-        }
+    const valid = await AuthManager.validateSelected()
+    if(!valid){
+        showAccountRestoreError()
     } else {
-        return true
+        updateSelectedAccount(ConfigManager.getSelectedAccount())
+        if(getCurrentView() === VIEWS.loginOptions) switchView(getCurrentView(), VIEWS.landing)
     }
+    return valid
+}
+
+function showAccountRestoreError(){
+    const returnView = getCurrentView() === VIEWS.loginOptions ? VIEWS.landing : getCurrentView()
+    setOverlayContent(
+        Lang.queryJS('uibinder.accountRestore.failedTitle'),
+        Lang.queryJS('uibinder.accountRestore.failedMessage'),
+        Lang.queryJS('uibinder.accountRestore.retry'),
+        Lang.queryJS('uibinder.accountRestore.login')
+    )
+    setOverlayHandler(async () => {
+        toggleOverlay(false)
+        if(await validateSelectedAccount()){
+            if(getCurrentView() !== returnView) switchView(getCurrentView(), returnView)
+        }
+    })
+    setDismissHandler(() => {
+        loginOptionsCancelEnabled(false)
+        loginOptionsViewOnLoginSuccess = returnView
+        loginOptionsViewOnLoginCancel = VIEWS.loginOptions
+        toggleOverlay(false)
+        switchView(getCurrentView(), VIEWS.loginOptions)
+    })
+    if(Object.keys(ConfigManager.getAuthAccounts()).length > 1){
+        const select = document.createElement('button')
+        select.id = 'accountRestoreSelect'
+        select.textContent = Lang.queryJS('uibinder.accountRestore.selectAccount')
+        select.onclick = () => {
+            prepareAccountSelectionList()
+            toggleOverlay(true, true, 'accountSelectContent')
+        }
+        document.getElementById('overlayDesc').appendChild(select)
+    }
+    toggleOverlay(true, true)
 }
 
 /**
