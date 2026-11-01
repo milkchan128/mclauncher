@@ -57,6 +57,7 @@ function getCurrentView(){
 }
 
 async function showMainUI(data){
+    await startupUpdateReady
 
     if(!isDev && updatesEnabled){
         loggerAutoUpdater.info('Initializing..')
@@ -107,7 +108,8 @@ async function showMainUI(data){
     })
 }
 
-function showFatalStartupError(){
+async function showFatalStartupError(){
+    await startupUpdateReady
     setTimeout(() => {
         $('#loadingContainer').fadeOut(250, () => {
             document.getElementById('overlayContainer').style.background = 'none'

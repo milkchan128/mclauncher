@@ -12,6 +12,20 @@ const semver                            = require('semver')
 const { pathToFileURL }                 = require('url')
 const { AZURE_CLIENT_ID, MSFT_OPCODE, MSFT_REPLY_TYPE, MSFT_ERROR, SHELL_OPCODE } = require('./app/assets/js/ipcconstants')
 const LangLoader                        = require('./app/assets/js/langloader')
+const { createStartupUpdater }          = require('./app/assets/js/startupupdater')
+const startupUpdatesRequired = !isDev && process.platform === 'win32' && fs.existsSync(path.join(process.resourcesPath, 'app-update.yml'))
+let startupUpdater
+
+ipcMain.on('startupUpdateAction', (event, action, allowPrerelease) => {
+    if(action !== 'check') return
+    const notify = state => {
+        if(!event.sender.isDestroyed?.()) event.sender.send('startupUpdateNotification', state)
+    }
+    if(!startupUpdatesRequired){ notify({ phase: 'ready' }); return }
+    if(!startupUpdater) startupUpdater = createStartupUpdater(autoUpdater, notify)
+    autoUpdater.allowPrerelease = !!allowPrerelease || semver.prerelease(app.getVersion()) != null
+    startupUpdater.start()
+})
 
 // 이름 변경 후에도 기존 계정과 설정을 유지한다.
 const legacyUserDataPath = path.join(app.getPath('appData'), '밀튜디오 - 모드런처')
@@ -141,6 +155,10 @@ let msftAuthSuccess
 let msftAuthViewSuccess
 let msftAuthViewOnClose
 ipcMain.on(MSFT_OPCODE.OPEN_LOGIN, (ipcEvent, ...arguments_) => {
+    if(startupUpdatesRequired && startupUpdater?.getState().phase !== 'ready'){
+        ipcEvent.reply(MSFT_OPCODE.REPLY_LOGIN, MSFT_REPLY_TYPE.ERROR, MSFT_ERROR.NOT_FINISHED, arguments_[1])
+        return
+    }
     if (msftAuthWindow) {
         ipcEvent.reply(MSFT_OPCODE.REPLY_LOGIN, MSFT_REPLY_TYPE.ERROR, MSFT_ERROR.ALREADY_OPEN, msftAuthViewOnClose)
         return

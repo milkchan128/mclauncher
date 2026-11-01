@@ -1,7 +1,8 @@
 ## Development Map
 
 - MRS Launcher/Helios Launcher 기반 Electron 39 앱. 표시 이름은 `mlkc Client`, 한글 이름은 `밀튜디오 클라이언트`다. Node.js 24를 사용하며 Docker는 사용하지 않는다.
-- `index.js`: 창 생성, Microsoft 인증 IPC, 외부 링크, 자동 업데이트를 관리한다. 업데이터는 한 번만 초기화하며 다운로드·종료 시 설치·재시작 설치를 지원한다. `app-update.yml`이 없으면 업데이트 IPC를 차단한다. 이전 `밀튜디오 - 모드런처` 설정 폴더가 있으면 계속 사용한다.
+- `index.js`: 창 생성, Microsoft 인증 IPC, 외부 링크, 자동 업데이트를 관리한다. Windows 시작 업데이트가 끝나기 전에는 Microsoft 로그인 IPC를 차단한다. `app-update.yml`이 없으면 업데이트를 실행하지 않는다. 이전 `밀튜디오 - 모드런처` 설정 폴더가 있으면 계속 사용한다.
+- `startupupdater.js`: Windows 로그인 전 확인 → 다운로드 → 무인 설치·재실행을 담당한다. 최신 버전일 때만 `ready`가 되며 오류 시 재시도·종료를 제공한다. `uicore.js`가 로딩 화면에 상태를 표시하고 `uibinder.js`의 일반·오류 화면은 `startupUpdateReady`를 기다린다. 시작 확인은 모드팩 구성 로딩과 독립적이며 개발 실행에서는 생략한다. 실행 중의 기존 업데이트 확인은 유지한다.
 - `app/*.ejs`: 환영·Microsoft 로그인·런처·설정 화면. `app/assets/js/scripts/`가 화면 동작을 담당한다. Mojang 로그인 화면·인증 코드는 제거했으며 기존 저장 기록은 삭제하지 않는다.
 - 설치 화면·앱 소개·환영 문구·서버 표시 이름에는 모드팩 이름을 넣지 않는다. 서버 표시 이름은 `밀튜디오`이며 기존 인스턴스 ID와 내부 다운로드 정보·출처는 유지한다. `landing.js`의 게임 시작 경로가 모드팩 준비와 Helios `FullRepair`를 실행해 필요한 모드를 자동 설치한다. 정상 모드는 재사용하며 사용자 파일은 보존한다.
 - `preloader.js`: 로컬 모드팩 구성을 읽고 `distributionIndexDone`을 전달한다. 화면보다 로딩이 먼저 끝나면 `DOMContentLoaded`까지 알림을 기다려 렌더러가 시작 신호를 놓치지 않게 한다. `tests/startup.test.js`는 신호 순서와 실제 Electron의 첫 실행·재실행을 검증한다.
@@ -13,7 +14,7 @@
 - `modpack.js`: 게임 실행 전 원본 ZIP·Forge 설치 파일의 SHA-256을 검증하고 안전하게 설정을 추출한다. 기존 파일은 보존하며 인스턴스 ID에 모드팩 버전을 포함한다. 공식 Forge 설치기로 생성한 파일의 SHA-1을 확인한 뒤 기존 Helios 검증·다운로드로 367개 모드를 설치한다. 게임 바이너리는 재배포하지 않는다.
 - `modpack.js`의 `getManagedMods`와 `settings.js`: 설치 전에도 배포 구성의 필수 파일 목록을 표시한다. 파일 유무·크기를 기준으로 설치 상태를 표시하고 F5로 갱신한다. 필수 파일은 사용자 추가 모드에서 제외해 중복 표시·삭제를 막는다. 설정 화면은 다운로드를 시작하지 않으며 해시 검증은 게임 시작 시 수행한다.
 - `assets/modpack/modpack.json`: 원본 출처·버전·해시. `forge-version.json`: 공식 설치기에서 추출한 런처 메타데이터. 모드팩을 변경할 때 서버 버전과 모든 메타데이터·해시를 함께 갱신한다.
-- `electron-builder.yml`: 앱 ID `kr.mlkc.modlauncher`와 실행 파일 `mlkc-Client.exe`를 유지한다. 현재 버전은 `1.0.3`이며 GitHub `milkchan128/mclauncher` Releases의 `latest.yml`을 사용한다. 다음 릴리스는 버전을 높이며 자동 다운그레이드는 허용하지 않는다. 로고에서 멈추는 1.0.0은 업데이터가 초기화되지 않으므로 1.0.1 이상을 수동 설치해야 한다.
+- `electron-builder.yml`: 앱 ID `kr.mlkc.modlauncher`와 실행 파일 `mlkc-Client.exe`를 유지한다. 현재 버전은 `1.0.4`이며 GitHub `milkchan128/mclauncher` Releases의 `latest.yml`을 사용한다. 다음 릴리스는 버전을 높이며 자동 다운그레이드는 허용하지 않는다. 로그인 전 강제 업데이트는 1.0.4부터 적용된다. 로고에서 멈추는 1.0.0은 새 설치 파일을 직접 실행해야 한다.
 - `installer/Window.xaml`, `Setup.cs`: Windows 기본 창 장식과 컨트롤 외형을 대체하는 WPF 설치 화면. 환영 → EULA 동의 → 설치 대상 → 경로 → 진행 → 완료 순서이며 동의 없이 진행할 수 없다. 160ms 방향별 전환은 Windows 애니메이션 설정을 따른다. 내장 엔진 해시와 설치 경로를 검증하고 업데이트 인수를 NSIS에 전달한다.
 - `scripts/build-windows.js`: Windows 기본 .NET Framework 컴파일러로 WPF 화면과 NSIS 엔진을 묶는다. 내부 엔진은 `dist/setup-engine/`, 최종 배포물은 `mlkc-Client-setup-${version}.exe`, `.exe.blockmap`, `.exe.sha256`, `latest.yml` 네 개다. 업데이트 메타데이터는 최종 EXE 기준으로 생성한다.
 - 검증: `npm.cmd test`, `npm.cmd run lint`. 설치 테스트는 가짜 엔진으로 인수·경로·손상 파일 거부를 확인하고 실제 업데이터로 다운로드·SHA-512를 검증한다. Windows 빌드 `npm.cmd run dist:win`과 CI는 게시하지 않는다. 릴리스 노트는 `docs/releases/`에 보관한다. 개발용 실행은 사용자가 직접 `npm.cmd start`로 수행한다.

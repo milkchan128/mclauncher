@@ -12,6 +12,7 @@ const yaml = require('js-yaml')
 const { NsisUpdater } = require('electron-updater')
 const { NodeHttpExecutor } = require('builder-util/out/nodeHttpExecutor')
 const { ElectronHttpExecutor } = require('electron-updater/out/electronHttpExecutor')
+const { createStartupUpdater } = require('../app/assets/js/startupupdater')
 
 const root = path.join(__dirname, '..')
 const quietLogger = { log() {}, info() {}, warn() {}, error() {}, debug() {} }
@@ -102,7 +103,7 @@ test('업데이터를 한 번만 초기화하고 다운로드 상태와 설치 �
     assert.ok(notices.some(n => n[1] === 'realerror' && n[2].code === 'ENOTFOUND'))
 })
 
-test('실제 NSIS 업데이터가 새 버전을 내려받고 잘못된 SHA-512 파일은 거부한다', async t => {
+test('실제 NSIS 시작 업데이터가 파일 검증 후 설치를 요청하고 손상 파일은 로그인 전에 거부한다', async t => {
     const folder = await fs.mkdtemp(path.join(os.tmpdir(), 'mlkc-update-'))
     t.after(() => fs.remove(folder))
     const payload = Buffer.from('update fixture, never executed')
@@ -136,13 +137,21 @@ test('실제 NSIS 업데이터가 새 버전을 내려받고 잘못된 SHA-512 �
         updater.disableDifferentialDownload = true
         updater.disableWebInstaller = true
         updater.logger = null
-        const update = await updater.checkForUpdates()
-        assert.equal(update.updateInfo.version, '1.0.1')
+        const installs = []
+        updater.quitAndInstall = (...args) => installs.push(args)
+        const states = []
+        const startup = createStartupUpdater(updater, state => states.push(state))
+        await startup.start()
+        assert.ok(states.some(state => state.version === '1.0.1'))
+        assert.ok(!states.some(state => state.phase === 'ready'))
         if(shouldCorrupt){
-            await assert.rejects(updater.downloadUpdate(), /sha512 checksum mismatch/)
+            assert.equal(startup.getState().phase, 'error')
+            assert.match(startup.getState().message, /sha512 checksum mismatch/)
+            assert.equal(installs.length, 0)
         } else {
-            const downloaded = await updater.downloadUpdate()
-            assert.deepEqual(await fs.readFile(downloaded[0]), payload)
+            assert.equal(startup.getState().phase, 'installing')
+            assert.deepEqual(installs, [[true, true]])
+            assert.deepEqual(await fs.readFile(updater.installerPath), payload)
         }
     }
 })

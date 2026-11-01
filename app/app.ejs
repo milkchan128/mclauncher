@@ -41,6 +41,14 @@
             <div id="loadSpinnerContainer">
                 <img id="loadSpinnerImage" src="assets/images/Icon.png" alt="밀튜디오 로고">
             </div>
+            <div id="startupUpdatePanel" style="display: none;">
+                <p id="startupUpdateStatus" role="status" aria-live="polite"><%- lang('startupUpdate.checking') %></p>
+                <progress id="startupUpdateProgress" max="100" value="0" hidden aria-label="업데이트 다운로드 진행률"></progress>
+                <div id="startupUpdateActions" hidden>
+                    <button id="startupUpdateRetry"><%- lang('startupUpdate.retry') %></button>
+                    <button id="startupUpdateClose"><%- lang('startupUpdate.close') %></button>
+                </div>
+            </div>
         </div>
     </div>
 </body>

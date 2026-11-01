@@ -17,7 +17,7 @@ mediaDiscordURL = ""
 
 [ejs.settings]
 tabModsHeaderDesc = "게임 시작 시 필요한 모드를 자동으로 설치합니다. 설치 전에도 목록을 확인할 수 있습니다."
-launcherUpdatesHeaderDesc = "새 버전을 자동으로 확인하고 다운로드합니다. 다운로드가 끝나면 재시작하거나 앱을 종료할 때 설치합니다."
+launcherUpdatesHeaderDesc = "앱 시작 시 로그인 전에 새 버전을 확인하고 자동으로 설치한 뒤 다시 실행합니다."
 sourceGithubLink = "https://github.com/milkchan128/mclauncher"
 supportLink = "https://github.com/milkchan128/mclauncher/issues"
 
@@ -40,3 +40,15 @@ downloadingProgress = "업데이트 다운로드 중 {percent}%"
 [js.settings.mods]
 installed = "설치됨"
 notInstalled = "설치되지 않음"
+
+[ejs.startupUpdate]
+checking = "새 버전을 확인하고 있습니다…"
+retry = "다시 시도"
+close = "종료"
+
+[js.startupUpdate]
+checking = "새 버전을 확인하고 있습니다…"
+downloading = "업데이트 {version} 다운로드 중 {percent}%"
+installing = "업데이트를 설치하고 다시 실행합니다…"
+ready = "최신 버전입니다. 클라이언트를 시작합니다…"
+error = "업데이트를 완료하지 못했습니다. 인터넷 연결을 확인한 뒤 다시 시도해 주세요."

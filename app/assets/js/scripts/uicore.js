@@ -13,6 +13,37 @@ const { LoggerUtil }                 = require('helios-core')
 const Lang                           = require('./assets/js/langloader')
 const updatesEnabled                 = require('fs').existsSync(require('path').join(process.resourcesPath, 'app-update.yml'))
 const projectURL                     = require('../package.json').homepage
+const startupUpdatesEnabled          = !isDev && updatesEnabled && process.platform === 'win32'
+let finishStartupUpdate
+const startupUpdateReady = startupUpdatesEnabled ? new Promise(resolve => { finishStartupUpdate = resolve }) : Promise.resolve()
+
+if(startupUpdatesEnabled){
+    ipcRenderer.on('startupUpdateNotification', (_event, state) => {
+        const text = document.getElementById('startupUpdateStatus')
+        const progress = document.getElementById('startupUpdateProgress')
+        document.getElementById('startupUpdateActions').hidden = state.phase !== 'error'
+        document.getElementById('loadingContainer').toggleAttribute('startup-error', state.phase === 'error')
+        progress.hidden = !['downloading', 'installing'].includes(state.phase)
+        progress.value = state.phase === 'installing' ? 100 : state.percent || 0
+        text.textContent = Lang.queryJS(`startupUpdate.${state.phase}`, state)
+        if(state.phase === 'ready'){
+            remote.getCurrentWindow().setProgressBar(-1)
+            finishStartupUpdate()
+        } else if(state.phase === 'downloading'){
+            remote.getCurrentWindow().setProgressBar((state.percent || 0) / 100)
+        } else if(state.phase === 'error'){
+            remote.getCurrentWindow().setProgressBar(-1)
+        }
+    })
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('loadingContainer').setAttribute('startup-update', '')
+        document.getElementById('startupUpdatePanel').style.display = 'flex'
+        const check = () => ipcRenderer.send('startupUpdateAction', 'check', ConfigManager.getAllowPrerelease())
+        document.getElementById('startupUpdateRetry').onclick = check
+        document.getElementById('startupUpdateClose').onclick = () => remote.getCurrentWindow().close()
+        check()
+    }, { once: true })
+}
 
 const loggerUICore             = LoggerUtil.getLogger('UICore')
 const loggerAutoUpdater        = LoggerUtil.getLogger('AutoUpdater')
@@ -76,7 +107,7 @@ if(!isDev && updatesEnabled){
                 updateCheckListener = setInterval(() => {
                     ipcRenderer.send('autoUpdateAction', 'checkForUpdate')
                 }, 1800000)
-                ipcRenderer.send('autoUpdateAction', 'checkForUpdate')
+                if(!startupUpdatesEnabled) ipcRenderer.send('autoUpdateAction', 'checkForUpdate')
                 break
             case 'realerror':
                 settingsUpdateTitle.textContent = Lang.queryJS('settings.updates.checkFailedTitle')
