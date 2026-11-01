@@ -6,6 +6,15 @@ title = "mlkc Client"
 [ejs.landing]
 launchButton = "게임 시작"
 launchButtonHint = "필요한 모드를 자동으로 설치한 뒤 게임을 시작합니다."
+railLabel = "주 메뉴"
+railHome = "홈"
+railMods = "모드"
+newsButton = "소식"
+usernameEditButton = "계정"
+noticeLabel = "공지사항"
+noticeGo = "바로가기"
+serverButton = "서버"
+serverNamePlaceholder = "밀튜디오"
 mediaHomeURL = "https://www.curseforge.com/minecraft/modpacks/society-sunlit-valley"
 mediaLinkURL = "#"
 mediaMapURL = ""
@@ -36,6 +45,13 @@ loginOptionsTitle = "Microsoft 계정으로 시작하세요"
 
 [js.uicore.autoUpdate]
 downloadingProgress = "업데이트 다운로드 중 {percent}%"
+
+[js.landing.serverStatus]
+online = "온라인 {count}명"
+
+[js.landing.notice]
+none = "등록된 공지사항이 없습니다"
+failed = "공지사항을 불러오지 못했습니다"
 
 [js.settings.mods]
 installed = "설치됨"

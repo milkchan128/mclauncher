@@ -3,12 +3,8 @@
  */
 // Requirements
 const { URL }                 = require('url')
+const { getServerStatus }     = require('helios-core/mojang')
 const {
-    MojangRestAPI,
-    getServerStatus
-}                             = require('helios-core/mojang')
-const {
-    RestResponseStatus,
     isDisplayableError,
     validateLocalFile
 }                             = require('helios-core/common')
@@ -141,6 +137,21 @@ document.getElementById('avatarOverlay').onclick = async e => {
     })
 }
 
+// Bind mods rail button.
+document.getElementById('railMods').onclick = async e => {
+    await prepareSettings()
+    switchView(getCurrentView(), VIEWS.settings, 500, 500, () => {
+        settingsNavItemListener(document.querySelector('.settingsNavItem[rSc="settingsTabMods"]'), false)
+    })
+}
+
+// 홈 버튼은 소식 패널이 열려 있을 때 닫는다.
+document.getElementById('railHome').onclick = () => {
+    if(newsActive){
+        document.getElementById('newsButton').click()
+    }
+}
+
 // Bind selected account
 function updateSelectedAccount(authUser){
     let username = Lang.queryJS('landing.selectedAccount.noAccountSelected')
@@ -149,7 +160,7 @@ function updateSelectedAccount(authUser){
             username = authUser.displayName
         }
         if(authUser.uuid != null){
-            document.getElementById('avatarContainer').style.backgroundImage = `url('https://mc-heads.net/body/${authUser.uuid}/right')`
+            document.getElementById('avatarContainer').style.backgroundImage = `url('https://mc-heads.net/avatar/${authUser.uuid}/64')`
         }
     }
     user_text.innerHTML = username
@@ -163,114 +174,66 @@ function updateSelectedServer(serv){
     }
     ConfigManager.setSelectedServer(serv != null ? serv.rawServer.id : null)
     ConfigManager.save()
-    server_selection_button.innerHTML = '&#8226; ' + (serv != null ? serv.rawServer.name : Lang.queryJS('landing.noSelection'))
+    setServerInfo(serv)
     if(getCurrentView() === VIEWS.settings){
         animateSettingsTabRefresh()
     }
     setLaunchEnabled(serv != null)
 }
-// Real text is set in uibinder.js on distributionIndexDone.
-server_selection_button.innerHTML = '&#8226; ' + Lang.queryJS('landing.selectedServer.loading')
-server_selection_button.onclick = async e => {
-    e.target.blur()
-    await toggleServerSelection(true)
+
+/**
+ * 하단 띠에 서버 이름, 주소, 버전을 표시한다.
+ *
+ * @param {HeliosServer} serv 선택된 서버. 없으면 null.
+ */
+function setServerInfo(serv){
+    const forge = serv?.modules.find(m => m.rawModule.type === 'ForgeHosted')
+    document.getElementById('landingServerName').textContent = serv != null ? serv.rawServer.name : Lang.queryJS('landing.selectedServer.noSelection')
+    document.getElementById('landingServerAddress').textContent = serv != null ? serv.hostname : ''
+    document.getElementById('landingServerVersion').textContent = serv == null ? '' : [
+        'Minecraft ' + serv.rawServer.minecraftVersion,
+        forge != null ? 'Forge ' + forge.getMavenComponents().version.split('-').pop() : null
+    ].filter(Boolean).join(' · ')
 }
-
-// Update Mojang Status Color
-const refreshMojangStatuses = async function(){
-    loggerLanding.info('Refreshing Mojang Statuses..')
-
-    let status = 'grey'
-    let tooltipEssentialHTML = ''
-    let tooltipNonEssentialHTML = ''
-
-    const response = await MojangRestAPI.status()
-    let statuses
-    if(response.responseStatus === RestResponseStatus.SUCCESS) {
-        statuses = response.data
-    } else {
-        loggerLanding.warn('Unable to refresh Mojang service status.')
-        statuses = MojangRestAPI.getDefaultStatuses()
-    }
-    
-    greenCount = 0
-    greyCount = 0
-
-    for(let i=0; i<statuses.length; i++){
-        const service = statuses[i]
-
-        const tooltipHTML = `<div class="mojangStatusContainer">
-            <span class="mojangStatusIcon" style="color: ${MojangRestAPI.statusToHex(service.status)};">&#8226;</span>
-            <span class="mojangStatusName">${service.name}</span>
-        </div>`
-        if(service.essential){
-            tooltipEssentialHTML += tooltipHTML
-        } else {
-            tooltipNonEssentialHTML += tooltipHTML
-        }
-
-        if(service.status === 'yellow' && status !== 'red'){
-            status = 'yellow'
-        } else if(service.status === 'red'){
-            status = 'red'
-        } else {
-            if(service.status === 'grey'){
-                ++greyCount
-            }
-            ++greenCount
-        }
-
-    }
-
-    if(greenCount === statuses.length){
-        if(greyCount === statuses.length){
-            status = 'grey'
-        } else {
-            status = 'green'
-        }
-    }
-    
-    document.getElementById('mojangStatusEssentialContainer').innerHTML = tooltipEssentialHTML
-    document.getElementById('mojangStatusNonEssentialContainer').innerHTML = tooltipNonEssentialHTML
-    document.getElementById('mojang_status_icon').style.color = MojangRestAPI.statusToHex(status)
+// Real text is set in uibinder.js on distributionIndexDone.
+server_selection_button.onclick = async e => {
+    e.currentTarget.blur()
+    await toggleServerSelection(true)
 }
 
 const refreshServerStatus = async (fade = false) => {
     loggerLanding.info('Refreshing Server Status')
     const serv = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
+    const playerCount = document.getElementById('player_count')
 
-    let pLabel = Lang.queryJS('landing.serverStatus.server')
+    let online = false
     let pVal = Lang.queryJS('landing.serverStatus.offline')
 
     try {
 
         const servStat = await getServerStatus(47, serv.hostname, serv.port)
-        console.log(servStat)
-        pLabel = Lang.queryJS('landing.serverStatus.players')
-        pVal = servStat.players.online + '/' + servStat.players.max
+        online = true
+        pVal = Lang.queryJS('landing.serverStatus.online', { count: servStat.players.online })
 
     } catch (err) {
         loggerLanding.warn('Unable to refresh server status, assuming offline.')
         loggerLanding.debug(err)
     }
+    const apply = () => {
+        playerCount.textContent = pVal
+        playerCount.toggleAttribute('online', online)
+    }
     if(fade){
-        $('#server_status_wrapper').fadeOut(250, () => {
-            document.getElementById('landingPlayerLabel').innerHTML = pLabel
-            document.getElementById('player_count').innerHTML = pVal
-            $('#server_status_wrapper').fadeIn(500)
+        $(playerCount).fadeOut(250, () => {
+            apply()
+            $(playerCount).fadeIn(500)
         })
     } else {
-        document.getElementById('landingPlayerLabel').innerHTML = pLabel
-        document.getElementById('player_count').innerHTML = pVal
+        apply()
     }
-    
 }
 
-refreshMojangStatuses()
 // Server Status is refreshed in uibinder.js on distributionIndexDone.
-
-// Refresh statuses every hour. The status page itself refreshes every day so...
-let mojangStatusListener = setInterval(() => refreshMojangStatuses(true), 60*60*1000)
 // Set refresh rate to once every 5 minutes.
 let serverStatusListener = setInterval(() => refreshServerStatus(true), 300000)
 
@@ -670,55 +633,36 @@ const nELoadSpan                    = document.getElementById('nELoadSpan')
 
 // News slide caches.
 let newsActive = false
-let newsGlideCount = 0
 
 /**
  * Show the news UI via a slide animation.
- * 
- * @param {boolean} up True to slide up, otherwise false. 
+ *
+ * @param {boolean} up True to slide up, otherwise false.
  */
 function slide_(up){
-    const lCUpper = document.querySelector('#landingContainer > #upper')
-    const lCLLeft = document.querySelector('#landingContainer > #lower > #left')
-    const lCLCenter = document.querySelector('#landingContainer > #lower > #center')
-    const lCLRight = document.querySelector('#landingContainer > #lower > #right')
-    const newsBtn = document.querySelector('#landingContainer > #lower > #center #content')
-    const landingContainer = document.getElementById('landingContainer')
-    const newsContainer = document.querySelector('#landingContainer > #newsContainer')
+    // 이동 애니메이션은 launcher.css의 #landingContainer[news] 규칙이 담당한다.
+    document.getElementById('landingContainer').toggleAttribute('news', up)
+}
 
-    newsGlideCount++
-
-    if(up){
-        lCUpper.style.top = '-200vh'
-        lCLLeft.style.top = '-200vh'
-        lCLCenter.style.top = '-200vh'
-        lCLRight.style.top = '-200vh'
-        newsBtn.style.top = '130vh'
-        newsContainer.style.top = '0px'
-        //date.toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric'})
-        //landingContainer.style.background = 'rgba(29, 29, 29, 0.55)'
-        landingContainer.style.background = 'rgba(0, 0, 0, 0.50)'
-        setTimeout(() => {
-            if(newsGlideCount === 1){
-                lCLCenter.style.transition = 'none'
-                newsBtn.style.transition = 'none'
-            }
-            newsGlideCount--
-        }, 2000)
-    } else {
-        setTimeout(() => {
-            newsGlideCount--
-        }, 2000)
-        landingContainer.style.background = null
-        lCLCenter.style.transition = null
-        newsBtn.style.transition = null
-        newsContainer.style.top = '100%'
-        lCUpper.style.top = '0px'
-        lCLLeft.style.top = '0px'
-        lCLCenter.style.top = '0px'
-        lCLRight.style.top = '0px'
-        newsBtn.style.top = '10px'
+// 공지 바를 누르면 최신 공지를 소식 패널에서 연다.
+document.getElementById('landingNotice').onclick = () => {
+    if(newsArr != null && newsArr.length > 0){
+        displayArticle(newsArr[0], 1)
     }
+    if(!newsActive){
+        document.getElementById('newsButton').click()
+    }
+}
+
+/**
+ * 공지 바에 최신 공지 제목이나 상태 문구를 표시한다.
+ *
+ * @param {string} text 표시할 문구.
+ * @param {boolean} enabled 바로가기를 허용하면 true.
+ */
+function setNotice(text, enabled){
+    document.getElementById('landingNoticeTitle').textContent = text
+    document.getElementById('landingNotice').disabled = !enabled
 }
 
 // Bind news button.
@@ -729,7 +673,7 @@ document.getElementById('newsButton').onclick = () => {
         $('#newsContainer *').attr('tabindex', '-1')
     } else {
         $('#landingContainer *').attr('tabindex', '-1')
-        $('#newsContainer, #newsContainer *, #lower, #lower #center *').removeAttr('tabindex')
+        $('#newsContainer, #newsContainer *, #landingRail *').removeAttr('tabindex')
         if(newsAlertShown){
             $('#newsButtonAlert').fadeOut(2000)
             newsAlertShown = false
@@ -844,6 +788,8 @@ async function initNews(){
     if(newsArr == null){
         // News Loading Failed
         setNewsLoading(false)
+        // RSS 주소가 없으면 loadNews가 null을 돌려준다. 이때는 실패가 아니라 공지가 없는 상태다.
+        setNotice(Lang.queryJS(news == null ? 'landing.notice.none' : 'landing.notice.failed'), false)
 
         await $('#newsErrorLoading').fadeOut(250).promise()
         await $('#newsErrorFailed').fadeIn(250).promise()
@@ -851,6 +797,7 @@ async function initNews(){
     } else if(newsArr.length === 0) {
         // No News Articles
         setNewsLoading(false)
+        setNotice(Lang.queryJS('landing.notice.none'), false)
 
         ConfigManager.setNewsCache({
             date: null,
@@ -864,6 +811,7 @@ async function initNews(){
     } else {
         // Success
         setNewsLoading(false)
+        setNotice(newsArr[0].title, true)
 
         const lN = newsArr[0]
         const cached = ConfigManager.getNewsCache()

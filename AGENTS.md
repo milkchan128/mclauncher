@@ -8,7 +8,8 @@
 - 설치 화면·앱 소개·환영 문구·서버 표시 이름에는 모드팩 이름을 넣지 않는다. 서버 표시 이름은 `밀튜디오`이며 기존 인스턴스 ID와 내부 다운로드 정보·출처는 유지한다. `landing.js`의 게임 시작 경로가 모드팩 준비와 Helios `FullRepair`를 실행해 필요한 모드를 자동 설치한다. 정상 모드는 재사용하며 사용자 파일은 보존한다.
 - `preloader.js`: 로컬 모드팩 구성을 읽고 `distributionIndexDone`을 전달한다. 화면보다 로딩이 먼저 끝나면 `DOMContentLoaded`까지 알림을 기다려 렌더러가 시작 신호를 놓치지 않게 한다. `tests/startup.test.js`는 신호 순서와 실제 Electron의 첫 실행·재실행을 검증한다.
 - `app/assets/lang/_custom.toml`: 마지막에 적용되는 브랜드 이름·환영 문구·외부 링크. 앱 제목은 `package.json`, `electron-builder.yml`과 일치시킨다. 주소가 없는 지도·디스코드 버튼은 숨긴다.
-- `app/assets/css/launcher.css`: 기존 화면 스타일. `brand.css`: 로고·브랜드 색상·한글 줄바꿈·모션 감소 설정과 연필화 배경 `images/backgrounds/mlkc-pencil.png`를 적용한다. 무작위 배경은 사용하지 않으며 기존 숫자 배경 파일은 빌드에서 제외한다.
+- `app/landing.ejs`·`landing.js`: 메인 화면. 왼쪽 아이콘 메뉴(홈·소식·모드·계정·설정), 큰 배경 그림, 맨 위 공지 바(최신 RSS 공지 제목, 누르면 소식 패널), 아래 반투명 띠(로고·서버 이름·주소·접속 인원·버전, 서버/게임 시작 버튼, 진행률)로 구성한다. 서버 이름·주소·버전은 배포 구성에서 읽는다. 소식 패널은 `#landingContainer[news]` 속성으로 열고 닫으며 이동은 CSS가 맡는다. Mojang 상태 표시는 제거했다. 진입·버튼·진행률 애니메이션은 `prefers-reduced-motion`에서 끈다.
+- `app/assets/css/launcher.css`: 기존 화면 스타일과 메인 화면 디자인(색은 `#landingContainer`의 `--landing-*` 변수). 창 상단 막대는 32px Windows 11 형태다. `brand.css`: 로고·브랜드 색상·한글 줄바꿈·모션 감소 설정과 연필화 배경 `images/backgrounds/mlkc-pencil.png`를 적용한다. 무작위 배경은 사용하지 않으며 기존 숫자 배경 파일은 빌드에서 제외한다.
 - 로고는 `app/assets/images/Icon.png`, `build/icon.png`, Windows 다중 해상도 아이콘은 각 디렉터리의 `Icon.ico`/`icon.ico`를 사용한다. 원본은 사용자가 제공한 `mlkclogo.png`다.
 - `configmanager.js`: 기본 게임 데이터를 `.milkstudio-modlauncher`에 분리하고 Microsoft 계정만 선택한다. Microsoft 인증 클라이언트 ID는 `ipcconstants.js`에서 배포 환경에 맞게 설정한다.
 - `distromanager.js`: `assets/modpack/distribution.json`을 기존 DistributionAPI에 공급하고 검증 작업용 캐시를 저장한다. MRS 원격 배포 서버를 사용하지 않는다. 서버는 `mc.mlkc.kr`, 모드팩은 Society: Sunlit Valley 4.1.5A의 Minecraft 1.20.1/Forge 47.4.0/Java 17 조합으로 고정한다.
