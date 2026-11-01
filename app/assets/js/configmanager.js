@@ -299,7 +299,7 @@ exports.setSelectedServer = function(serverID){
  * @returns {Array.<Object>} An array of each stored authenticated account.
  */
 exports.getAuthAccounts = function(){
-    return config.authenticationDatabase
+    return Object.fromEntries(Object.entries(config.authenticationDatabase).filter(([, account]) => account.type === 'microsoft'))
 }
 
 /**
@@ -310,42 +310,6 @@ exports.getAuthAccounts = function(){
  * @returns {Object} The authenticated account with the given uuid.
  */
 exports.getAuthAccount = function(uuid){
-    return config.authenticationDatabase[uuid]
-}
-
-/**
- * Update the access token of an authenticated mojang account.
- * 
- * @param {string} uuid The uuid of the authenticated account.
- * @param {string} accessToken The new Access Token.
- * 
- * @returns {Object} The authenticated account object created by this action.
- */
-exports.updateMojangAuthAccount = function(uuid, accessToken){
-    config.authenticationDatabase[uuid].accessToken = accessToken
-    config.authenticationDatabase[uuid].type = 'mojang' // For gradual conversion.
-    return config.authenticationDatabase[uuid]
-}
-
-/**
- * Adds an authenticated mojang account to the database to be stored.
- * 
- * @param {string} uuid The uuid of the authenticated account.
- * @param {string} accessToken The accessToken of the authenticated account.
- * @param {string} username The username (usually email) of the authenticated account.
- * @param {string} displayName The in game name of the authenticated account.
- * 
- * @returns {Object} The authenticated account object created by this action.
- */
-exports.addMojangAuthAccount = function(uuid, accessToken, username, displayName){
-    config.selectedAccount = uuid
-    config.authenticationDatabase[uuid] = {
-        type: 'mojang',
-        accessToken,
-        username: username.trim(),
-        uuid: uuid.trim(),
-        displayName: displayName.trim()
-    }
     return config.authenticationDatabase[uuid]
 }
 
@@ -414,7 +378,7 @@ exports.removeAuthAccount = function(uuid){
     if(config.authenticationDatabase[uuid] != null){
         delete config.authenticationDatabase[uuid]
         if(config.selectedAccount === uuid){
-            const keys = Object.keys(config.authenticationDatabase)
+            const keys = Object.keys(exports.getAuthAccounts())
             if(keys.length > 0){
                 config.selectedAccount = keys[0]
             } else {
@@ -433,7 +397,8 @@ exports.removeAuthAccount = function(uuid){
  * @returns {Object} The selected authenticated account.
  */
 exports.getSelectedAccount = function(){
-    return config.authenticationDatabase[config.selectedAccount]
+    const accounts = exports.getAuthAccounts()
+    return accounts[config.selectedAccount] || Object.values(accounts)[0]
 }
 
 /**
@@ -445,7 +410,7 @@ exports.getSelectedAccount = function(){
  * @returns {Object} The selected authenticated account.
  */
 exports.setSelectedAccount = function(uuid){
-    const authAcc = config.authenticationDatabase[uuid]
+    const authAcc = exports.getAuthAccounts()[uuid]
     if(authAcc != null) {
         config.selectedAccount = uuid
     }
