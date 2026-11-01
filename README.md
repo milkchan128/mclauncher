@@ -16,13 +16,14 @@ npm.cmd run lint
 npm.cmd run dist:win
 ```
 
-Windows x64 설치 파일은 `dist/mlkc-Client-setup-3.0.10.exe`에 생성됩니다. 빌드 전에 실행 중인 클라이언트를 종료하세요. `electron/install.js`는 npm에서 설치 스크립트를 생략한 환경에서도 Electron 실행 파일을 준비합니다. 빌드 명령은 릴리스를 게시하지 않습니다. 코드 서명 인증서는 별도로 설정해야 합니다.
+클라이언트 버전은 **1.0.0**입니다. Windows x64 설치 파일은 `dist/mlkc-Client-setup-1.0.0.exe`에 생성됩니다. 빌드 전에 실행 중인 클라이언트를 종료하세요. `electron/install.js`는 npm에서 설치 스크립트를 생략한 환경에서도 Electron 실행 파일을 준비합니다. 로컬 빌드 명령은 릴리스를 게시하지 않습니다. 코드 서명 인증서는 별도로 설정해야 합니다.
 
 Windows에서 `winCodeSign` 압축 해제 중 `Cannot create symbolic link` 오류가 발생하면 macOS용 파일의 링크 생성이 원인일 수 있습니다. 이번 환경은 빌더가 내려받은 도구에서 `darwin`, `linux` 항목을 제외하고 Windows 도구만 `%LOCALAPPDATA%/electron-builder/Cache/winCodeSign/winCodeSign-2.6.0`에 풀어 해결했습니다. 시스템 권한 설정은 변경하지 않았습니다.
 
 개발용 앱은 필요할 때 직접 `npm.cmd start`로 실행하세요.
 
 - 앱 표시 이름: **mlkc Client**, 한글 이름: **밀튜디오 클라이언트**
+- Microsoft 계정 로그인만 지원합니다. Mojang 로그인 화면·계정 추가·인증 코드를 제거했습니다. 기존 Mojang 저장 기록은 삭제하지 않으며 계정 선택 목록에서 제외합니다.
 - 로고: 제공된 `mlkclogo.png`를 `app/assets/images/Icon.png`, `build/icon.png`에 반영했습니다. Windows용 다중 해상도 아이콘은 `app/assets/images/Icon.ico`, `build/icon.ico`입니다.
 - 배경: 직접 제작한 연필화 `app/assets/images/backgrounds/mlkc-pencil.png`를 모든 화면에 고정 적용합니다. 기존 무작위 배경은 빌드에서 제외합니다.
 - 앱 ID: 기존 설치와의 연속성을 위해 `kr.mlkc.modlauncher`를 유지합니다. 실행 파일은 `mlkc-Client.exe`입니다. 이전 `밀튜디오 - 모드런처` 설정 폴더가 있으면 계속 사용해 계정과 설정을 보존합니다.
@@ -31,7 +32,23 @@ Windows에서 `winCodeSign` 압축 해제 중 `Cannot create symbolic link` 오�
 - `app/assets/modpack/distribution.json`은 설치본에 포함된 전용 배포 구성입니다. 별도 웹 호스팅 없이 367개 모드를 원본 CDN에서 받아 기존 Helios 파일 검증·다운로드 기능으로 설치합니다. MRS 배포 서버는 사용하지 않습니다.
 - `modpack.js`는 첫 실행 준비 시 원본 모드팩 ZIP의 SHA-256을 검증하고 설정·리소스팩을 추출합니다. 기존 사용자 파일은 덮어쓰지 않습니다. 버전별 인스턴스 `mlkc-society-4.1.5A`를 사용합니다.
 - Forge는 공식 설치 파일을 검증해 Java 17로 설치하고, 생성된 게임 파일의 해시를 확인합니다. Minecraft 및 Forge가 생성하는 게임 바이너리는 이 저장소나 설치 파일에 재배포하지 않습니다. 최초 준비 시 인터넷 연결과 다운로드 시간이 필요합니다.
-- 원본 MRS 자동 업데이트와 릴리스 노트 조회는 비활성화했습니다. 전용 업데이트를 연결하기 전에는 새 설치 파일로 수동 업데이트하세요. 배포 전에 `app/assets/js/ipcconstants.js`의 Microsoft 인증 클라이언트 ID도 전용 값으로 설정해야 합니다. 설정 방법은 `docs/MicrosoftAuth.md`를 참고하세요.
+- Windows 설치본은 `milkchan128/mclauncher`의 GitHub Releases에서 새 버전을 시작 시점과 30분마다 확인합니다. 새 버전은 자동으로 다운로드하고, 사용자가 재시작 버튼을 누르거나 앱을 종료하면 설치합니다. 설정에서도 수동으로 확인할 수 있습니다. 개발용 실행에서는 자동 업데이트하지 않습니다.
+- GitHub Releases의 해당 버전 릴리스 노트를 표시합니다. 아직 릴리스가 없거나 네트워크 오류가 나면 다시 확인할 수 있도록 안내합니다.
+- 배포 전에 `app/assets/js/ipcconstants.js`의 Microsoft 인증 클라이언트 ID를 전용 값으로 설정해야 합니다. 설정 방법은 `docs/MicrosoftAuth.md`를 참고하세요.
+
+### 자동 업데이트 릴리스 게시
+
+공개 저장소 `milkchan128/mclauncher`를 사용하며, 앱에 GitHub 토큰을 포함하지 않습니다. `electron-builder.yml`의 `publish` 설정으로 설치본의 `app-update.yml`과 배포용 `latest.yml`을 생성합니다. 업데이트 파일은 electron-updater의 SHA-512 검증을 거칩니다.
+
+GitHub Releases가 비어 있으면 실제 업데이트를 제공할 수 없으므로 첫 릴리스를 게시해야 합니다. 기존 3.0.x 테스트 설치본에서 1.0.0으로 처음 전환할 때는 수동 설치하세요. 이후 버전부터는 1.0.1처럼 번호를 높여 배포합니다. 자동 다운그레이드는 허용하지 않습니다.
+
+`npm.cmd run dist:win`은 NSIS 설치 엔진을 먼저 빌드한 뒤 전용 WPF 설치 화면과 함께 단일 EXE로 묶습니다. Windows의 .NET Framework 컴파일러를 사용하므로 별도 SDK나 추가 런타임 설치는 필요하지 않습니다. 기본 창 장식과 버튼을 사용하지 않으며 **환영 → EULA 동의 → 설치 대상 → 설치 위치 → 진행 → 완료** 순서를 유지합니다. EULA에는 기존 `LICENSE.txt`를 표시하고 Minecraft 공식 EULA 링크를 제공합니다.
+
+최종 배포물은 `dist/mlkc-Client-setup-1.0.0.exe`, `.exe.blockmap`, `.exe.sha256`, `dist/latest.yml`입니다. `dist/setup-engine/`의 내부 설치 파일은 배포하지 않습니다. 전용 설치 EXE가 `/S`, `--updated`, `--force-run`을 처리하므로 자동 업데이트 때는 화면 없이 기존 설치 엔진으로 진행합니다. 최종 EXE 기준으로 블록맵과 SHA-512 정보를 다시 생성합니다.
+
+게시할 때는 `package.json`과 일치하는 릴리스 태그(예: `v1.0.0`)에 최종 배포물 네 개를 함께 업로드하세요. Build 워크플로는 검증용 빌드만 수행하며 릴리스를 자동 게시하지 않습니다. 소스 빌드 시 Microsoft 인증 ID는 배포 환경에 맞게 설정해야 합니다.
+
+설치 디자인과 단계는 `installer/Window.xaml`, `installer/Setup.cs`, Windows 패키징은 `scripts/build-windows.js`에서 관리합니다. 단계 전환은 160ms의 페이드·슬라이드 효과를 사용하며 이전 단계에서는 반대 방향으로 움직입니다. Windows에서 애니메이션을 끄면 전환 효과도 생략합니다. 경로는 비어 있는 폴더나 기존 클라이언트 폴더만 허용하고, 내장 설치 엔진의 SHA-256을 검증한 뒤 실행합니다. 설치 중에는 닫기를 막으며 실패 시 다시 시도할 수 있습니다.
 
 ### 모드팩 구성 출처
 
@@ -56,8 +73,8 @@ Windows에서 `winCodeSign` 압축 해제 중 `Cannot create symbolic link` 오�
 
 * 🔒 통합 계정 관리
   * 여러 계정을 등록하고 쉽게 계정 전환을 할 수 있어요.
-  * Microsoft (OAuth 2.0) + Mojang (Yggdrasil) 인증을 모두 지원해요.
-  * 계정 정보는 저장되지 않고 Mojang에 직접 전송돼요.
+  * Microsoft (OAuth 2.0) 계정 인증을 지원해요.
+  * 비밀번호는 클라이언트에 저장하지 않으며, 재로그인을 위한 인증 토큰은 로컬 설정에 저장돼요.
 * 📂 효율적인 데이터 관리
   * 클라이언트 업데이트를 빠르게 받아보세요.
   * 게임 실행 전에 파일 유효성을 검사하고 문제가 있으면 다시 다운로드해요.

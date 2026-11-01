@@ -1,7 +1,11 @@
 appId: 'kr.mlkc.modlauncher'
 productName: 'mlkc Client'
 artifactName: 'mlkc-Client-setup-${version}.${ext}'
-publish: null
+publish:
+  provider: 'github'
+  owner: 'milkchan128'
+  repo: 'mclauncher'
+  releaseType: 'release'
 
 copyright: 'Copyright © 2018-2026 Daniel Scalzi, Copyright © 2024 peunsu'
 
@@ -9,7 +13,7 @@ asar: true
 compression: 'maximum'
 
 files:
-  - '!{dist,.gitignore,.vscode,docs,dev-app-update.yml,.nvmrc,eslint.config.mjs,AGENTS.md,CLAUDE.md,mlkclogo.png,mlkc-logo-discord.gif,tests}'
+  - '!{dist,.gitignore,.vscode,docs,dev-app-update.yml,.nvmrc,eslint.config.mjs,AGENTS.md,CLAUDE.md,mlkclogo.png,mlkc-logo-discord.gif,tests,installer,scripts}'
   - '!app/assets/images/backgrounds/[0-9].png'
 
 extraResources:
@@ -29,6 +33,7 @@ nsis:
   perMachine: false
   allowElevation: true
   allowToChangeInstallationDirectory: true
+  runAfterFinish: false
 
 # macOS Configuration
 mac:

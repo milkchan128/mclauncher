@@ -1,22 +1,22 @@
 {
   "name": "mlkc-client",
-  "version": "3.0.10",
+  "version": "1.0.0",
   "productName": "mlkc Client",
   "description": "밀튜디오 클라이언트 - Society: Sunlit Valley",
   "author": "Daniel Scalzi (https://github.com/dscalzi/), peunsu (https://github.com/peunsu)",
   "license": "UNLICENSED",
-  "homepage": "https://github.com/peunsu/MRSLauncher",
+  "homepage": "https://github.com/milkchan128/mclauncher",
   "bugs": {
-    "url": "https://github.com/peunsu/MRSLauncher/issues"
+    "url": "https://github.com/milkchan128/mclauncher/issues"
   },
   "private": true,
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder build --publish never",
-    "dist:win": "npm run dist -- -w",
-    "dist:mac": "npm run dist -- -m",
-    "dist:linux": "npm run dist -- -l",
+    "dist": "node scripts/build.js",
+    "dist:win": "node scripts/build-windows.js",
+    "dist:mac": "electron-builder build --publish never --mac",
+    "dist:linux": "electron-builder build --publish never --linux",
     "lint": "eslint .",
     "test": "node --test"
   },
@@ -48,6 +48,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/peunsu/MRSLauncher.git"
+    "url": "git+https://github.com/milkchan128/mclauncher.git"
   }
 }

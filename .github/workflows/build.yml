@@ -31,8 +31,12 @@ jobs:
         run: npm ci
         shell: bash
 
-      - name: Build
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build Windows custom installer
+        if: runner.os == 'Windows'
+        run: npm run dist:win
+        shell: bash
+
+      - name: Build other platforms
+        if: runner.os != 'Windows'
         run: npm run dist
         shell: bash
