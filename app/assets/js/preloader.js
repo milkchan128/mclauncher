@@ -1,3 +1,4 @@
+/* global document */
 const {ipcRenderer}  = require('electron')
 const fs             = require('fs-extra')
 const os             = require('os')
@@ -39,7 +40,13 @@ function onDistroLoad(data){
             ConfigManager.save()
         }
     }
-    ipcRenderer.send('distributionIndexDone', data != null)
+    // 로컬 구성이 먼저 준비되어도 렌더러의 IPC 리스너가 등록된 뒤 알린다.
+    const notifyRenderer = () => ipcRenderer.send('distributionIndexDone', data != null)
+    if(document.readyState === 'loading'){
+        document.addEventListener('DOMContentLoaded', notifyRenderer, { once: true })
+    } else {
+        notifyRenderer()
+    }
 }
 
 // Ensure Distribution is downloaded and cached.

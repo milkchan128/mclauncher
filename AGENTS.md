@@ -3,6 +3,7 @@
 - MRS Launcher/Helios Launcher 기반 Electron 39 앱. 표시 이름은 `mlkc Client`, 한글 이름은 `밀튜디오 클라이언트`다. Node.js 24를 사용하며 Docker는 사용하지 않는다.
 - `index.js`: 창 생성, Microsoft 인증 IPC, 외부 링크, 자동 업데이트를 관리한다. 업데이터는 한 번만 초기화하며 다운로드·종료 시 설치·재시작 설치를 지원한다. `app-update.yml`이 없으면 업데이트 IPC를 차단한다. 이전 `밀튜디오 - 모드런처` 설정 폴더가 있으면 계속 사용한다.
 - `app/*.ejs`: 환영·Microsoft 로그인·런처·설정 화면. `app/assets/js/scripts/`가 화면 동작을 담당한다. Mojang 로그인 화면·인증 코드는 제거했으며 기존 저장 기록은 삭제하지 않는다.
+- `preloader.js`: 로컬 모드팩 구성을 읽고 `distributionIndexDone`을 전달한다. 화면보다 로딩이 먼저 끝나면 `DOMContentLoaded`까지 알림을 기다려 렌더러가 시작 신호를 놓치지 않게 한다. `tests/startup.test.js`는 신호 순서와 실제 Electron의 첫 실행·재실행을 검증한다.
 - `app/assets/lang/_custom.toml`: 마지막에 적용되는 브랜드 이름·환영 문구·외부 링크. 앱 제목은 `package.json`, `electron-builder.yml`과 일치시킨다. 주소가 없는 지도·디스코드 버튼은 숨긴다.
 - `app/assets/css/launcher.css`: 기존 화면 스타일. `brand.css`: 로고·브랜드 색상·한글 줄바꿈·모션 감소 설정과 연필화 배경 `images/backgrounds/mlkc-pencil.png`를 적용한다. 무작위 배경은 사용하지 않으며 기존 숫자 배경 파일은 빌드에서 제외한다.
 - 로고는 `app/assets/images/Icon.png`, `build/icon.png`, Windows 다중 해상도 아이콘은 각 디렉터리의 `Icon.ico`/`icon.ico`를 사용한다. 원본은 사용자가 제공한 `mlkclogo.png`다.
@@ -10,7 +11,7 @@
 - `distromanager.js`: `assets/modpack/distribution.json`을 기존 DistributionAPI에 공급하고 검증 작업용 캐시를 저장한다. MRS 원격 배포 서버를 사용하지 않는다. 서버는 `mc.mlkc.kr`, 모드팩은 Society: Sunlit Valley 4.1.5A의 Minecraft 1.20.1/Forge 47.4.0/Java 17 조합으로 고정한다.
 - `modpack.js`: 게임 실행 전 원본 ZIP·Forge 설치 파일의 SHA-256을 검증하고 안전하게 설정을 추출한다. 기존 파일은 보존하며 인스턴스 ID에 모드팩 버전을 포함한다. 공식 Forge 설치기로 생성한 파일의 SHA-1을 확인한 뒤 기존 Helios 검증·다운로드로 367개 모드를 설치한다. 게임 바이너리는 재배포하지 않는다.
 - `assets/modpack/modpack.json`: 원본 출처·버전·해시. `forge-version.json`: 공식 설치기에서 추출한 런처 메타데이터. 모드팩을 변경할 때 서버 버전과 모든 메타데이터·해시를 함께 갱신한다.
-- `electron-builder.yml`: 앱 ID `kr.mlkc.modlauncher`와 실행 파일 `mlkc-Client.exe`를 유지한다. 현재 버전은 `1.0.0`이며 GitHub `milkchan128/mclauncher` Releases의 `latest.yml`을 사용한다. 다음 릴리스는 버전을 높이며 자동 다운그레이드는 허용하지 않는다.
+- `electron-builder.yml`: 앱 ID `kr.mlkc.modlauncher`와 실행 파일 `mlkc-Client.exe`를 유지한다. 현재 버전은 `1.0.1`이며 GitHub `milkchan128/mclauncher` Releases의 `latest.yml`을 사용한다. 다음 릴리스는 버전을 높이며 자동 다운그레이드는 허용하지 않는다. 로고에서 멈추는 1.0.0은 업데이터가 초기화되지 않으므로 1.0.1을 수동 설치해야 한다.
 - `installer/Window.xaml`, `Setup.cs`: Windows 기본 창 장식과 컨트롤 외형을 대체하는 WPF 설치 화면. 환영 → EULA 동의 → 설치 대상 → 경로 → 진행 → 완료 순서이며 동의 없이 진행할 수 없다. 160ms 방향별 전환은 Windows 애니메이션 설정을 따른다. 내장 엔진 해시와 설치 경로를 검증하고 업데이트 인수를 NSIS에 전달한다.
 - `scripts/build-windows.js`: Windows 기본 .NET Framework 컴파일러로 WPF 화면과 NSIS 엔진을 묶는다. 내부 엔진은 `dist/setup-engine/`, 최종 배포물은 `mlkc-Client-setup-${version}.exe`, `.exe.blockmap`, `.exe.sha256`, `latest.yml` 네 개다. 업데이트 메타데이터는 최종 EXE 기준으로 생성한다.
 - 검증: `npm.cmd test`, `npm.cmd run lint`. 설치 테스트는 가짜 엔진으로 인수·경로·손상 파일 거부를 확인하고 실제 업데이터로 다운로드·SHA-512를 검증한다. Windows 빌드 `npm.cmd run dist:win`과 CI는 게시하지 않는다. 릴리스 노트는 `docs/releases/`에 보관한다. 개발용 실행은 사용자가 직접 `npm.cmd start`로 수행한다.

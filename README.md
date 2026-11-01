@@ -16,7 +16,9 @@ npm.cmd run lint
 npm.cmd run dist:win
 ```
 
-클라이언트 버전은 **1.0.0**입니다. Windows x64 설치 파일은 `dist/mlkc-Client-setup-1.0.0.exe`에 생성됩니다. 빌드 전에 실행 중인 클라이언트를 종료하세요. `electron/install.js`는 npm에서 설치 스크립트를 생략한 환경에서도 Electron 실행 파일을 준비합니다. 로컬 빌드 명령은 릴리스를 게시하지 않습니다. 코드 서명 인증서는 별도로 설정해야 합니다.
+클라이언트 버전은 **1.0.1**입니다. Windows x64 설치 파일은 `dist/mlkc-Client-setup-1.0.1.exe`에 생성됩니다. 빌드 전에 실행 중인 클라이언트를 종료하세요. `electron/install.js`는 npm에서 설치 스크립트를 생략한 환경에서도 Electron 실행 파일을 준비합니다. 로컬 빌드 명령은 릴리스를 게시하지 않습니다. 코드 서명 인증서는 별도로 설정해야 합니다.
+
+1.0.0에서 물방울 로고에 멈춘다면 `mlkc-Client-setup-1.0.1.exe`를 직접 실행해 업데이트하세요. 1.0.1은 화면 준비 전에 모드팩 로딩 완료 신호가 전달되어 로그인 화면이 열리지 않던 문제를 수정합니다. 기존 계정·게임 설정을 삭제할 필요가 없습니다. 1.0.0은 멈춘 상태에서 자동 업데이터도 초기화되지 않으므로 이 수정본을 수동으로 설치해야 합니다.
 
 Windows에서 `winCodeSign` 압축 해제 중 `Cannot create symbolic link` 오류가 발생하면 macOS용 파일의 링크 생성이 원인일 수 있습니다. 이번 환경은 빌더가 내려받은 도구에서 `darwin`, `linux` 항목을 제외하고 Windows 도구만 `%LOCALAPPDATA%/electron-builder/Cache/winCodeSign/winCodeSign-2.6.0`에 풀어 해결했습니다. 시스템 권한 설정은 변경하지 않았습니다.
 
@@ -44,7 +46,7 @@ GitHub Releases가 비어 있으면 실제 업데이트를 제공할 수 없으�
 
 `npm.cmd run dist:win`은 NSIS 설치 엔진을 먼저 빌드한 뒤 전용 WPF 설치 화면과 함께 단일 EXE로 묶습니다. Windows의 .NET Framework 컴파일러를 사용하므로 별도 SDK나 추가 런타임 설치는 필요하지 않습니다. 기본 창 장식과 버튼을 사용하지 않으며 **환영 → EULA 동의 → 설치 대상 → 설치 위치 → 진행 → 완료** 순서를 유지합니다. EULA에는 기존 `LICENSE.txt`를 표시하고 Minecraft 공식 EULA 링크를 제공합니다.
 
-최종 배포물은 `dist/mlkc-Client-setup-1.0.0.exe`, `.exe.blockmap`, `.exe.sha256`, `dist/latest.yml`입니다. `dist/setup-engine/`의 내부 설치 파일은 배포하지 않습니다. 전용 설치 EXE가 `/S`, `--updated`, `--force-run`을 처리하므로 자동 업데이트 때는 화면 없이 기존 설치 엔진으로 진행합니다. 최종 EXE 기준으로 블록맵과 SHA-512 정보를 다시 생성합니다.
+최종 배포물은 `dist/mlkc-Client-setup-1.0.1.exe`, `.exe.blockmap`, `.exe.sha256`, `dist/latest.yml`입니다. `dist/setup-engine/`의 내부 설치 파일은 배포하지 않습니다. 전용 설치 EXE가 `/S`, `--updated`, `--force-run`을 처리하므로 자동 업데이트 때는 화면 없이 기존 설치 엔진으로 진행합니다. 최종 EXE 기준으로 블록맵과 SHA-512 정보를 다시 생성합니다.
 
 게시할 때는 `package.json`과 일치하는 릴리스 태그(예: `v1.0.0`)에 최종 배포물 네 개를 함께 업로드하세요. Build 워크플로는 검증용 빌드만 수행하며 릴리스를 자동 게시하지 않습니다. 소스 빌드 시 Microsoft 인증 ID는 배포 환경에 맞게 설정해야 합니다.
 
