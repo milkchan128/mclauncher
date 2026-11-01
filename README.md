@@ -4,7 +4,7 @@
 
 ## 밀튜디오 클라이언트
 
-`mc.mlkc.kr`의 **Society: Sunlit Valley 4.1.5A**를 실행하기 위한 커스텀 클라이언트입니다. Minecraft **1.20.1**, Forge **47.4.0**, Java **17**을 사용합니다. MRS Launcher와 Helios Launcher의 출처 및 라이선스를 유지합니다. 아래 MRS 소개와 다운로드 링크는 원본 프로젝트의 참고 자료입니다.
+`mc.mlkc.kr` 서버에 필요한 모드와 실행 환경을 자동으로 준비하는 밀튜디오 전용 클라이언트입니다. Minecraft **1.20.1**, Forge **47.4.0**, Java **17**을 사용합니다. MRS Launcher와 Helios Launcher의 출처 및 라이선스를 유지합니다. 아래 MRS 소개와 다운로드 링크는 원본 프로젝트의 참고 자료입니다.
 
 Node.js 24에서 프로젝트 루트의 PowerShell로 실행하세요.
 
@@ -16,7 +16,7 @@ npm.cmd run lint
 npm.cmd run dist:win
 ```
 
-클라이언트 버전은 **1.0.1**입니다. Windows x64 설치 파일은 `dist/mlkc-Client-setup-1.0.1.exe`에 생성됩니다. 빌드 전에 실행 중인 클라이언트를 종료하세요. `electron/install.js`는 npm에서 설치 스크립트를 생략한 환경에서도 Electron 실행 파일을 준비합니다. 로컬 빌드 명령은 릴리스를 게시하지 않습니다. 코드 서명 인증서는 별도로 설정해야 합니다.
+클라이언트 버전은 **1.0.2**입니다. Windows x64 설치 파일은 `dist/mlkc-Client-setup-1.0.2.exe`에 생성됩니다. 빌드 전에 실행 중인 클라이언트를 종료하세요. `electron/install.js`는 npm에서 설치 스크립트를 생략한 환경에서도 Electron 실행 파일을 준비합니다. 로컬 빌드 명령은 릴리스를 게시하지 않습니다. 코드 서명 인증서는 별도로 설정해야 합니다.
 
 1.0.0에서 물방울 로고에 멈춘다면 `mlkc-Client-setup-1.0.1.exe`를 직접 실행해 업데이트하세요. 1.0.1은 화면 준비 전에 모드팩 로딩 완료 신호가 전달되어 로그인 화면이 열리지 않던 문제를 수정합니다. 기존 계정·게임 설정을 삭제할 필요가 없습니다. 1.0.0은 멈춘 상태에서 자동 업데이터도 초기화되지 않으므로 이 수정본을 수동으로 설치해야 합니다.
 
@@ -30,7 +30,8 @@ Windows에서 `winCodeSign` 압축 해제 중 `Cannot create symbolic link` 오�
 - 배경: 직접 제작한 연필화 `app/assets/images/backgrounds/mlkc-pencil.png`를 모든 화면에 고정 적용합니다. 기존 무작위 배경은 빌드에서 제외합니다.
 - 앱 ID: 기존 설치와의 연속성을 위해 `kr.mlkc.modlauncher`를 유지합니다. 실행 파일은 `mlkc-Client.exe`입니다. 이전 `밀튜디오 - 모드런처` 설정 폴더가 있으면 계속 사용해 계정과 설정을 보존합니다.
 - 기본 게임 데이터: Windows의 `%APPDATA%/.milkstudio-modlauncher`. 기존 MRS 데이터는 이동하거나 삭제하지 않습니다.
-- 서버는 **mc.mlkc.kr**, 기본 모드팩은 **Society: Sunlit Valley 4.1.5A**입니다. 서버도 같은 버전으로 준비해야 합니다. 홈페이지 버튼은 모드팩 원본 페이지로 연결되며, 전용 주소가 없는 지도·디스코드 버튼은 숨깁니다.
+- 서버는 **mc.mlkc.kr**, 기본 모드팩 버전은 **4.1.5A**입니다. 서버도 같은 버전으로 준비해야 합니다. 홈페이지 버튼은 모드팩 원본 페이지로 연결되며, 전용 주소가 없는 지도·디스코드 버튼은 숨깁니다. 모드팩 이름은 설치 화면·앱 소개·서버 표시 이름에 넣지 않습니다.
+- Microsoft 로그인 후 **게임 시작**을 누르면 필요한 모드를 자동으로 다운로드한 뒤 게임을 실행합니다. 정상 파일은 재사용하고 누락·손상 파일만 다시 받으므로 모드를 직접 찾아 설치할 필요가 없습니다.
 - `app/assets/modpack/distribution.json`은 설치본에 포함된 전용 배포 구성입니다. 별도 웹 호스팅 없이 367개 모드를 원본 CDN에서 받아 기존 Helios 파일 검증·다운로드 기능으로 설치합니다. MRS 배포 서버는 사용하지 않습니다.
 - `modpack.js`는 첫 실행 준비 시 원본 모드팩 ZIP의 SHA-256을 검증하고 설정·리소스팩을 추출합니다. 기존 사용자 파일은 덮어쓰지 않습니다. 버전별 인스턴스 `mlkc-society-4.1.5A`를 사용합니다.
 - Forge는 공식 설치 파일을 검증해 Java 17로 설치하고, 생성된 게임 파일의 해시를 확인합니다. Minecraft 및 Forge가 생성하는 게임 바이너리는 이 저장소나 설치 파일에 재배포하지 않습니다. 최초 준비 시 인터넷 연결과 다운로드 시간이 필요합니다.
@@ -46,7 +47,7 @@ GitHub Releases가 비어 있으면 실제 업데이트를 제공할 수 없으�
 
 `npm.cmd run dist:win`은 NSIS 설치 엔진을 먼저 빌드한 뒤 전용 WPF 설치 화면과 함께 단일 EXE로 묶습니다. Windows의 .NET Framework 컴파일러를 사용하므로 별도 SDK나 추가 런타임 설치는 필요하지 않습니다. 기본 창 장식과 버튼을 사용하지 않으며 **환영 → EULA 동의 → 설치 대상 → 설치 위치 → 진행 → 완료** 순서를 유지합니다. EULA에는 기존 `LICENSE.txt`를 표시하고 Minecraft 공식 EULA 링크를 제공합니다.
 
-최종 배포물은 `dist/mlkc-Client-setup-1.0.1.exe`, `.exe.blockmap`, `.exe.sha256`, `dist/latest.yml`입니다. `dist/setup-engine/`의 내부 설치 파일은 배포하지 않습니다. 전용 설치 EXE가 `/S`, `--updated`, `--force-run`을 처리하므로 자동 업데이트 때는 화면 없이 기존 설치 엔진으로 진행합니다. 최종 EXE 기준으로 블록맵과 SHA-512 정보를 다시 생성합니다.
+최종 배포물은 `dist/mlkc-Client-setup-1.0.2.exe`, `.exe.blockmap`, `.exe.sha256`, `dist/latest.yml`입니다. `dist/setup-engine/`의 내부 설치 파일은 배포하지 않습니다. 전용 설치 EXE가 `/S`, `--updated`, `--force-run`을 처리하므로 자동 업데이트 때는 화면 없이 기존 설치 엔진으로 진행합니다. 최종 EXE 기준으로 블록맵과 SHA-512 정보를 다시 생성합니다.
 
 게시할 때는 `package.json`과 일치하는 릴리스 태그(예: `v1.0.0`)에 최종 배포물 네 개를 함께 업로드하세요. Build 워크플로는 검증용 빌드만 수행하며 릴리스를 자동 게시하지 않습니다. 소스 빌드 시 Microsoft 인증 ID는 배포 환경에 맞게 설정해야 합니다.
 

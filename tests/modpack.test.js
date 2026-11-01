@@ -6,8 +6,11 @@ const path = require('node:path')
 const crypto = require('node:crypto')
 const vm = require('node:vm')
 const { createRequire } = require('node:module')
+const http = require('node:http')
+const { once } = require('node:events')
 const Zip = require('adm-zip')
 const { HeliosDistribution } = require('helios-core/common')
+const { DistributionIndexProcessor, downloadQueue } = require('helios-core/dl')
 const { extractOverrides, ensureDownload } = require('../app/assets/js/modpack')
 const raw = require('../app/assets/modpack/distribution.json')
 
@@ -15,6 +18,7 @@ test('Society 4.1.5A의 367개 모드와 Forge 47.4.0이 mc.mlkc.kr 전용으로
     const distro = new HeliosDistribution(raw, 'common', 'instances')
     assert.equal(distro.servers.length, 1)
     const server = distro.getMainServer()
+    assert.equal(server.rawServer.name, '밀튜디오')
     assert.equal(server.hostname, 'mc.mlkc.kr')
     assert.equal(server.rawServer.version, '4.1.5A')
     assert.equal(server.rawServer.minecraftVersion, '1.20.1')
@@ -29,6 +33,45 @@ test('Society 4.1.5A의 367개 모드와 Forge 47.4.0이 mc.mlkc.kr 전용으로
         assert.equal(new URL(mod.rawModule.artifact.url).protocol, 'https:')
     }
     assert.equal(server.modules[0].rawModule.id, 'net.minecraftforge:lowcodelanguage:1.20.1-47.4.0')
+})
+
+test('실제 모드 다운로드 엔진이 누락·손상 파일만 받아 설치하고 사용자 파일은 보존한다', async t => {
+    const root = await fs.mkdtemp(path.join(os.tmpdir(), 'mlkc-auto-mods-'))
+    t.after(() => fs.remove(root))
+    const files = [Buffer.from('required mod one'), Buffer.from('required mod two')]
+    let requests = 0
+    const server = http.createServer((req, res) => {
+        const content = files[Number(req.url.slice(1))]
+        if(!content){ res.writeHead(404); res.end(); return }
+        requests++
+        res.writeHead(200, { 'Content-Length': content.length })
+        res.end(content)
+    })
+    server.listen(0, '127.0.0.1')
+    await once(server, 'listening')
+    t.after(() => new Promise(resolve => server.close(resolve)))
+    const fixture = structuredClone(raw)
+    fixture.servers[0].modules = files.map((content, i) => ({
+        id: `fixture-${i}`, name: `fixture ${i}`, type: 'File',
+        artifact: { path: `mods/fixture-${i}.jar`, size: content.length, MD5: crypto.createHash('md5').update(content).digest('hex'), url: `http://127.0.0.1:${server.address().port}/${i}` }
+    }))
+    const distribution = new HeliosDistribution(fixture, path.join(root, 'common'), path.join(root, 'instances'))
+    const processor = new DistributionIndexProcessor(path.join(root, 'common'), distribution, fixture.servers[0].id)
+    const modules = distribution.getMainServer().modules
+    const ownMod = path.join(path.dirname(modules[0].getPath()), 'my-mod.jar')
+    await fs.outputFile(ownMod, 'user file')
+    let missing = (await processor.validate(async () => {})).distribution
+    assert.equal(missing.length, 2)
+    await downloadQueue(missing, () => {})
+    assert.equal((await processor.validate(async () => {})).distribution.length, 0)
+    assert.equal(requests, 2)
+    await fs.writeFile(modules[0].getPath(), Buffer.alloc(files[0].length))
+    missing = (await processor.validate(async () => {})).distribution
+    assert.equal(missing.length, 1)
+    await downloadQueue(missing, () => {})
+    assert.equal(requests, 3)
+    assert.deepEqual(await fs.readFile(modules[0].getPath()), files[0])
+    assert.equal(await fs.readFile(ownMod, 'utf8'), 'user file')
 })
 
 test('모드팩 설정을 추출할 때 기존 사용자 설정과 외부 경로를 보존한다', async t => {
