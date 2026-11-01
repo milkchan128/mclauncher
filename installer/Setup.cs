@@ -226,6 +226,7 @@ internal sealed class SetupWindow
         pageContent = (Grid)window.FindName("PageContent");
         ((ImageBrush)window.FindName("SceneBrush")).ImageSource = Image("scene.png");
         ((Image)window.FindName("BrandLogo")).Source = Image("logo.png");
+        ((Image)window.FindName("BandLogo")).Source = Image("logo.png");
         ((TextBlock)window.FindName("VersionText")).Text = "버전 " + SetupBuild.Version;
         location.Text = Installer.DefaultDirectory(false);
         location.ToolTip = location.Text;
@@ -244,6 +245,23 @@ internal sealed class SetupWindow
         back.Click += delegate { if (!transitioning) { flow.Back(); RenderPage(true, true); } };
         install.Click += InstallClicked;
         RenderPage();
+        if (SystemParameters.ClientAreaAnimation) window.Loaded += delegate { PlayIntro(); };
+    }
+
+    // 런처 메인 화면과 같은 진입 효과: 배경이 줌 아웃되고 하단 띠가 올라온다.
+    private void PlayIntro()
+    {
+        var easing = new CubicEase { EasingMode = EasingMode.EaseOut };
+        var zoom = new ScaleTransform(1, 1, 0.5, 0.5);
+        ((ImageBrush)window.FindName("SceneBrush")).RelativeTransform = zoom;
+        var zoomIn = new DoubleAnimation(1.08, 1, TimeSpan.FromMilliseconds(1200)) { EasingFunction = easing };
+        zoom.BeginAnimation(ScaleTransform.ScaleXProperty, zoomIn);
+        zoom.BeginAnimation(ScaleTransform.ScaleYProperty, zoomIn);
+        var band = (Border)window.FindName("BrandBand");
+        var rise = TimeSpan.FromMilliseconds(700);
+        band.BeginAnimation(UIElement.OpacityProperty, new DoubleAnimation(0, 1, rise) { EasingFunction = easing });
+        ((TranslateTransform)band.RenderTransform).BeginAnimation(TranslateTransform.YProperty, new DoubleAnimation(80, 0, rise) { EasingFunction = easing });
+        RenderPage(true);
     }
 
     private void ConsentChanged(object sender, RoutedEventArgs e)
@@ -361,7 +379,7 @@ internal sealed class SetupWindow
         {
             flow.Page = SetupPage.Location;
             RenderPage(true, true);
-            status.Foreground = new SolidColorBrush(Color.FromRgb(158, 51, 75));
+            status.Foreground = new SolidColorBrush(Color.FromRgb(255, 153, 164));
             status.Text = error is ArgumentException || error is IOException || error is InvalidDataException ? error.Message : "설치 위치에 접근할 수 없습니다. 다른 폴더를 지정해 주세요.";
             install.Content = "다시 시도";
         }
