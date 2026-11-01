@@ -478,6 +478,20 @@ async function dlAsync(login = true) {
     toggleLaunchArea(true)
     setLaunchPercentage(0, 100)
 
+    try {
+        await require('./assets/js/modpack').prepareModpack({
+            commonDir: ConfigManager.getCommonDirectory(),
+            instanceDir: path.join(ConfigManager.getInstanceDirectory(), serv.rawServer.id),
+            cacheDir: path.join(ConfigManager.getLauncherDirectory(), 'modpack-cache'),
+            javaExecutable: ConfigManager.getJavaExecutable(serv.rawServer.id),
+            onProgress: setLaunchDetails
+        })
+    } catch(error){
+        loggerLaunchSuite.error('Unable to prepare modpack.', error)
+        showLaunchFailure('모드팩 준비에 실패했습니다', error.message)
+        return
+    }
+
     const fullRepairModule = new FullRepair(
         ConfigManager.getCommonDirectory(),
         ConfigManager.getInstanceDirectory(),

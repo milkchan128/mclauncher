@@ -1,0 +1,4444 @@
+{
+  "version": "1.0.0",
+  "servers": [
+    {
+      "id": "mlkc-society-4.1.5A",
+      "name": "Society: Sunlit Valley",
+      "description": "밀튜디오 클라이언트 · mc.mlkc.kr",
+      "version": "4.1.5A",
+      "address": "mc.mlkc.kr",
+      "minecraftVersion": "1.20.1",
+      "mainServer": true,
+      "autoconnect": true,
+      "javaOptions": {
+        "supported": "17.x",
+        "suggestedMajor": 17
+      },
+      "modules": [
+        {
+          "id": "net.minecraftforge:lowcodelanguage:1.20.1-47.4.0",
+          "name": "Minecraft Forge 47.4.0",
+          "type": "ForgeHosted",
+          "classpath": true,
+          "artifact": {
+            "size": 7399,
+            "MD5": "a839d5603a05491f84f6c36284ab0ea8",
+            "url": "https://maven.minecraftforge.net/net/minecraftforge/lowcodelanguage/1.20.1-47.4.0/lowcodelanguage-1.20.1-47.4.0.jar"
+          },
+          "subModules": [
+            {
+              "id": "1.20.1-forge-47.4.0",
+              "name": "Forge version manifest",
+              "type": "VersionManifest",
+              "artifact": {
+                "size": 16612,
+                "MD5": "029daa8b97e10cedd4d6726a563379ab",
+                "url": "bundled:forge-version.json"
+              }
+            },
+            {
+              "id": "net.minecraftforge:fmlcore:1.20.1-47.4.0",
+              "name": "fmlcore",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 118914,
+                "MD5": "bc798cdec9ec7eeb3354b550d5e67652",
+                "url": "https://maven.minecraftforge.net/net/minecraftforge/fmlcore/1.20.1-47.4.0/fmlcore-1.20.1-47.4.0.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:javafmllanguage:1.20.1-47.4.0",
+              "name": "javafmllanguage",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 16855,
+                "MD5": "10ca1edc0a62ea799c4327bfc44e5ad6",
+                "url": "https://maven.minecraftforge.net/net/minecraftforge/javafmllanguage/1.20.1-47.4.0/javafmllanguage-1.20.1-47.4.0.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:mclanguage:1.20.1-47.4.0",
+              "name": "mclanguage",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 4998,
+                "MD5": "cd3d6af64b394583aa83090915469f9e",
+                "url": "https://maven.minecraftforge.net/net/minecraftforge/mclanguage/1.20.1-47.4.0/mclanguage-1.20.1-47.4.0.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:forge:1.20.1-47.4.0:universal",
+              "name": "forge",
+              "type": "Library",
+              "classpath": false,
+              "artifact": {
+                "size": 2776081,
+                "MD5": "f373b63ab9bfe53f7b35aaa425afa136",
+                "url": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.20.1-47.4.0/forge-1.20.1-47.4.0-universal.jar"
+              }
+            },
+            {
+              "id": "cpw.mods:securejarhandler:2.1.10",
+              "name": "securejarhandler",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 88749,
+                "MD5": "d9ff48d1c68388270388b803fa42611e",
+                "url": "https://maven.minecraftforge.net/cpw/mods/securejarhandler/2.1.10/securejarhandler-2.1.10.jar"
+              }
+            },
+            {
+              "id": "org.ow2.asm:asm:9.7.1",
+              "name": "asm",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 126093,
+                "MD5": "e2cdd32d198ad31427d298eee9d39d8d",
+                "url": "https://maven.minecraftforge.net/org/ow2/asm/asm/9.7.1/asm-9.7.1.jar"
+              }
+            },
+            {
+              "id": "org.ow2.asm:asm-commons:9.7.1",
+              "name": "asm-commons",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 73459,
+                "MD5": "8344aea3c8b7d707e9d35a62710e77c9",
+                "url": "https://maven.minecraftforge.net/org/ow2/asm/asm-commons/9.7.1/asm-commons-9.7.1.jar"
+              }
+            },
+            {
+              "id": "org.ow2.asm:asm-tree:9.7.1",
+              "name": "asm-tree",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 51939,
+                "MD5": "e85029f613b6469989cc7cf53fe06b74",
+                "url": "https://maven.minecraftforge.net/org/ow2/asm/asm-tree/9.7.1/asm-tree-9.7.1.jar"
+              }
+            },
+            {
+              "id": "org.ow2.asm:asm-util:9.7.1",
+              "name": "asm-util",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 94519,
+                "MD5": "36d373a9cd6cad9b35db9f984c6b4bbb",
+                "url": "https://maven.minecraftforge.net/org/ow2/asm/asm-util/9.7.1/asm-util-9.7.1.jar"
+              }
+            },
+            {
+              "id": "org.ow2.asm:asm-analysis:9.7.1",
+              "name": "asm-analysis",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 35126,
+                "MD5": "4cd9e7178dfb85371bba3077e40cd514",
+                "url": "https://maven.minecraftforge.net/org/ow2/asm/asm-analysis/9.7.1/asm-analysis-9.7.1.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:accesstransformers:8.0.4",
+              "name": "accesstransformers",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 77756,
+                "MD5": "f0d3533f9437ba4428eaee9f28f7ecd9",
+                "url": "https://maven.minecraftforge.net/net/minecraftforge/accesstransformers/8.0.4/accesstransformers-8.0.4.jar"
+              }
+            },
+            {
+              "id": "org.antlr:antlr4-runtime:4.9.1",
+              "name": "antlr4-runtime",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 337868,
+                "MD5": "0dcc4b860d5d8d2852ab94d58c56ca2d",
+                "url": "https://maven.minecraftforge.net/org/antlr/antlr4-runtime/4.9.1/antlr4-runtime-4.9.1.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:eventbus:6.0.5",
+              "name": "eventbus",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 53985,
+                "MD5": "2a6245210b446b2144071e71ca13432b",
+                "url": "https://maven.minecraftforge.net/net/minecraftforge/eventbus/6.0.5/eventbus-6.0.5.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:forgespi:7.0.1",
+              "name": "forgespi",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 29831,
+                "MD5": "bd34d20287dc95201fe9475a8bbc2540",
+                "url": "https://maven.minecraftforge.net/net/minecraftforge/forgespi/7.0.1/forgespi-7.0.1.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:coremods:5.2.4",
+              "name": "coremods",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 31872,
+                "MD5": "5295505357ba9b98450c5e3121f82191",
+                "url": "https://maven.minecraftforge.net/net/minecraftforge/coremods/5.2.4/coremods-5.2.4.jar"
+              }
+            },
+            {
+              "id": "cpw.mods:modlauncher:10.0.9",
+              "name": "modlauncher",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 130343,
+                "MD5": "07507d18d72661f8ae6a5da75bbf35be",
+                "url": "https://maven.minecraftforge.net/cpw/mods/modlauncher/10.0.9/modlauncher-10.0.9.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:unsafe:0.2.0",
+              "name": "unsafe",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 2834,
+                "MD5": "2d1016ebe4c1a63dd50a59d26bd12db1",
+                "url": "https://maven.minecraftforge.net/net/minecraftforge/unsafe/0.2.0/unsafe-0.2.0.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:mergetool:1.1.5:api",
+              "name": "mergetool",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 2572,
+                "MD5": "8df9c5bf87d004ddb884eca99bc2a4b1",
+                "url": "https://maven.minecraftforge.net/net/minecraftforge/mergetool/1.1.5/mergetool-1.1.5-api.jar"
+              }
+            },
+            {
+              "id": "com.electronwill.night-config:core:3.6.4",
+              "name": "core",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 199834,
+                "MD5": "d83ab07267e402131fb93d899a57f5cd",
+                "url": "https://maven.minecraftforge.net/com/electronwill/night-config/core/3.6.4/core-3.6.4.jar"
+              }
+            },
+            {
+              "id": "com.electronwill.night-config:toml:3.6.4",
+              "name": "toml",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 31816,
+                "MD5": "bc95d0709fff2164b01fd09fbc988be8",
+                "url": "https://maven.minecraftforge.net/com/electronwill/night-config/toml/3.6.4/toml-3.6.4.jar"
+              }
+            },
+            {
+              "id": "org.apache.maven:maven-artifact:3.8.5",
+              "name": "maven-artifact",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 58077,
+                "MD5": "ce473b0d9fbfd10fe147f03fe8707d67",
+                "url": "https://maven.minecraftforge.net/org/apache/maven/maven-artifact/3.8.5/maven-artifact-3.8.5.jar"
+              }
+            },
+            {
+              "id": "net.jodah:typetools:0.6.3",
+              "name": "typetools",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 18281,
+                "MD5": "d4a375bf382f726cf1a650ccb38a736c",
+                "url": "https://maven.minecraftforge.net/net/jodah/typetools/0.6.3/typetools-0.6.3.jar"
+              }
+            },
+            {
+              "id": "net.minecrell:terminalconsoleappender:1.2.0",
+              "name": "terminalconsoleappender",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 15977,
+                "MD5": "679363fa893293791e55a21f81342f87",
+                "url": "https://maven.minecraftforge.net/net/minecrell/terminalconsoleappender/1.2.0/terminalconsoleappender-1.2.0.jar"
+              }
+            },
+            {
+              "id": "org.jline:jline-reader:3.12.1",
+              "name": "jline-reader",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 150765,
+                "MD5": "a2e7b012cd9802f83321187409174a94",
+                "url": "https://maven.minecraftforge.net/org/jline/jline-reader/3.12.1/jline-reader-3.12.1.jar"
+              }
+            },
+            {
+              "id": "org.jline:jline-terminal:3.12.1",
+              "name": "jline-terminal",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 211712,
+                "MD5": "3c52be5ab5e3847be6e62269de924cb0",
+                "url": "https://maven.minecraftforge.net/org/jline/jline-terminal/3.12.1/jline-terminal-3.12.1.jar"
+              }
+            },
+            {
+              "id": "org.spongepowered:mixin:0.8.5",
+              "name": "mixin",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 1089277,
+                "MD5": "19b3a2ae9e445a6e626fd7d1648cfcb8",
+                "url": "https://maven.minecraftforge.net/org/spongepowered/mixin/0.8.5/mixin-0.8.5.jar"
+              }
+            },
+            {
+              "id": "org.openjdk.nashorn:nashorn-core:15.4",
+              "name": "nashorn-core",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 2167292,
+                "MD5": "a9b3360e6a486cf62c1952c7816b7d97",
+                "url": "https://maven.minecraftforge.net/org/openjdk/nashorn/nashorn-core/15.4/nashorn-core-15.4.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:JarJarSelector:0.3.19",
+              "name": "JarJarSelector",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 17374,
+                "MD5": "2bb6cbe0e6c6fbcd8f92d2e6b1ea678e",
+                "url": "https://maven.minecraftforge.net/net/minecraftforge/JarJarSelector/0.3.19/JarJarSelector-0.3.19.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:JarJarMetadata:0.3.19",
+              "name": "JarJarMetadata",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 15895,
+                "MD5": "9633546d299d4282ca68d10582be1c8f",
+                "url": "https://maven.minecraftforge.net/net/minecraftforge/JarJarMetadata/0.3.19/JarJarMetadata-0.3.19.jar"
+              }
+            },
+            {
+              "id": "cpw.mods:bootstraplauncher:1.1.2",
+              "name": "bootstraplauncher",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 8284,
+                "MD5": "48f5255aa337344c467c0150d347813d",
+                "url": "https://maven.minecraftforge.net/cpw/mods/bootstraplauncher/1.1.2/bootstraplauncher-1.1.2.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:JarJarFileSystems:0.3.19",
+              "name": "JarJarFileSystems",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 32195,
+                "MD5": "c2be1a88b63eb1b58b00ab6e498cd97d",
+                "url": "https://maven.minecraftforge.net/net/minecraftforge/JarJarFileSystems/0.3.19/JarJarFileSystems-0.3.19.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:fmlloader:1.20.1-47.4.0",
+              "name": "fmlloader",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 267079,
+                "MD5": "5b26aba9f44796d54094022c1e73a49e",
+                "url": "https://maven.minecraftforge.net/net/minecraftforge/fmlloader/1.20.1-47.4.0/fmlloader-1.20.1-47.4.0.jar"
+              }
+            },
+            {
+              "id": "net.minecraftforge:fmlearlydisplay:1.20.1-47.4.0",
+              "name": "fmlearlydisplay",
+              "type": "Library",
+              "classpath": true,
+              "artifact": {
+                "size": 170517,
+                "MD5": "68747d96f635b0a0dc9e070d3596a562",
+                "url": "https://maven.minecraftforge.net/net/minecraftforge/fmlearlydisplay/1.20.1-47.4.0/fmlearlydisplay-1.20.1-47.4.0.jar"
+              }
+            }
+          ]
+        },
+        {
+          "id": "curseforge:986624:6782138",
+          "name": "Additional Attributes",
+          "type": "File",
+          "artifact": {
+            "size": 252410,
+            "MD5": "7df915975334e8bcbb9ddf9e42674b41",
+            "url": "https://edge.forgecdn.net/files/6782/138/additional_attributes-1.20.1-1.3.6-all.jar",
+            "path": "mods/additional_attributes-1.20.1-1.3.6-all.jar"
+          }
+        },
+        {
+          "id": "curseforge:1205426:8168726",
+          "name": "Advanced Loot Info",
+          "type": "File",
+          "artifact": {
+            "size": 663089,
+            "MD5": "1aeeb501450801d76fe4d301c48ec794",
+            "url": "https://edge.forgecdn.net/files/8168/726/AdvancedLootInfo-forge-1.20.1-1.12.0.jar",
+            "path": "mods/AdvancedLootInfo-forge-1.20.1-1.12.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:499826:5762256",
+          "name": "Advancement Plaques [Neo/Forge]",
+          "type": "File",
+          "artifact": {
+            "size": 208851,
+            "MD5": "a8c63afeac05f6c356f96df9a8c13dfb",
+            "url": "https://edge.forgecdn.net/files/5762/256/AdvancementPlaques-1.20.1-forge-1.6.7.jar",
+            "path": "mods/AdvancementPlaques-1.20.1-forge-1.6.7.jar"
+          }
+        },
+        {
+          "id": "curseforge:1091339:7235989",
+          "name": "AllTheLeaks (Memory Leak Fix)",
+          "type": "File",
+          "artifact": {
+            "size": 1187126,
+            "MD5": "df84fbdadaf7947dc530872fa60fbc56",
+            "url": "https://edge.forgecdn.net/files/7235/989/alltheleaks-1.1.1+1.20.1-forge.jar",
+            "path": "mods/alltheleaks-1.1.1+1.20.1-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:548115:4721662",
+          "name": "Alternate Current",
+          "type": "File",
+          "artifact": {
+            "size": 36703,
+            "MD5": "43d4d8efddfa77a80aa7b1ae1a04ab48",
+            "url": "https://edge.forgecdn.net/files/4721/662/alternate_current-mc1.20-1.7.0.jar",
+            "path": "mods/alternate_current-mc1.20-1.7.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:254284:6570130",
+          "name": "AmbientSounds 6",
+          "type": "File",
+          "artifact": {
+            "size": 51722248,
+            "MD5": "78270b771d833d9f2936a2bd95a7ec21",
+            "url": "https://edge.forgecdn.net/files/6570/130/AmbientSounds_FORGE_v6.1.11_mc1.20.1.jar",
+            "path": "mods/AmbientSounds_FORGE_v6.1.11_mc1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:896746:7470401",
+          "name": "Amendments",
+          "type": "File",
+          "artifact": {
+            "size": 1301022,
+            "MD5": "3e821a83a3a12bc9ca0fecb73a980dba",
+            "url": "https://edge.forgecdn.net/files/7470/401/amendments-1.20-2.2.5.jar",
+            "path": "mods/amendments-1.20-2.2.5.jar"
+          }
+        },
+        {
+          "id": "curseforge:248787:4770828",
+          "name": "AppleSkin",
+          "type": "File",
+          "artifact": {
+            "size": 47428,
+            "MD5": "dae63cea9c951dda542a4005ceef3953",
+            "url": "https://edge.forgecdn.net/files/4770/828/appleskin-forge-mc1.20.1-2.5.1.jar",
+            "path": "mods/appleskin-forge-mc1.20.1-2.5.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:60028:7331172",
+          "name": "Aquaculture 2",
+          "type": "File",
+          "artifact": {
+            "size": 601839,
+            "MD5": "f39d02c30d59ec516e3221f9f7643909",
+            "url": "https://edge.forgecdn.net/files/7331/172/Aquaculture-1.20.1-2.5.7.jar",
+            "path": "mods/Aquaculture-1.20.1-2.5.7.jar"
+          }
+        },
+        {
+          "id": "curseforge:419699:5137938",
+          "name": "Architectury API",
+          "type": "File",
+          "artifact": {
+            "size": 580602,
+            "MD5": "76b40d407b6bf0257dd1dab6d3d395d5",
+            "url": "https://edge.forgecdn.net/files/5137/938/architectury-9.2.14-forge.jar",
+            "path": "mods/architectury-9.2.14-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:682566:5242480",
+          "name": "Armor Statues",
+          "type": "File",
+          "artifact": {
+            "size": 528017,
+            "MD5": "ef01e94b3584095ecc1cbded1b164030",
+            "url": "https://edge.forgecdn.net/files/5242/480/ArmorStatues-v8.0.6-1.20.1-Forge.jar",
+            "path": "mods/ArmorStatues-v8.0.6-1.20.1-Forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:362393:6393127",
+          "name": "Atmospheric",
+          "type": "File",
+          "artifact": {
+            "size": 5213524,
+            "MD5": "e63b3420f173976542e3e59c8107d5ff",
+            "url": "https://edge.forgecdn.net/files/6393/127/atmospheric-1.20.1-6.1.1.jar",
+            "path": "mods/atmospheric-1.20.1-6.1.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:280510:4911084",
+          "name": "AttributeFix",
+          "type": "File",
+          "artifact": {
+            "size": 19471,
+            "MD5": "e8fb517833e21335106e9d4d1a39ecd4",
+            "url": "https://edge.forgecdn.net/files/4911/84/AttributeFix-Forge-1.20.1-21.0.4.jar",
+            "path": "mods/AttributeFix-Forge-1.20.1-21.0.4.jar"
+          }
+        },
+        {
+          "id": "curseforge:658286:4613497",
+          "name": "Automobility",
+          "type": "File",
+          "artifact": {
+            "size": 1054094,
+            "MD5": "fb16b053cc0eda55bb287c1aa926dcb5",
+            "url": "https://edge.forgecdn.net/files/4613/497/automobility-0.4.2+1.20.1-forge.jar",
+            "path": "mods/automobility-0.4.2+1.20.1-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:365045:6151402",
+          "name": "Autumnity",
+          "type": "File",
+          "artifact": {
+            "size": 1221037,
+            "MD5": "c4e1eaba25862c035bddbe06cf90c599",
+            "url": "https://edge.forgecdn.net/files/6151/402/autumnity-1.20.1-5.0.2.jar",
+            "path": "mods/autumnity-1.20.1-5.0.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:261251:5969233",
+          "name": "Bad Wither No Cookie - Reloaded",
+          "type": "File",
+          "artifact": {
+            "size": 28225,
+            "MD5": "fd8302218c36c9a5cbaec4087de8b399",
+            "url": "https://edge.forgecdn.net/files/5969/233/bwncr-forge-1.20.1-3.17.2.jar",
+            "path": "mods/bwncr-forge-1.20.1-3.17.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:649028:4715994",
+          "name": "Balloon Box",
+          "type": "File",
+          "artifact": {
+            "size": 95711,
+            "MD5": "d125ee698ea9fe6660b83cabd0b1de9d",
+            "url": "https://edge.forgecdn.net/files/4715/994/BalloonBox1.20.1(Forge)vs.1.0.3.jar",
+            "path": "mods/BalloonBox1.20.1(Forge)vs.1.0.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:531761:7420617",
+          "name": "Balm",
+          "type": "File",
+          "artifact": {
+            "size": 591397,
+            "MD5": "499467bc8050be8893b08995438cc026",
+            "url": "https://edge.forgecdn.net/files/7420/617/balm-forge-1.20.1-7.3.38-all.jar",
+            "path": "mods/balm-forge-1.20.1-7.3.38-all.jar"
+          }
+        },
+        {
+          "id": "curseforge:633252:4781709",
+          "name": "Beautify!",
+          "type": "File",
+          "artifact": {
+            "size": 838292,
+            "MD5": "c04d94abedfec613a2f93fbbf394455e",
+            "url": "https://edge.forgecdn.net/files/4781/709/beautify-2.0.2.jar",
+            "path": "mods/beautify-2.0.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:1547351:8167579",
+          "name": "Better Advanced Tooltips Backport",
+          "type": "File",
+          "artifact": {
+            "size": 49615,
+            "MD5": "eef753ed87f3061cb3a0df6897795488",
+            "url": "https://edge.forgecdn.net/files/8167/579/betteradvancedtooltips-1.20.1-1.2.1.jar",
+            "path": "mods/betteradvancedtooltips-1.20.1-1.2.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:272515:5454907",
+          "name": "Better Advancements",
+          "type": "File",
+          "artifact": {
+            "size": 98123,
+            "MD5": "8262a6a70e233f49b643b99726a689f5",
+            "url": "https://edge.forgecdn.net/files/5454/907/BetterAdvancements-Forge-1.20.1-0.4.2.10.jar",
+            "path": "mods/BetterAdvancements-Forge-1.20.1-0.4.2.10.jar"
+          }
+        },
+        {
+          "id": "curseforge:835687:5693368",
+          "name": "Better Archeology",
+          "type": "File",
+          "artifact": {
+            "size": 982838,
+            "MD5": "44d12515764cd4202481b73b82626aae",
+            "url": "https://edge.forgecdn.net/files/5693/368/betterarcheology-1.2.1-1.20.1.jar",
+            "path": "mods/betterarcheology-1.2.1-1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:683123:4784566",
+          "name": "Better Cats",
+          "type": "File",
+          "artifact": {
+            "size": 1912874,
+            "MD5": "cd5bcdf19cd042141e8eaa4c7243bbe4",
+            "url": "https://edge.forgecdn.net/files/4784/566/Better_Cats_V0.09.zip",
+            "path": "mods/Better_Cats_V0.09.zip"
+          }
+        },
+        {
+          "id": "curseforge:551894:4688940",
+          "name": "Better Compatibility Checker",
+          "type": "File",
+          "artifact": {
+            "size": 26540,
+            "MD5": "6cda211453a4423157b1a7927b050cff",
+            "url": "https://edge.forgecdn.net/files/4688/940/BetterCompatibilityChecker-forge-4.0.8+mc1.20.1.jar",
+            "path": "mods/BetterCompatibilityChecker-forge-4.0.8+mc1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:695238:5572902",
+          "name": "Biome Spawn Point",
+          "type": "File",
+          "artifact": {
+            "size": 36804,
+            "MD5": "3ed401346235fa98618e4c64dea46a91",
+            "url": "https://edge.forgecdn.net/files/5572/902/biomespawnpoint-1.20.1-2.3.jar",
+            "path": "mods/biomespawnpoint-1.20.1-2.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:382216:6408581",
+          "name": "Blueprint",
+          "type": "File",
+          "artifact": {
+            "size": 1151213,
+            "MD5": "de8703f1bd1de5c64ebd411e37b19d47",
+            "url": "https://edge.forgecdn.net/files/6408/581/blueprint-1.20.1-7.1.3.jar",
+            "path": "mods/blueprint-1.20.1-7.1.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:883502:4650227",
+          "name": "Bobby Reforged",
+          "type": "File",
+          "artifact": {
+            "size": 86682,
+            "MD5": "bcdd05bc35229e30d1d8ab1b3449def6",
+            "url": "https://edge.forgecdn.net/files/4650/227/bobby-1.20.1_v5.0.1.jar",
+            "path": "mods/bobby-1.20.1_v5.0.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:228525:5423987",
+          "name": "Bookshelf",
+          "type": "File",
+          "artifact": {
+            "size": 343962,
+            "MD5": "46c8e7f9bcfa984bd576e448df2beb25",
+            "url": "https://edge.forgecdn.net/files/5423/987/Bookshelf-Forge-1.20.1-20.2.13.jar",
+            "path": "mods/Bookshelf-Forge-1.20.1-20.2.13.jar"
+          }
+        },
+        {
+          "id": "curseforge:1062753:6607248",
+          "name": "Bot's Lib",
+          "type": "File",
+          "artifact": {
+            "size": 24222,
+            "MD5": "2c4c419c8870c27b909756bb3d4ef7b8",
+            "url": "https://edge.forgecdn.net/files/6607/248/bots_lib-4.1.jar",
+            "path": "mods/bots_lib-4.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:225643:8370023",
+          "name": "Botania",
+          "type": "File",
+          "artifact": {
+            "size": 12211755,
+            "MD5": "ae678d80027133366933844f32ac92ef",
+            "url": "https://edge.forgecdn.net/files/8370/23/Botania-1.20.1-454-FORGE.jar",
+            "path": "mods/Botania-1.20.1-454-FORGE.jar"
+          }
+        },
+        {
+          "id": "curseforge:1197807:6353856",
+          "name": "Botania Seeds",
+          "type": "File",
+          "artifact": {
+            "size": 129070,
+            "MD5": "845fb5d53c2d095a70673e54216872a6",
+            "url": "https://edge.forgecdn.net/files/6353/856/botania_seeds-1.1.1.jar",
+            "path": "mods/botania_seeds-1.1.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:309516:5937417",
+          "name": "Bountiful",
+          "type": "File",
+          "artifact": {
+            "size": 502662,
+            "MD5": "14437740bee567400d0bafbf028434b6",
+            "url": "https://edge.forgecdn.net/files/5937/417/Bountiful-6.0.4+1.20.1-forge.jar",
+            "path": "mods/Bountiful-6.0.4+1.20.1-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:298187:5144161",
+          "name": "Building Gadgets",
+          "type": "File",
+          "artifact": {
+            "size": 3832269,
+            "MD5": "38d1f75c246c6abe558ac07a2fa58947",
+            "url": "https://edge.forgecdn.net/files/5144/161/buildinggadgets2-1.0.7.jar",
+            "path": "mods/buildinggadgets2-1.0.7.jar"
+          }
+        },
+        {
+          "id": "curseforge:355458:6151411",
+          "name": "Buzzier Bees",
+          "type": "File",
+          "artifact": {
+            "size": 558630,
+            "MD5": "dccf6651fbdd405b29850fd7b5ef2a4d",
+            "url": "https://edge.forgecdn.net/files/6151/411/buzzier_bees-1.20.1-6.0.1.jar",
+            "path": "mods/buzzier_bees-1.20.1-6.0.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:308989:5281700",
+          "name": "Caelus API",
+          "type": "File",
+          "artifact": {
+            "size": 40125,
+            "MD5": "e37854c44b1849b753afc4a205f31b46",
+            "url": "https://edge.forgecdn.net/files/5281/700/caelus-forge-3.2.0+1.20.1.jar",
+            "path": "mods/caelus-forge-3.2.0+1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:274259:4882500",
+          "name": "Carry On",
+          "type": "File",
+          "artifact": {
+            "size": 439457,
+            "MD5": "8956b37c2ae11cc5522c8404a262c6b7",
+            "url": "https://edge.forgecdn.net/files/4882/500/carryon-forge-1.20.1-2.1.2.7.jar",
+            "path": "mods/carryon-forge-1.20.1-2.1.2.7.jar"
+          }
+        },
+        {
+          "id": "curseforge:1372051:8367713",
+          "name": "Certain Questing Additions",
+          "type": "File",
+          "artifact": {
+            "size": 1220866,
+            "MD5": "573306c204360552b2705ebd8ed57ee6",
+            "url": "https://edge.forgecdn.net/files/8367/713/certain_questing_additions-forge-1.2.0.2+mc1.20.1.jar",
+            "path": "mods/certain_questing_additions-forge-1.2.0.2+mc1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:407206:5936595",
+          "name": "Chat Heads",
+          "type": "File",
+          "artifact": {
+            "size": 265135,
+            "MD5": "b4bd25da93deaf00dd6d6ae09902fc2a",
+            "url": "https://edge.forgecdn.net/files/5936/595/chat_heads-0.13.7-forge-1.20.jar",
+            "path": "mods/chat_heads-0.13.7-forge-1.20.jar"
+          }
+        },
+        {
+          "id": "curseforge:308240:5955879",
+          "name": "Cherished Worlds",
+          "type": "File",
+          "artifact": {
+            "size": 60956,
+            "MD5": "f05683884add93d912932c601dff8ef5",
+            "url": "https://edge.forgecdn.net/files/5955/879/cherishedworlds-forge-6.1.7+1.20.1.jar",
+            "path": "mods/cherishedworlds-forge-6.1.7+1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:350464:7529012",
+          "name": "Chimes",
+          "type": "File",
+          "artifact": {
+            "size": 12479806,
+            "MD5": "1c2c9441e9cff6d385641a06b84f8582",
+            "url": "https://edge.forgecdn.net/files/7529/12/Chimes-v2.1.1-1.20.1-Forge.jar",
+            "path": "mods/Chimes-v2.1.1-1.20.1-Forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:485681:5320028",
+          "name": "Chunky (Forge/NeoForge)",
+          "type": "File",
+          "artifact": {
+            "size": 341451,
+            "MD5": "ed46120ac4f30ec8e03f6416e295577c",
+            "url": "https://edge.forgecdn.net/files/5320/28/Chunky-1.3.146.jar",
+            "path": "mods/Chunky-1.3.146.jar"
+          }
+        },
+        {
+          "id": "curseforge:331936:7476570",
+          "name": "Citadel",
+          "type": "File",
+          "artifact": {
+            "size": 3185275,
+            "MD5": "da80c09b998d829b6d580e5be76dcc7b",
+            "url": "https://edge.forgecdn.net/files/7476/570/citadel-2.6.3-1.20.1.jar",
+            "path": "mods/citadel-2.6.3-1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:1351745:8054935",
+          "name": "Classic Pipes",
+          "type": "File",
+          "artifact": {
+            "size": 761130,
+            "MD5": "501c4998ce85a1c4ee3740df852b8140",
+            "url": "https://edge.forgecdn.net/files/8054/935/classicpipes-forge-1.20.1-1.1.5.jar",
+            "path": "mods/classicpipes-forge-1.20.1-1.1.5.jar"
+          }
+        },
+        {
+          "id": "curseforge:592162:6321200",
+          "name": "Clayworks",
+          "type": "File",
+          "artifact": {
+            "size": 1195583,
+            "MD5": "8fbd0a5d62ab7f35ddac918c771d7a26",
+            "url": "https://edge.forgecdn.net/files/6321/200/clayworks-1.20.1-3.0.4.jar",
+            "path": "mods/clayworks-1.20.1-3.0.4.jar"
+          }
+        },
+        {
+          "id": "curseforge:226889:4592948",
+          "name": "CleanView",
+          "type": "File",
+          "artifact": {
+            "size": 11011,
+            "MD5": "89d413cf9c241c94feaf6eae279a149c",
+            "url": "https://edge.forgecdn.net/files/4592/948/cleanview-1.20.1-v1.jar",
+            "path": "mods/cleanview-1.20.1-v1.jar"
+          }
+        },
+        {
+          "id": "curseforge:348521:5729105",
+          "name": "Cloth Config API (Fabric/Forge/NeoForge)",
+          "type": "File",
+          "artifact": {
+            "size": 1181413,
+            "MD5": "ca5de5acbcb4a30c010aa6953bd7ef53",
+            "url": "https://edge.forgecdn.net/files/5729/105/cloth-config-11.1.136-forge.jar",
+            "path": "mods/cloth-config-11.1.136-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:256717:5278538",
+          "name": "Clumps",
+          "type": "File",
+          "artifact": {
+            "size": 20299,
+            "MD5": "c9efc71827df6ab51e8dd0e40c3d4975",
+            "url": "https://edge.forgecdn.net/files/5278/538/Clumps-forge-1.20.1-12.0.0.4.jar",
+            "path": "mods/Clumps-forge-1.20.1-12.0.0.4.jar"
+          }
+        },
+        {
+          "id": "curseforge:826308:7385618",
+          "name": "Cluttered",
+          "type": "File",
+          "artifact": {
+            "size": 5551679,
+            "MD5": "37f5585d706cda153b34e4c523881fda",
+            "url": "https://edge.forgecdn.net/files/7385/618/cluttered-[Forge]-3.0.3-1.20.1.jar",
+            "path": "mods/cluttered-[Forge]-3.0.3-1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:342584:5840216",
+          "name": "Collective",
+          "type": "File",
+          "artifact": {
+            "size": 648876,
+            "MD5": "b0bcc1d5e282bab76d0f8f39a85a1a92",
+            "url": "https://edge.forgecdn.net/files/5840/216/collective-1.20.1-7.87.jar",
+            "path": "mods/collective-1.20.1-7.87.jar"
+          }
+        },
+        {
+          "id": "curseforge:854213:5724977",
+          "name": "Colorful Hearts",
+          "type": "File",
+          "artifact": {
+            "size": 122868,
+            "MD5": "9e9be8a8c82350e43dfdd5d76101be50",
+            "url": "https://edge.forgecdn.net/files/5724/977/colorfulhearts-forge-1.20.1-4.3.16.jar",
+            "path": "mods/colorfulhearts-forge-1.20.1-4.3.16.jar"
+          }
+        },
+        {
+          "id": "curseforge:1254143:8206638",
+          "name": "Colorwheel",
+          "type": "File",
+          "artifact": {
+            "size": 1028327,
+            "MD5": "0fff85e0dfb04958825cad6399f8215c",
+            "url": "https://edge.forgecdn.net/files/8206/638/colorwheel-forge-1.2.9+mc1.20.1.jar",
+            "path": "mods/colorwheel-forge-1.2.9+mc1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:1285475:7924940",
+          "name": "Colorwheel Patcher",
+          "type": "File",
+          "artifact": {
+            "size": 210838,
+            "MD5": "0f0470ed6cd3c79825fa1c5a2f76c1c0",
+            "url": "https://edge.forgecdn.net/files/7924/940/colorwheel_patcher-forge-1.0.5+mc1.20.1.jar",
+            "path": "mods/colorwheel_patcher-forge-1.0.5+mc1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:276951:5503516",
+          "name": "Comforts",
+          "type": "File",
+          "artifact": {
+            "size": 382083,
+            "MD5": "a88fcc168de1a0f9b2ae4e7cbe8a8408",
+            "url": "https://edge.forgecdn.net/files/5503/516/comforts-forge-6.4.0+1.20.1.jar",
+            "path": "mods/comforts-forge-6.4.0+1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:806044:5486134",
+          "name": "Common Network",
+          "type": "File",
+          "artifact": {
+            "size": 20701,
+            "MD5": "420b80bc67b01b4e86ed29a88b1155c3",
+            "url": "https://edge.forgecdn.net/files/5486/134/common-networking-forge-1.0.5-1.20.1.jar",
+            "path": "mods/common-networking-forge-1.0.5-1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:627557:7090226",
+          "name": "Complementary Shaders - Reimagined",
+          "type": "File",
+          "artifact": {
+            "size": 500696,
+            "MD5": "04c822b2da584e21745869190ac653e6",
+            "url": "https://edge.forgecdn.net/files/7090/226/ComplementaryReimagined_r5.6.1.zip",
+            "path": "mods/ComplementaryReimagined_r5.6.1.zip"
+          }
+        },
+        {
+          "id": "curseforge:930131:6060024",
+          "name": "Configured Defaults",
+          "type": "File",
+          "artifact": {
+            "size": 42866,
+            "MD5": "344e3a4599ad289fb1d0554f963f3031",
+            "url": "https://edge.forgecdn.net/files/6060/24/ConfiguredDefaults-v8.0.4-1.20.1-Forge.jar",
+            "path": "mods/ConfiguredDefaults-v8.0.4-1.20.1-Forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:470193:7032387",
+          "name": "Connectivity",
+          "type": "File",
+          "artifact": {
+            "size": 112268,
+            "MD5": "b18f084c146f9725fe85f6a2fb869721",
+            "url": "https://edge.forgecdn.net/files/7032/387/connectivity-1.20.1-7.2.jar",
+            "path": "mods/connectivity-1.20.1-7.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:399558:4684054",
+          "name": "Construction Wand",
+          "type": "File",
+          "artifact": {
+            "size": 210312,
+            "MD5": "e17b0f6b4fa378d6750a9030a5aca9e0",
+            "url": "https://edge.forgecdn.net/files/4684/54/constructionwand-1.20.1-2.11.jar",
+            "path": "mods/constructionwand-1.20.1-2.11.jar"
+          }
+        },
+        {
+          "id": "curseforge:317269:7943200",
+          "name": "Controllable",
+          "type": "File",
+          "artifact": {
+            "size": 7569416,
+            "MD5": "f25fbb8687d786c153a84029e35bfd93",
+            "url": "https://edge.forgecdn.net/files/7943/200/controllable-forge-1.20.1-0.21.9.jar",
+            "path": "mods/controllable-forge-1.20.1-0.21.9.jar"
+          }
+        },
+        {
+          "id": "curseforge:250398:4646682",
+          "name": "Controlling",
+          "type": "File",
+          "artifact": {
+            "size": 115280,
+            "MD5": "952274bc9994bba9733e8747558f73fa",
+            "url": "https://edge.forgecdn.net/files/4646/682/Controlling-forge-1.20.1-12.0.2.jar",
+            "path": "mods/Controlling-forge-1.20.1-12.0.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:237749:5096038",
+          "name": "CoroUtil",
+          "type": "File",
+          "artifact": {
+            "size": 64187,
+            "MD5": "6fb9ccbe8c05c1da61c224d1127e9643",
+            "url": "https://edge.forgecdn.net/files/5096/38/coroutil-forge-1.20.1-1.3.7.jar",
+            "path": "mods/coroutil-forge-1.20.1-1.3.7.jar"
+          }
+        },
+        {
+          "id": "curseforge:237307:4600191",
+          "name": "Cosmetic Armor Reworked",
+          "type": "File",
+          "artifact": {
+            "size": 88752,
+            "MD5": "2454075e9a25cbadc0fce66502e3261d",
+            "url": "https://edge.forgecdn.net/files/4600/191/cosmeticarmorreworked-1.20.1-v1a.jar",
+            "path": "mods/cosmeticarmorreworked-1.20.1-v1a.jar"
+          }
+        },
+        {
+          "id": "curseforge:1590319:8818409",
+          "name": "Cozy Cafe",
+          "type": "File",
+          "artifact": {
+            "size": 426369,
+            "MD5": "b1290050950c8dff12c7dd84fbefcb20",
+            "url": "https://edge.forgecdn.net/files/8818/409/cozycafe-1.10-all.jar",
+            "path": "mods/cozycafe-1.10-all.jar"
+          }
+        },
+        {
+          "id": "curseforge:892827:5961411",
+          "name": "Crabber's Delight",
+          "type": "File",
+          "artifact": {
+            "size": 376502,
+            "MD5": "6cb37eae01fc6a6958c58135cc5bdfaa",
+            "url": "https://edge.forgecdn.net/files/5961/411/CrabbersDelight-1.20.1-1.1.7d.jar",
+            "path": "mods/CrabbersDelight-1.20.1-1.1.7d.jar"
+          }
+        },
+        {
+          "id": "curseforge:233071:7454498",
+          "name": "Crafting Tweaks",
+          "type": "File",
+          "artifact": {
+            "size": 231043,
+            "MD5": "7208ef92ce8196cb479f39676ba6fc29",
+            "url": "https://edge.forgecdn.net/files/7454/498/craftingtweaks-forge-1.20.1-18.2.8.jar",
+            "path": "mods/craftingtweaks-forge-1.20.1-18.2.8.jar"
+          }
+        },
+        {
+          "id": "curseforge:577850:5429170",
+          "name": "Crafting on a stick",
+          "type": "File",
+          "artifact": {
+            "size": 55252,
+            "MD5": "8158077880aea9cacd4eabb6f47b67b9",
+            "url": "https://edge.forgecdn.net/files/5429/170/crafting-on-a-stick-1.20.1-1.1.5.jar",
+            "path": "mods/crafting-on-a-stick-1.20.1-1.1.5.jar"
+          }
+        },
+        {
+          "id": "curseforge:1154099:8262170",
+          "name": "Crash Assistant",
+          "type": "File",
+          "artifact": {
+            "size": 3181623,
+            "MD5": "32c9e89c2fecb46baabe76568158a6d7",
+            "url": "https://edge.forgecdn.net/files/8262/170/CrashAssistant-forge-1.19-1.20.1-1.11.10.jar",
+            "path": "mods/CrashAssistant-forge-1.19-1.20.1-1.11.10.jar"
+          }
+        },
+        {
+          "id": "curseforge:371813:4716086",
+          "name": "Crash Utilities",
+          "type": "File",
+          "artifact": {
+            "size": 233000,
+            "MD5": "f996d6d7e5b3376448204b6bb002b37b",
+            "url": "https://edge.forgecdn.net/files/4716/86/crashutilities-8.1.4.jar",
+            "path": "mods/crashutilities-8.1.4.jar"
+          }
+        },
+        {
+          "id": "curseforge:328085:7178761",
+          "name": "Create",
+          "type": "File",
+          "artifact": {
+            "size": 19170905,
+            "MD5": "6ebc5c57638c1678359eac65b924c310",
+            "url": "https://edge.forgecdn.net/files/7178/761/create-1.20.1-6.0.8.jar",
+            "path": "mods/create-1.20.1-6.0.8.jar"
+          }
+        },
+        {
+          "id": "curseforge:1218807:7159834",
+          "name": "Create Factory Logistics",
+          "type": "File",
+          "artifact": {
+            "size": 1112673,
+            "MD5": "3bd8946bc40727a019f44e1f12ccbe93",
+            "url": "https://edge.forgecdn.net/files/7159/834/create_factory_logistics-1.20.1-1.4.7.jar",
+            "path": "mods/create_factory_logistics-1.20.1-1.4.7.jar"
+          }
+        },
+        {
+          "id": "curseforge:686100:6944732",
+          "name": "Create Mechanical Extruder",
+          "type": "File",
+          "artifact": {
+            "size": 513561,
+            "MD5": "1efc306ab05c8e8aec85c25e75eaf063",
+            "url": "https://edge.forgecdn.net/files/6944/732/create_mecanical_extruder-1.20.1-1.6.11-6.0.6.jar",
+            "path": "mods/create_mecanical_extruder-1.20.1-1.6.11-6.0.6.jar"
+          }
+        },
+        {
+          "id": "curseforge:935929:7227738",
+          "name": "Create Railways Navigator",
+          "type": "File",
+          "artifact": {
+            "size": 3178491,
+            "MD5": "d7f37d8f2684f23461415c3746e0b738",
+            "url": "https://edge.forgecdn.net/files/7227/738/createrailwaysnavigator-forge-1.20.1-beta-0.8.5-C6.jar",
+            "path": "mods/createrailwaysnavigator-forge-1.20.1-beta-0.8.5-C6.jar"
+          }
+        },
+        {
+          "id": "curseforge:899330:7707479",
+          "name": "Create Style Sophisticated Backpacks",
+          "type": "File",
+          "artifact": {
+            "size": 557473,
+            "MD5": "d9f2564fab19bb0ae5230ad9dc70adb3",
+            "url": "https://edge.forgecdn.net/files/7707/479/CreateSophBackpacks.zip",
+            "path": "mods/CreateSophBackpacks.zip"
+          }
+        },
+        {
+          "id": "curseforge:941802:6168001",
+          "name": "Create Style for Refined Storage",
+          "type": "File",
+          "artifact": {
+            "size": 1596551,
+            "MD5": "745f3c91be82446bf43399ef6297bdd0",
+            "url": "https://edge.forgecdn.net/files/6168/001/Create Style for Refined Storage.zip",
+            "path": "mods/Create Style for Refined Storage.zip"
+          }
+        },
+        {
+          "id": "curseforge:881586:6701786",
+          "name": "Create Utilities (Fabric/Forge)",
+          "type": "File",
+          "artifact": {
+            "size": 358535,
+            "MD5": "c2be7c7e4a7f232575a90bc2208181be",
+            "url": "https://edge.forgecdn.net/files/6701/786/createutilities-0.3.2+1.20.1.jar",
+            "path": "mods/createutilities-0.3.2+1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:820977:8204836",
+          "name": "Create: Central Kitchen",
+          "type": "File",
+          "artifact": {
+            "size": 835363,
+            "MD5": "ecc1671b1e2db7b0de6a5e93b6e7acd6",
+            "url": "https://edge.forgecdn.net/files/8204/836/create_central_kitchen-1.20.1-for-create-6.0.8-1.5.0.jar",
+            "path": "mods/create_central_kitchen-1.20.1-for-create-6.0.8-1.5.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:968398:7634682",
+          "name": "Create: Copycats+",
+          "type": "File",
+          "artifact": {
+            "size": 1996097,
+            "MD5": "47e13c8058d400e4a6316d00f451b29c",
+            "url": "https://edge.forgecdn.net/files/7634/682/copycats-3.0.7+mc.1.20.1-forge.jar",
+            "path": "mods/copycats-3.0.7+mc.1.20.1-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:688768:6652836",
+          "name": "Create: Enchantment Industry",
+          "type": "File",
+          "artifact": {
+            "size": 488060,
+            "MD5": "6f5f44bb2db0d2916a8ce3e60dae02cf",
+            "url": "https://edge.forgecdn.net/files/6652/836/create_enchantment_industry-1.3.3-for-create-6.0.6.jar",
+            "path": "mods/create_enchantment_industry-1.3.3-for-create-6.0.6.jar"
+          }
+        },
+        {
+          "id": "curseforge:1263228:7058464",
+          "name": "Create: Extra Gauges",
+          "type": "File",
+          "artifact": {
+            "size": 1029438,
+            "MD5": "ffdf36ce4202c6136f90986e65e1b76e",
+            "url": "https://edge.forgecdn.net/files/7058/464/extra_gauges-2.0.7.jar",
+            "path": "mods/extra_gauges-2.0.7.jar"
+          }
+        },
+        {
+          "id": "curseforge:1281336:7599486",
+          "name": "Create: Hypertubes",
+          "type": "File",
+          "artifact": {
+            "size": 421417,
+            "MD5": "7faf6ee6833eae1994c4c051454e2bac",
+            "url": "https://edge.forgecdn.net/files/7599/486/create_hypertube-0.4.0-FORGE.jar",
+            "path": "mods/create_hypertube-0.4.0-FORGE.jar"
+          }
+        },
+        {
+          "id": "curseforge:889722:8749545",
+          "name": "Create: Numismatics",
+          "type": "File",
+          "artifact": {
+            "size": 1927968,
+            "MD5": "dc02a9318b1a428245b980f9ec67310e",
+            "url": "https://edge.forgecdn.net/files/8749/545/CreateNumismatics-1.1.0+forge-mc1.20.1.jar",
+            "path": "mods/CreateNumismatics-1.1.0+forge-mc1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:1339392:8757529",
+          "name": "Create: Numismatics Utils",
+          "type": "File",
+          "artifact": {
+            "size": 41889,
+            "MD5": "e4114d3750149154ec312eac9d84defa",
+            "url": "https://edge.forgecdn.net/files/8757/529/numismatics_utils-2.2.jar",
+            "path": "mods/numismatics_utils-2.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:1357430:7797920",
+          "name": "Create: Schematic Checker",
+          "type": "File",
+          "artifact": {
+            "size": 231988,
+            "MD5": "b8a4a509e2daf0d54bcdbfe337d1e355",
+            "url": "https://edge.forgecdn.net/files/7797/920/CreateSchematicChecker-0.21.18-6.0-forge-1.20.1.jar",
+            "path": "mods/CreateSchematicChecker-0.21.18-6.0-forge-1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:1335492:6963686",
+          "name": "Create: Splendid Cogs",
+          "type": "File",
+          "artifact": {
+            "size": 19142,
+            "MD5": "24c086447f0e394cda22a9f156c66b75",
+            "url": "https://edge.forgecdn.net/files/6963/686/create_slime-1.0.1.jar",
+            "path": "mods/create_slime-1.0.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:688231:7758640",
+          "name": "Create: Steam 'n' Rails",
+          "type": "File",
+          "artifact": {
+            "size": 16819720,
+            "MD5": "ec91d63c97ff08beb324f34399f1bf1a",
+            "url": "https://edge.forgecdn.net/files/7758/640/Steam_Rails-1.7.2+forge-mc1.20.1.jar",
+            "path": "mods/Steam_Rails-1.7.2+forge-mc1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:1256076:7799810",
+          "name": "Create:Entity Control",
+          "type": "File",
+          "artifact": {
+            "size": 370450,
+            "MD5": "3c02bb278a689313660d5025cc29d337",
+            "url": "https://edge.forgecdn.net/files/7799/810/CreateEntityControl-0.3.8.4-6.0-forge-1.20.1.jar",
+            "path": "mods/CreateEntityControl-0.3.8.4-6.0-forge-1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:257814:6383884",
+          "name": "CreativeCore",
+          "type": "File",
+          "artifact": {
+            "size": 1158417,
+            "MD5": "7aabe100af362d0df92d8ea1dbc2667b",
+            "url": "https://edge.forgecdn.net/files/6383/884/CreativeCore_FORGE_v2.12.32_mc1.20.1.jar",
+            "path": "mods/CreativeCore_FORGE_v2.12.32_mc1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:222548:5990872",
+          "name": "Creeper Confetti",
+          "type": "File",
+          "artifact": {
+            "size": 267538,
+            "MD5": "617f4df8bfce86edd8539588a30e969c",
+            "url": "https://edge.forgecdn.net/files/5990/872/creeperconfetti-4.3.jar",
+            "path": "mods/creeperconfetti-4.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:574913:7147523",
+          "name": "Critters and Companions",
+          "type": "File",
+          "artifact": {
+            "size": 1594359,
+            "MD5": "758bf538d42daea117e2d7fd51e7e29a",
+            "url": "https://edge.forgecdn.net/files/7147/523/crittersandcompanions-forge-1.20.1-2.3.5.jar",
+            "path": "mods/crittersandcompanions-forge-1.20.1-2.3.5.jar"
+          }
+        },
+        {
+          "id": "curseforge:1205372:6353910",
+          "name": "Croptania",
+          "type": "File",
+          "artifact": {
+            "size": 31377,
+            "MD5": "c463465a5cb4ca97b923111153d68a23",
+            "url": "https://edge.forgecdn.net/files/6353/910/croptania-0.3.jar",
+            "path": "mods/croptania-0.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:326652:5470032",
+          "name": "Cupboard",
+          "type": "File",
+          "artifact": {
+            "size": 25983,
+            "MD5": "3620912474f47bf58d1fe5bfe133763a",
+            "url": "https://edge.forgecdn.net/files/5470/32/cupboard-1.20.1-2.7.jar",
+            "path": "mods/cupboard-1.20.1-2.7.jar"
+          }
+        },
+        {
+          "id": "curseforge:309927:6418456",
+          "name": "Curios API (Forge/NeoForge)",
+          "type": "File",
+          "artifact": {
+            "size": 398066,
+            "MD5": "2fdcc97cbc66c4b2492b407c792e7159",
+            "url": "https://edge.forgecdn.net/files/6418/456/curios-forge-5.14.1+1.20.1.jar",
+            "path": "mods/curios-forge-5.14.1+1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:398784:5403962",
+          "name": "Curious Armor Stands",
+          "type": "File",
+          "artifact": {
+            "size": 12526,
+            "MD5": "67a20146981663686d8bc86d0a97d2f1",
+            "url": "https://edge.forgecdn.net/files/5403/962/curious_armor_stands-1.20-5.1.0.jar",
+            "path": "mods/curious_armor_stands-1.20-5.1.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:1062904:6609254",
+          "name": "Daily Weather",
+          "type": "File",
+          "artifact": {
+            "size": 15834,
+            "MD5": "850c45bce9b41974dea4488fc43afa21",
+            "url": "https://edge.forgecdn.net/files/6609/254/dew_drop_daily_weather-1.1.1.jar",
+            "path": "mods/dew_drop_daily_weather-1.1.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:1203668:7256555",
+          "name": "Data Anchor",
+          "type": "File",
+          "artifact": {
+            "size": 112171,
+            "MD5": "9e11e95b4d47b39a05cda4530b7d6bd7",
+            "url": "https://edge.forgecdn.net/files/7256/555/Data_Anchor-forge-1.20.1-1.0.0.20.jar",
+            "path": "mods/Data_Anchor-forge-1.20.1-1.0.0.20.jar"
+          }
+        },
+        {
+          "id": "curseforge:362528:5089406",
+          "name": "Decorative Blocks",
+          "type": "File",
+          "artifact": {
+            "size": 573928,
+            "MD5": "3ccc7e414c9de806448d94eef399cfd7",
+            "url": "https://edge.forgecdn.net/files/5089/406/decorative_blocks-forge-1.20.1-4.1.3.jar",
+            "path": "mods/decorative_blocks-forge-1.20.1-4.1.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:1317066:7831789",
+          "name": "Derp's Compat for Every Compat",
+          "type": "File",
+          "artifact": {
+            "size": 835275,
+            "MD5": "76f493ebaf09413c78a023d906b59f28",
+            "url": "https://edge.forgecdn.net/files/7831/789/DerpWood.zip",
+            "path": "mods/DerpWood.zip"
+          }
+        },
+        {
+          "id": "curseforge:458048:5918173",
+          "name": "Diagonal Fences",
+          "type": "File",
+          "artifact": {
+            "size": 182476,
+            "MD5": "29bc8833f5d9b1edcb32617e16a9ec5e",
+            "url": "https://edge.forgecdn.net/files/5918/173/DiagonalFences-v8.1.5-1.20.1-Forge.jar",
+            "path": "mods/DiagonalFences-v8.1.5-1.20.1-Forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:969422:5918171",
+          "name": "Diagonal Walls",
+          "type": "File",
+          "artifact": {
+            "size": 173567,
+            "MD5": "4f0de81465cddd09bf866eb38c1922f3",
+            "url": "https://edge.forgecdn.net/files/5918/171/DiagonalWalls-v8.0.4-1.20.1-Forge.jar",
+            "path": "mods/DiagonalWalls-v8.0.4-1.20.1-Forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:1144296:6041724",
+          "name": "Display Delight",
+          "type": "File",
+          "artifact": {
+            "size": 373450,
+            "MD5": "4d0263c77fdd9042b84407349a627493",
+            "url": "https://edge.forgecdn.net/files/6041/724/displaydelight-0.0.1-lite.jar",
+            "path": "mods/displaydelight-0.0.1-lite.jar"
+          }
+        },
+        {
+          "id": "curseforge:1298091:6717213",
+          "name": "Domestication Innovation Fixed",
+          "type": "File",
+          "artifact": {
+            "size": 853558,
+            "MD5": "4d8c9308a60525e2ea0598a1d86f1c10",
+            "url": "https://edge.forgecdn.net/files/6717/213/domesticationinnovation-1.7.2-1.20.1.jar",
+            "path": "mods/domesticationinnovation-1.7.2-1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:585764:5456879",
+          "name": "Dracovita Farm Life",
+          "type": "File",
+          "artifact": {
+            "size": 960006,
+            "MD5": "6b89a973827772acb4d7c85a58760e8c",
+            "url": "https://edge.forgecdn.net/files/5456/879/farmlife-1.20.1-1.1.0.jar",
+            "path": "mods/farmlife-1.20.1-1.1.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:380617:7445417",
+          "name": "Dramatic Doors",
+          "type": "File",
+          "artifact": {
+            "size": 14210380,
+            "MD5": "6fdab3b077e3bc1c56650c0d7d221bee",
+            "url": "https://edge.forgecdn.net/files/7445/417/DramaticDoors-QuiFabrge-1.20.1-3.3.3.jar",
+            "path": "mods/DramaticDoors-QuiFabrge-1.20.1-3.3.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:511770:6412211",
+          "name": "Drippy Loading Screen",
+          "type": "File",
+          "artifact": {
+            "size": 239365,
+            "MD5": "a8cbcca4541cb6eb794ded4a10c57ac9",
+            "url": "https://edge.forgecdn.net/files/6412/211/drippyloadingscreen_forge_3.0.12_MC_1.20.1.jar",
+            "path": "mods/drippyloadingscreen_forge_3.0.12_MC_1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:580555:8081375",
+          "name": "EMI",
+          "type": "File",
+          "artifact": {
+            "size": 1121750,
+            "MD5": "c86d5772fba9fbd4d612f2fe82397f72",
+            "url": "https://edge.forgecdn.net/files/8081/375/emi-1.1.24+1.20.1+forge.jar",
+            "path": "mods/emi-1.1.24+1.20.1+forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:412013:6166552",
+          "name": "Ears (+ Snouts/Muzzles, Tails, Horns, Wings, and More)",
+          "type": "File",
+          "artifact": {
+            "size": 160424,
+            "MD5": "1eb8315bf587b6862dd298743e328ba2",
+            "url": "https://edge.forgecdn.net/files/6166/552/ears-forge-1.19.4-1.4.7.jar",
+            "path": "mods/ears-forge-1.19.4-1.4.7.jar"
+          }
+        },
+        {
+          "id": "curseforge:682567:5156621",
+          "name": "Easy Anvils",
+          "type": "File",
+          "artifact": {
+            "size": 141744,
+            "MD5": "d77ef2d7251b53392862f371f2e33163",
+            "url": "https://edge.forgecdn.net/files/5156/621/EasyAnvils-v8.0.2-1.20.1-Forge.jar",
+            "path": "mods/EasyAnvils-v8.0.2-1.20.1-Forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:1308987:7287117",
+          "name": "Easy NPC: Core",
+          "type": "File",
+          "artifact": {
+            "size": 1519447,
+            "MD5": "255de5e2a8f0aef706586b538344f3ae",
+            "url": "https://edge.forgecdn.net/files/7287/117/easy_npc-forge-1.20.1-6.1.0.jar",
+            "path": "mods/easy_npc-forge-1.20.1-6.1.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:908741:5681725",
+          "name": "Embeddium",
+          "type": "File",
+          "artifact": {
+            "size": 1320675,
+            "MD5": "1dfb2ee49ce9ad5d484ff3eea0d628b7",
+            "url": "https://edge.forgecdn.net/files/5681/725/embeddium-0.3.31+mc1.20.1.jar",
+            "path": "mods/embeddium-0.3.31+mc1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:1345948:7503929",
+          "name": "Ember's Text API",
+          "type": "File",
+          "artifact": {
+            "size": 124384,
+            "MD5": "ecb34b9ccaa2dedf869bb9a65d78310b",
+            "url": "https://edge.forgecdn.net/files/7503/929/emberstextapi-1.4.1.jar",
+            "path": "mods/emberstextapi-1.4.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:284324:4672310",
+          "name": "Emojiful",
+          "type": "File",
+          "artifact": {
+            "size": 262412,
+            "MD5": "0ba360de4747e64c6325b74c0055479a",
+            "url": "https://edge.forgecdn.net/files/4672/310/Emojiful-Forge-1.20.1-4.2.0.jar",
+            "path": "mods/Emojiful-Forge-1.20.1-4.2.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:250419:5855251",
+          "name": "Enchantment Descriptions",
+          "type": "File",
+          "artifact": {
+            "size": 69476,
+            "MD5": "445422556264d2129fde704f35d9680f",
+            "url": "https://edge.forgecdn.net/files/5855/251/EnchantmentDescriptions-Forge-1.20.1-17.1.19.jar",
+            "path": "mods/EnchantmentDescriptions-Forge-1.20.1-17.1.19.jar"
+          }
+        },
+        {
+          "id": "curseforge:967617:7296807",
+          "name": "EntityJS",
+          "type": "File",
+          "artifact": {
+            "size": 2363566,
+            "MD5": "ca0dd47407d7d76d7183286356c43378",
+            "url": "https://edge.forgecdn.net/files/7296/807/entityjs-0.6.6-1.20.1.jar",
+            "path": "mods/entityjs-0.6.6-1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:891054:4661335",
+          "name": "Etcetera",
+          "type": "File",
+          "artifact": {
+            "size": 1720394,
+            "MD5": "9e629540218d3084c80ffe958d05d857",
+            "url": "https://edge.forgecdn.net/files/4661/335/Etcetera-1.20.1-1.1.3-Forge.jar",
+            "path": "mods/Etcetera-1.20.1-1.1.3-Forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:491890:5999495",
+          "name": "Etched",
+          "type": "File",
+          "artifact": {
+            "size": 611496,
+            "MD5": "a14244fe3a300eb08eed9e99506c3ab1",
+            "url": "https://edge.forgecdn.net/files/5999/495/etched-3.0.4.jar",
+            "path": "mods/etched-3.0.4.jar"
+          }
+        },
+        {
+          "id": "curseforge:628539:8332989",
+          "name": "Every Compat (Wood Good)",
+          "type": "File",
+          "artifact": {
+            "size": 2865518,
+            "MD5": "95bff6ef27595ee7ec1b2e453bc51af8",
+            "url": "https://edge.forgecdn.net/files/8332/989/everycomp-1.20-2.9.24-forge.jar",
+            "path": "mods/everycomp-1.20-2.9.24-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:465066:5301414",
+          "name": "ExpandAbility",
+          "type": "File",
+          "artifact": {
+            "size": 80765,
+            "MD5": "8090193f88097a1b4cb30386c29cae77",
+            "url": "https://edge.forgecdn.net/files/5301/414/expandability-9.0.4.jar",
+            "path": "mods/expandability-9.0.4.jar"
+          }
+        },
+        {
+          "id": "curseforge:871755:6655718",
+          "name": "Exposure",
+          "type": "File",
+          "artifact": {
+            "size": 1360685,
+            "MD5": "5e0d88ba6f4cfe04c6d8158f91b038db",
+            "url": "https://edge.forgecdn.net/files/6655/718/exposure-1.20.1-1.7.16-forge.jar",
+            "path": "mods/exposure-1.20.1-1.7.16-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:1023882:5596310",
+          "name": "Exposure Catalog",
+          "type": "File",
+          "artifact": {
+            "size": 146211,
+            "MD5": "6336653ecb9597a8bff62a3ada4d3821",
+            "url": "https://edge.forgecdn.net/files/5596/310/exposure_catalog-1.20.1-1.0.3-forge.jar",
+            "path": "mods/exposure_catalog-1.20.1-1.0.3-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:567114:4863801",
+          "name": "Extractinator",
+          "type": "File",
+          "artifact": {
+            "size": 117038,
+            "MD5": "f3ab9d1ff0a00508f35153e609082322",
+            "url": "https://edge.forgecdn.net/files/4863/801/extractinator-forge-1.20.1-2.3.0.jar",
+            "path": "mods/extractinator-forge-1.20.1-2.3.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:363363:5498979",
+          "name": "Extreme sound muffler - (Neo)Forge",
+          "type": "File",
+          "artifact": {
+            "size": 265906,
+            "MD5": "e7e9c9641e5188b5ca5b5dbb207b7e2d",
+            "url": "https://edge.forgecdn.net/files/5498/979/ExtremeSoundMuffler-3.48-forge-1.20.1.jar",
+            "path": "mods/ExtremeSoundMuffler-3.48-forge-1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:622737:4834403",
+          "name": "FTB Backups 2",
+          "type": "File",
+          "artifact": {
+            "size": 1954591,
+            "MD5": "d03cc8191ad47156c977d53468421559",
+            "url": "https://edge.forgecdn.net/files/4834/403/ftbbackups2-forge-1.20-1.0.23.jar",
+            "path": "mods/ftbbackups2-forge-1.20-1.0.23.jar"
+          }
+        },
+        {
+          "id": "curseforge:314906:6431735",
+          "name": "FTB Chunks (NeoForge)",
+          "type": "File",
+          "artifact": {
+            "size": 1158842,
+            "MD5": "64af750c0cbcadd4b27fb58236654814",
+            "url": "https://edge.forgecdn.net/files/6431/735/ftb-chunks-forge-2001.3.6.jar",
+            "path": "mods/ftb-chunks-forge-2001.3.6.jar"
+          }
+        },
+        {
+          "id": "curseforge:404465:7296748",
+          "name": "FTB Library (Forge)",
+          "type": "File",
+          "artifact": {
+            "size": 780523,
+            "MD5": "8bbd067159587d80f1c5286ea52e567b",
+            "url": "https://edge.forgecdn.net/files/7296/748/ftb-library-forge-2001.2.12.jar",
+            "path": "mods/ftb-library-forge-2001.2.12.jar"
+          }
+        },
+        {
+          "id": "curseforge:1071737:7529230",
+          "name": "FTB Quest Localizer",
+          "type": "File",
+          "artifact": {
+            "size": 36983,
+            "MD5": "b48c43ffe1dadc6d807baec7bfe636f3",
+            "url": "https://edge.forgecdn.net/files/7529/230/ftbquestlocalizer-1.20.1-forge-3.2.3.jar",
+            "path": "mods/ftbquestlocalizer-1.20.1-forge-3.2.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:289412:7260736",
+          "name": "FTB Quests (NeoForge)",
+          "type": "File",
+          "artifact": {
+            "size": 1227820,
+            "MD5": "35f79e8e8b0849d6038cd4cd9c86b08a",
+            "url": "https://edge.forgecdn.net/files/7260/736/ftb-quests-forge-2001.4.17.jar",
+            "path": "mods/ftb-quests-forge-2001.4.17.jar"
+          }
+        },
+        {
+          "id": "curseforge:404468:7499810",
+          "name": "FTB Teams (NeoForge)",
+          "type": "File",
+          "artifact": {
+            "size": 252579,
+            "MD5": "1c547d6f1b22f461f84c5fb79067b0ec",
+            "url": "https://edge.forgecdn.net/files/7499/810/ftb-teams-forge-2001.3.2.jar",
+            "path": "mods/ftb-teams-forge-2001.3.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:889915:6402486",
+          "name": "FTB XMod Compat",
+          "type": "File",
+          "artifact": {
+            "size": 129725,
+            "MD5": "6d01bd4bc73c6ce36d0d91c56bb27772",
+            "url": "https://edge.forgecdn.net/files/6402/486/ftb-xmod-compat-forge-2.1.3.jar",
+            "path": "mods/ftb-xmod-compat-forge-2.1.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:1246471:6445218",
+          "name": "Fairy Wings Elytra",
+          "type": "File",
+          "artifact": {
+            "size": 82334,
+            "MD5": "c7443565bd88925ba00127ab33673c7e",
+            "url": "https://edge.forgecdn.net/files/6445/218/Fairy Wings Elytra.zip",
+            "path": "mods/Fairy Wings Elytra.zip"
+          }
+        },
+        {
+          "id": "curseforge:463155:6241090",
+          "name": "Falling Leaves (NeoForge/Forge)",
+          "type": "File",
+          "artifact": {
+            "size": 124212,
+            "MD5": "721d92a83d7518e8515dbd499eda03cd",
+            "url": "https://edge.forgecdn.net/files/6241/90/fallingleaves-1.20.1-2.1.2.jar",
+            "path": "mods/fallingleaves-1.20.1-2.1.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:367706:6918987",
+          "name": "FancyMenu",
+          "type": "File",
+          "artifact": {
+            "size": 3628603,
+            "MD5": "365e76a8d99085a1ac942c2b46125508",
+            "url": "https://edge.forgecdn.net/files/6918/987/fancymenu_forge_3.7.0_MC_1.20.1.jar",
+            "path": "mods/fancymenu_forge_3.7.0_MC_1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:579564:4702176",
+          "name": "Fantasy's Furniture",
+          "type": "File",
+          "artifact": {
+            "size": 3202951,
+            "MD5": "0712007756c04d20100121c31510d346",
+            "url": "https://edge.forgecdn.net/files/4702/176/fantasyfurniture-1.20.1-9.0.0.jar",
+            "path": "mods/fantasyfurniture-1.20.1-9.0.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:398521:8083474",
+          "name": "Farmer's Delight",
+          "type": "File",
+          "artifact": {
+            "size": 3313327,
+            "MD5": "39459d8e62ef83e36c2b54952dbe2c2f",
+            "url": "https://edge.forgecdn.net/files/8083/474/FarmersDelight-1.20.1-1.3.2.jar",
+            "path": "mods/FarmersDelight-1.20.1-1.3.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:261924:4749360",
+          "name": "Farming for Blockheads",
+          "type": "File",
+          "artifact": {
+            "size": 569517,
+            "MD5": "521f8d7f968f4d64d10946456028b9cb",
+            "url": "https://edge.forgecdn.net/files/4749/360/farmingforblockheads-forge-1.20.1-14.0.2.jar",
+            "path": "mods/farmingforblockheads-forge-1.20.1-14.0.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:230976:5375681",
+          "name": "Fast Leaf Decay",
+          "type": "File",
+          "artifact": {
+            "size": 9835,
+            "MD5": "20df3e3525622d6ea38a243be828ef38",
+            "url": "https://edge.forgecdn.net/files/5375/681/FastLeafDecay-32.jar",
+            "path": "mods/FastLeafDecay-32.jar"
+          }
+        },
+        {
+          "id": "curseforge:883287:5324825",
+          "name": "Fast Paintings",
+          "type": "File",
+          "artifact": {
+            "size": 309400,
+            "MD5": "d14882d3a9ddc95bb3b9dc1e53928e25",
+            "url": "https://edge.forgecdn.net/files/5324/825/fastpaintings-1.20-1.2.7.jar",
+            "path": "mods/fastpaintings-1.20-1.2.7.jar"
+          }
+        },
+        {
+          "id": "curseforge:299540:5181098",
+          "name": "FastFurnace",
+          "type": "File",
+          "artifact": {
+            "size": 6170,
+            "MD5": "48b8d2df29ea216a625928e29a6434da",
+            "url": "https://edge.forgecdn.net/files/5181/98/FastFurnace-1.20.1-8.0.2.jar",
+            "path": "mods/FastFurnace-1.20.1-8.0.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:475117:7527943",
+          "name": "FastSuite",
+          "type": "File",
+          "artifact": {
+            "size": 26600,
+            "MD5": "efca8ff65bbf93e3a0f776998ee181e9",
+            "url": "https://edge.forgecdn.net/files/7527/943/FastSuite-1.20.1-5.1.2.jar",
+            "path": "mods/FastSuite-1.20.1-5.1.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:258881:4819758",
+          "name": "Faster Ladder Climbing",
+          "type": "File",
+          "artifact": {
+            "size": 7457,
+            "MD5": "473e7fe48569b45d60dc0e008bb5e96f",
+            "url": "https://edge.forgecdn.net/files/4819/758/FasterLadderClimbing-1.20.1-0.2.10.jar",
+            "path": "mods/FasterLadderClimbing-1.20.1-0.2.10.jar"
+          }
+        },
+        {
+          "id": "curseforge:429235:4810975",
+          "name": "FerriteCore ((Neo)Forge)",
+          "type": "File",
+          "artifact": {
+            "size": 123034,
+            "MD5": "f52f538207a4829d7060550092ce2383",
+            "url": "https://edge.forgecdn.net/files/4810/975/ferritecore-6.0.1-forge.jar",
+            "path": "mods/ferritecore-6.0.1-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:291936:7069249",
+          "name": "FindMe",
+          "type": "File",
+          "artifact": {
+            "size": 38674,
+            "MD5": "a563ab1b502b94fe033fb130a4ef4543",
+            "url": "https://edge.forgecdn.net/files/7069/249/findme-3.2.3-forge.jar",
+            "path": "mods/findme-3.2.3-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:1142875:7584065",
+          "name": "Flerovium",
+          "type": "File",
+          "artifact": {
+            "size": 253961,
+            "MD5": "545576a1fb62ccd77f0192f004ac9a69",
+            "url": "https://edge.forgecdn.net/files/7584/65/flerovium-forge-1.20.1-1.2.18-all.jar",
+            "path": "mods/flerovium-forge-1.20.1-1.2.18-all.jar"
+          }
+        },
+        {
+          "id": "curseforge:1123970:7861201",
+          "name": "Fragmentum (Forge)",
+          "type": "File",
+          "artifact": {
+            "size": 1690913,
+            "MD5": "3d695885c7d1d01789f5cdb7584de6d4",
+            "url": "https://edge.forgecdn.net/files/7861/201/fragmentum-forge-1.20.1-1.1.4.jar",
+            "path": "mods/fragmentum-forge-1.20.1-1.1.4.jar"
+          }
+        },
+        {
+          "id": "curseforge:549225:6531428",
+          "name": "Framework",
+          "type": "File",
+          "artifact": {
+            "size": 309560,
+            "MD5": "135716c910b1036a6dd2f0fe0bc7b03d",
+            "url": "https://edge.forgecdn.net/files/6531/428/framework-forge-1.20.1-0.7.15.jar",
+            "path": "mods/framework-forge-1.20.1-0.7.15.jar"
+          }
+        },
+        {
+          "id": "curseforge:556861:6702553",
+          "name": "Functional Storage",
+          "type": "File",
+          "artifact": {
+            "size": 682220,
+            "MD5": "b8c57bd1a9c97ba96101c56557062c6f",
+            "url": "https://edge.forgecdn.net/files/6702/553/functionalstorage-1.20.1-1.2.13.jar",
+            "path": "mods/functionalstorage-1.20.1-1.2.13.jar"
+          }
+        },
+        {
+          "id": "curseforge:854949:7358298",
+          "name": "Fusion (Connected Textures)",
+          "type": "File",
+          "artifact": {
+            "size": 544820,
+            "MD5": "69af8ff2e7e4505865d52f36bcd8eab3",
+            "url": "https://edge.forgecdn.net/files/7358/298/fusion-1.2.11c-forge-mc1.20.1.jar",
+            "path": "mods/fusion-1.2.11c-forge-mc1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:347529:5572449",
+          "name": "GUI Clock",
+          "type": "File",
+          "artifact": {
+            "size": 40270,
+            "MD5": "870fdb6a435b1449b6ce4d44fb9dc3a6",
+            "url": "https://edge.forgecdn.net/files/5572/449/guiclock-1.20.1-4.6.jar",
+            "path": "mods/guiclock-1.20.1-4.6.jar"
+          }
+        },
+        {
+          "id": "curseforge:694962:6120294",
+          "name": "Gadgets Against Grind",
+          "type": "File",
+          "artifact": {
+            "size": 190621,
+            "MD5": "379e168cd112ebf4818ba504b883ff1a",
+            "url": "https://edge.forgecdn.net/files/6120/294/gag-forge-3.0.0-build.13.jar",
+            "path": "mods/gag-forge-3.0.0-build.13.jar"
+          }
+        },
+        {
+          "id": "curseforge:1173553:6321203",
+          "name": "Gallery",
+          "type": "File",
+          "artifact": {
+            "size": 241777,
+            "MD5": "27001f76b53b1089135df0f8ba47bbd8",
+            "url": "https://edge.forgecdn.net/files/6321/203/gallery-1.20.1-1.0.3.jar",
+            "path": "mods/gallery-1.20.1-1.0.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:1099059:6469886",
+          "name": "Game Discs",
+          "type": "File",
+          "artifact": {
+            "size": 241786,
+            "MD5": "1b5214a4f1504e701ec2bc03aed66a32",
+            "url": "https://edge.forgecdn.net/files/6469/886/gamediscs-0.3.2-forge.jar",
+            "path": "mods/gamediscs-0.3.2-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:977922:6349198",
+          "name": "GeckoJS",
+          "type": "File",
+          "artifact": {
+            "size": 153436,
+            "MD5": "c7d7887320f6e720aa4419a93598c235",
+            "url": "https://edge.forgecdn.net/files/6349/198/GeckoJS-2001forge-1.5.2.jar",
+            "path": "mods/GeckoJS-2001forge-1.5.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:388172:7017796",
+          "name": "GeckoLib",
+          "type": "File",
+          "artifact": {
+            "size": 1039409,
+            "MD5": "8018719048a1f1c3a8cb9ecd8d109115",
+            "url": "https://edge.forgecdn.net/files/7017/796/geckolib-forge-1.20.1-4.8.jar",
+            "path": "mods/geckolib-forge-1.20.1-4.8.jar"
+          }
+        },
+        {
+          "id": "curseforge:955399:5787839",
+          "name": "GlitchCore",
+          "type": "File",
+          "artifact": {
+            "size": 87550,
+            "MD5": "6d24b09db12acdab40437a1929259352",
+            "url": "https://edge.forgecdn.net/files/5787/839/GlitchCore-forge-1.20.1-0.0.1.1.jar",
+            "path": "mods/GlitchCore-forge-1.20.1-0.0.1.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:1162010:7456429",
+          "name": "Glow Up - Emissive Ores",
+          "type": "File",
+          "artifact": {
+            "size": 382112,
+            "MD5": "e03a34b5f7d40e215e17b01167c1c88d",
+            "url": "https://edge.forgecdn.net/files/7456/429/glow_up-1.5-1.20.1.zip",
+            "path": "mods/glow_up-1.5-1.20.1.zip"
+          }
+        },
+        {
+          "id": "curseforge:1220460:8284344",
+          "name": "Gnetum",
+          "type": "File",
+          "artifact": {
+            "size": 727997,
+            "MD5": "b366acf24372dedfd9c9d4372d773adf",
+            "url": "https://edge.forgecdn.net/files/8284/344/gnetum-2.4.6.jar",
+            "path": "mods/gnetum-2.4.6.jar"
+          }
+        },
+        {
+          "id": "curseforge:618752:7484359",
+          "name": "Golem Overhaul",
+          "type": "File",
+          "artifact": {
+            "size": 1039298,
+            "MD5": "1d228fa79b4492de35f999cb75328eb4",
+            "url": "https://edge.forgecdn.net/files/7484/359/golemoverhaul-forge-1.20.1-1.1.0.jar",
+            "path": "mods/golemoverhaul-forge-1.20.1-1.1.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:421377:5565422",
+          "name": "HT's TreeChop",
+          "type": "File",
+          "artifact": {
+            "size": 517225,
+            "MD5": "e178293a133747657f802688b8c63d27",
+            "url": "https://edge.forgecdn.net/files/5565/422/TreeChop-1.20.1-forge-0.19.0-fixed.jar",
+            "path": "mods/TreeChop-1.20.1-forge-0.19.0-fixed.jar"
+          }
+        },
+        {
+          "id": "curseforge:952435:5121305",
+          "name": "Hamsters Plus Lite",
+          "type": "File",
+          "artifact": {
+            "size": 439448,
+            "MD5": "02b3f3a37e2a07b356982c51572ed4d6",
+            "url": "https://edge.forgecdn.net/files/5121/305/hamsters-forge-1.0.3-1.20.1.jar",
+            "path": "mods/hamsters-forge-1.0.3-1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:623723:6631774",
+          "name": "Hopo Better Mineshaft",
+          "type": "File",
+          "artifact": {
+            "size": 4046100,
+            "MD5": "4e2e590c029999e6d35863268e160fcd",
+            "url": "https://edge.forgecdn.net/files/6631/774/HopoBetterMineshaft-[1.20.1-1.20.4]-1.2.2d.jar",
+            "path": "mods/HopoBetterMineshaft-[1.20.1-1.20.4]-1.2.2d.jar"
+          }
+        },
+        {
+          "id": "curseforge:1082085:7650572",
+          "name": "Horseman",
+          "type": "File",
+          "artifact": {
+            "size": 329030,
+            "MD5": "fa43502c093d2655d89cb7ac74fb96a4",
+            "url": "https://edge.forgecdn.net/files/7650/572/horseman-1.20.1-1.3.15-forge.jar",
+            "path": "mods/horseman-1.20.1-1.3.15-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:520110:5838149",
+          "name": "Iceberg [Neo/Forge]",
+          "type": "File",
+          "artifact": {
+            "size": 134551,
+            "MD5": "cda8af806d0de012f5c7012ea51c155f",
+            "url": "https://edge.forgecdn.net/files/5838/149/Iceberg-1.20.1-forge-1.1.25.jar",
+            "path": "mods/Iceberg-1.20.1-forge-1.1.25.jar"
+          }
+        },
+        {
+          "id": "curseforge:978219:5656300",
+          "name": "Icon Journey",
+          "type": "File",
+          "artifact": {
+            "size": 17646309,
+            "MD5": "710e4009d3f5245cccec4dd25da1016b",
+            "url": "https://edge.forgecdn.net/files/5656/300/Icon Journey 1.1.zip",
+            "path": "mods/Icon Journey 1.1.zip"
+          }
+        },
+        {
+          "id": "curseforge:686911:8348481",
+          "name": "ImmediatelyFast",
+          "type": "File",
+          "artifact": {
+            "size": 532063,
+            "MD5": "4d776686d7da62146099484b8c9e14af",
+            "url": "https://edge.forgecdn.net/files/8348/481/ImmediatelyFast-Forge-1.5.5+1.20.4.jar",
+            "path": "mods/ImmediatelyFast-Forge-1.5.5+1.20.4.jar"
+          }
+        },
+        {
+          "id": "curseforge:639584:8140573",
+          "name": "Immersive Paintings",
+          "type": "File",
+          "artifact": {
+            "size": 4856103,
+            "MD5": "ab2fec8953068e5b3578dd4b8439bd4a",
+            "url": "https://edge.forgecdn.net/files/8140/573/immersive_paintings-0.6.13+1.20.1-forge.jar",
+            "path": "mods/immersive_paintings-0.6.13+1.20.1-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:257356:6938482",
+          "name": "In Control!",
+          "type": "File",
+          "artifact": {
+            "size": 361755,
+            "MD5": "9648316b378fd5238d6c778e89da5342",
+            "url": "https://edge.forgecdn.net/files/6938/482/incontrol-1.20-9.4.1.jar",
+            "path": "mods/incontrol-1.20-9.4.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:871799:6094337",
+          "name": "Iron's Rpg Tweaks",
+          "type": "File",
+          "artifact": {
+            "size": 290546,
+            "MD5": "ab241d015ede13a4d0c0945957ca6cab",
+            "url": "https://edge.forgecdn.net/files/6094/337/irons_rpg_tweaks-1.20-1.4.0.jar",
+            "path": "mods/irons_rpg_tweaks-1.20-1.4.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:309674:4838266",
+          "name": "Item Filters",
+          "type": "File",
+          "artifact": {
+            "size": 110191,
+            "MD5": "4155fd7faf7daf46f9dcb914e93893e1",
+            "url": "https://edge.forgecdn.net/files/4838/266/item-filters-forge-2001.1.0-build.59.jar",
+            "path": "mods/item-filters-forge-2001.1.0-build.59.jar"
+          }
+        },
+        {
+          "id": "curseforge:583345:6274674",
+          "name": "Jade Addons (Neo/Forge)",
+          "type": "File",
+          "artifact": {
+            "size": 91771,
+            "MD5": "3e2fa5d8b2ec994ba416ec4f84d5ea60",
+            "url": "https://edge.forgecdn.net/files/6274/674/JadeAddons-1.20.1-Forge-5.5.0.jar",
+            "path": "mods/JadeAddons-1.20.1-Forge-5.5.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:324717:6855440",
+          "name": "Jade 🔍",
+          "type": "File",
+          "artifact": {
+            "size": 552486,
+            "MD5": "7c349670f77fd64b9e9854c4a8d82fcc",
+            "url": "https://edge.forgecdn.net/files/6855/440/Jade-1.20.1-Forge-11.13.2.jar",
+            "path": "mods/Jade-1.20.1-Forge-11.13.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:32274:5789363",
+          "name": "JourneyMap",
+          "type": "File",
+          "artifact": {
+            "size": 7160405,
+            "MD5": "2181bd6b7161f06726560b9382235611",
+            "url": "https://edge.forgecdn.net/files/5789/363/journeymap-1.20.1-5.10.3-forge.jar",
+            "path": "mods/journeymap-1.20.1-5.10.3-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:985057:5170422",
+          "name": "JourneyMap Extended Mob Icons",
+          "type": "File",
+          "artifact": {
+            "size": 65610,
+            "MD5": "12e961e0a647958bbcf93dabcc5043bb",
+            "url": "https://edge.forgecdn.net/files/5170/422/JourneyMap Extended Mob Icons v2.0.zip",
+            "path": "mods/JourneyMap Extended Mob Icons v2.0.zip"
+          }
+        },
+        {
+          "id": "curseforge:525447:5510356",
+          "name": "JourneyMap Integration",
+          "type": "File",
+          "artifact": {
+            "size": 69022,
+            "MD5": "9ca3febdf066b2dd900ab6c0c59852e1",
+            "url": "https://edge.forgecdn.net/files/5510/356/jmi-forge-1.20.1-0.14-48.jar",
+            "path": "mods/jmi-forge-1.20.1-0.14-48.jar"
+          }
+        },
+        {
+          "id": "curseforge:532286:6172935",
+          "name": "Just Enough Effect Descriptions (JEED)",
+          "type": "File",
+          "artifact": {
+            "size": 159288,
+            "MD5": "6792ef4a197457dcff0b4353e956a94d",
+            "url": "https://edge.forgecdn.net/files/6172/935/jeed-1.20-2.2.5.jar",
+            "path": "mods/jeed-1.20-2.2.5.jar"
+          }
+        },
+        {
+          "id": "curseforge:238222:7391695",
+          "name": "Just Enough Items (JEI)",
+          "type": "File",
+          "artifact": {
+            "size": 1409642,
+            "MD5": "a5192227a15e0fe0e367828b32c1f472",
+            "url": "https://edge.forgecdn.net/files/7391/695/jei-1.20.1-forge-15.20.0.129.jar",
+            "path": "mods/jei-1.20.1-forge-15.20.0.129.jar"
+          }
+        },
+        {
+          "id": "curseforge:681606:4995650",
+          "name": "JustHammers",
+          "type": "File",
+          "artifact": {
+            "size": 93291,
+            "MD5": "fd4ce938613c381b4116589243efc668",
+            "url": "https://edge.forgecdn.net/files/4995/650/justhammers-forge-2.0.3+mc1.20.1.jar",
+            "path": "mods/justhammers-forge-2.0.3+mc1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:455585:4654401",
+          "name": "Kambrik",
+          "type": "File",
+          "artifact": {
+            "size": 325546,
+            "MD5": "5cb26d3e599145ca834e736f64dcd363",
+            "url": "https://edge.forgecdn.net/files/4654/401/Kambrik-6.1.1+1.20.1-forge.jar",
+            "path": "mods/Kambrik-6.1.1+1.20.1-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:303657:6907020",
+          "name": "Kiwi 🥝 (Neo/Forge)",
+          "type": "File",
+          "artifact": {
+            "size": 1661318,
+            "MD5": "65c39f7fdfe43b1e2cebf1ebd7d8d7bd",
+            "url": "https://edge.forgecdn.net/files/6907/20/Kiwi-1.20.1-Forge-11.9.2.jar",
+            "path": "mods/Kiwi-1.20.1-Forge-11.9.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:410295:5028413",
+          "name": "Konkrete",
+          "type": "File",
+          "artifact": {
+            "size": 625185,
+            "MD5": "d69107c593e361e1b7b96733250bd098",
+            "url": "https://edge.forgecdn.net/files/5028/413/konkrete_forge_1.8.0_MC_1.20-1.20.1.jar",
+            "path": "mods/konkrete_forge_1.8.0_MC_1.20-1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:351264:7291067",
+          "name": "Kotlin for Forge",
+          "type": "File",
+          "artifact": {
+            "size": 7442998,
+            "MD5": "d6a40dede74edbe646b34a1bafd53b4d",
+            "url": "https://edge.forgecdn.net/files/7291/67/kotlinforforge-4.12.0-all.jar",
+            "path": "mods/kotlinforforge-4.12.0-all.jar"
+          }
+        },
+        {
+          "id": "curseforge:238086:5853326",
+          "name": "KubeJS",
+          "type": "File",
+          "artifact": {
+            "size": 1654660,
+            "MD5": "f4c6924bef764748d26ee51e4d4c0b00",
+            "url": "https://edge.forgecdn.net/files/5853/326/kubejs-forge-2001.6.5-build.16.jar",
+            "path": "mods/kubejs-forge-2001.6.5-build.16.jar"
+          }
+        },
+        {
+          "id": "curseforge:594387:5817338",
+          "name": "KubeJS Additions",
+          "type": "File",
+          "artifact": {
+            "size": 315140,
+            "MD5": "177a9920bc3ddbd3725c93f80466c14c",
+            "url": "https://edge.forgecdn.net/files/5817/338/kubejsadditions-forge-4.3.3.jar",
+            "path": "mods/kubejsadditions-forge-4.3.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:1255211:6825088",
+          "name": "KubeJS Curios",
+          "type": "File",
+          "artifact": {
+            "size": 42322,
+            "MD5": "682321afb7a890679293c13cc80cbdc6",
+            "url": "https://edge.forgecdn.net/files/6825/88/kubejs_curios_forge_1.20.1-1.0.4.jar",
+            "path": "mods/kubejs_curios_forge_1.20.1-1.0.4.jar"
+          }
+        },
+        {
+          "id": "curseforge:686435:4613293",
+          "name": "Leaves Be Gone",
+          "type": "File",
+          "artifact": {
+            "size": 50042,
+            "MD5": "68c6f0145c5f91511d20eca70efbeb8a",
+            "url": "https://edge.forgecdn.net/files/4613/293/LeavesBeGone-v8.0.0-1.20.1-Forge.jar",
+            "path": "mods/LeavesBeGone-v8.0.0-1.20.1-Forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:837157:6826898",
+          "name": "Legendary Creatures",
+          "type": "File",
+          "artifact": {
+            "size": 3704675,
+            "MD5": "f9acadb272ead235e4d7a5c7fc23ed21",
+            "url": "https://edge.forgecdn.net/files/6826/898/legendarycreatures-1.20.1-1.1.1.3.jar",
+            "path": "mods/legendarycreatures-1.20.1-1.1.1.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:1280129:7814267",
+          "name": "Lios Hobbit Hill Village",
+          "type": "File",
+          "artifact": {
+            "size": 3755509,
+            "MD5": "a77928cb76c3cd641b9a483bec32d6f8",
+            "url": "https://edge.forgecdn.net/files/7814/267/hobbit_hill_village-0.0.4.jar",
+            "path": "mods/hobbit_hill_village-0.0.4.jar"
+          }
+        },
+        {
+          "id": "curseforge:936015:6742615",
+          "name": "Lithostitched",
+          "type": "File",
+          "artifact": {
+            "size": 476347,
+            "MD5": "3c596bbc1b5f769f22be751e9c21a6c8",
+            "url": "https://edge.forgecdn.net/files/6742/615/lithostitched-forge-1.20.1-1.4.11.jar",
+            "path": "mods/lithostitched-forge-1.20.1-1.4.11.jar"
+          }
+        },
+        {
+          "id": "curseforge:1235950:6841863",
+          "name": "Little Joys",
+          "type": "File",
+          "artifact": {
+            "size": 721306,
+            "MD5": "e9b30c4b1d430e2f7ad54a496bfddd1a",
+            "url": "https://edge.forgecdn.net/files/6841/863/littlejoys-forge-1.20.1-20.1.14.jar",
+            "path": "mods/littlejoys-forge-1.20.1-20.1.14.jar"
+          }
+        },
+        {
+          "id": "curseforge:1029980:6960912",
+          "name": "Little Tractor",
+          "type": "File",
+          "artifact": {
+            "size": 172632,
+            "MD5": "3040974d9bdce2e41364dd435847d577",
+            "url": "https://edge.forgecdn.net/files/6960/912/LittleTractor-1.20.1-1.2.jar",
+            "path": "mods/LittleTractor-1.20.1-1.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:656346:4892299",
+          "name": "Load My F***ing Tags",
+          "type": "File",
+          "artifact": {
+            "size": 178625,
+            "MD5": "b6fef15e42caec14db87f5aa498233e8",
+            "url": "https://edge.forgecdn.net/files/4892/299/lmft-1.0.4+1.20.1-forge.jar",
+            "path": "mods/lmft-1.0.4+1.20.1-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:623560:4583425",
+          "name": "Log Begone",
+          "type": "File",
+          "artifact": {
+            "size": 58508,
+            "MD5": "694cfbc14ffff6166786fbaf05b1382e",
+            "url": "https://edge.forgecdn.net/files/4583/425/Log-Begone-Forge-1.20.1-1.0.8.jar",
+            "path": "mods/Log-Begone-Forge-1.20.1-1.0.8.jar"
+          }
+        },
+        {
+          "id": "curseforge:1324038:6868450",
+          "name": "Longwing Nuker",
+          "type": "File",
+          "artifact": {
+            "size": 7189,
+            "MD5": "378331f4cbb312b4c0bfd06cceb419cf",
+            "url": "https://edge.forgecdn.net/files/6868/450/longwing_nuker.zip",
+            "path": "mods/longwing_nuker.zip"
+          }
+        },
+        {
+          "id": "curseforge:1277025:7980033",
+          "name": "Longwings",
+          "type": "File",
+          "artifact": {
+            "size": 1924774,
+            "MD5": "686233b3ca11cda144150cb0ce83d90e",
+            "url": "https://edge.forgecdn.net/files/7980/33/Longwings-v0.9.5-1.20.1-Forge.jar",
+            "path": "mods/Longwings-v0.9.5-1.20.1-Forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:700723:7867729",
+          "name": "Loot Journal: Pickup Notifier (Forge)",
+          "type": "File",
+          "artifact": {
+            "size": 935450,
+            "MD5": "b853517657d983e7b7de5bd075950967",
+            "url": "https://edge.forgecdn.net/files/7867/729/loot_journal-forge-1.20.1-6.1.2.jar",
+            "path": "mods/loot_journal-forge-1.20.1-6.1.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:570630:7551186",
+          "name": "LootJS: KubeJS Addon",
+          "type": "File",
+          "artifact": {
+            "size": 242267,
+            "MD5": "0fbdbf49778f694de153bf5962ec03ee",
+            "url": "https://edge.forgecdn.net/files/7551/186/lootjs-forge-1.20.1-2.13.1.jar",
+            "path": "mods/lootjs-forge-1.20.1-2.13.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:361276:5976109",
+          "name": "Lootr (Forge & NeoForge)",
+          "type": "File",
+          "artifact": {
+            "size": 457647,
+            "MD5": "570d8e000bf17cc71eb0b26cfd4dc7a6",
+            "url": "https://edge.forgecdn.net/files/5976/109/lootr-forge-1.20-0.7.35.90.jar",
+            "path": "mods/lootr-forge-1.20-0.7.35.90.jar"
+          }
+        },
+        {
+          "id": "curseforge:901091:4691998",
+          "name": "Lopy's Create Style Pipez",
+          "type": "File",
+          "artifact": {
+            "size": 107979,
+            "MD5": "6c7aafdc169fd1b9c5caeb8c3ebead55",
+            "url": "https://edge.forgecdn.net/files/4691/998/Lopy-Create-Pipez.zip",
+            "path": "mods/Lopy-Create-Pipez.zip"
+          }
+        },
+        {
+          "id": "curseforge:656977:7517593",
+          "name": "MVS - Moog's Voyager Structures",
+          "type": "File",
+          "artifact": {
+            "size": 2661209,
+            "MD5": "ed096d67348eea99fea71a983e97dd05",
+            "url": "https://edge.forgecdn.net/files/7517/593/MoogsVoyagerStructures-1.20-5.0.4.jar",
+            "path": "mods/MoogsVoyagerStructures-1.20-5.0.4.jar"
+          }
+        },
+        {
+          "id": "curseforge:664443:4740032",
+          "name": "Max Enchant X",
+          "type": "File",
+          "artifact": {
+            "size": 32212,
+            "MD5": "38b037df484258eb6e280d21e2bf4954",
+            "url": "https://edge.forgecdn.net/files/4740/32/MaxEnchantX-1.20.X-1.3-Forge.jar",
+            "path": "mods/MaxEnchantX-1.20.X-1.3-Forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:938643:5109692",
+          "name": "Melody",
+          "type": "File",
+          "artifact": {
+            "size": 37178,
+            "MD5": "6b528d368f7fcbf737df28f2457cdec6",
+            "url": "https://edge.forgecdn.net/files/5109/692/melody_forge_1.0.3_MC_1.20.1-1.20.4.jar",
+            "path": "mods/melody_forge_1.0.3_MC_1.20.1-1.20.4.jar"
+          }
+        },
+        {
+          "id": "curseforge:488090:7318663",
+          "name": "MidnightLib",
+          "type": "File",
+          "artifact": {
+            "size": 61987,
+            "MD5": "e4903bab4c3cf86d64cadb21cd4f279e",
+            "url": "https://edge.forgecdn.net/files/7318/663/midnightlib-forge-1.9.2+1.20.1.jar",
+            "path": "mods/midnightlib-forge-1.9.2+1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:1068335:5560059",
+          "name": "Mob Crates",
+          "type": "File",
+          "artifact": {
+            "size": 391478,
+            "MD5": "33de79756d7ec9dfdd28a52597538157",
+            "url": "https://edge.forgecdn.net/files/5560/59/MobCrates_1.20.1_v1.zip",
+            "path": "mods/MobCrates_1.20.1_v1.zip"
+          }
+        },
+        {
+          "id": "curseforge:852670:5078298",
+          "name": "Mob Lassos",
+          "type": "File",
+          "artifact": {
+            "size": 114782,
+            "MD5": "2ee2cb6c04dede9646f9f9bdd4f255f6",
+            "url": "https://edge.forgecdn.net/files/5078/298/MobLassos-v8.0.1-1.20.1-Forge.jar",
+            "path": "mods/MobLassos-v8.0.1-1.20.1-Forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:790626:7928686",
+          "name": "ModernFix",
+          "type": "File",
+          "artifact": {
+            "size": 945123,
+            "MD5": "92ded3cc2f93280c56306ca669bf6946",
+            "url": "https://edge.forgecdn.net/files/7928/686/modernfix-forge-5.27.8+mc1.20.1.jar",
+            "path": "mods/modernfix-forge-5.27.8+mc1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:1337167:7238548",
+          "name": "Moog's Structure Lib (moogs_structures)",
+          "type": "File",
+          "artifact": {
+            "size": 259848,
+            "MD5": "5a11ae3b12f4a85f3a7676fc89fe8030",
+            "url": "https://edge.forgecdn.net/files/7238/548/moogs_structure_lib-1.1.0-1.20-1.20.4-forge.jar",
+            "path": "mods/moogs_structure_lib-1.1.0-1.20-1.20.4-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:499980:8261419",
+          "name": "Moonlight Lib",
+          "type": "File",
+          "artifact": {
+            "size": 1419416,
+            "MD5": "f80a05d17e669e9a5f40cf68821601ed",
+            "url": "https://edge.forgecdn.net/files/8261/419/moonlight-1.20-2.16.34-forge.jar",
+            "path": "mods/moonlight-1.20-2.16.34-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:440845:5134064",
+          "name": "More Minecarts and Rails",
+          "type": "File",
+          "artifact": {
+            "size": 732356,
+            "MD5": "a53c08931c84912f102db71e488aeb28",
+            "url": "https://edge.forgecdn.net/files/5134/64/moreminecarts-1.8.3.jar",
+            "path": "mods/moreminecarts-1.8.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:391382:6945288",
+          "name": "More Overlays Updated",
+          "type": "File",
+          "artifact": {
+            "size": 114550,
+            "MD5": "677b6a4501dadea3dae5390a5b345ed9",
+            "url": "https://edge.forgecdn.net/files/6945/288/moreoverlays-1.24.1-mc1.20.1-forge.jar",
+            "path": "mods/moreoverlays-1.24.1-mc1.20.1-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:666198:6542592",
+          "name": "MoreJS",
+          "type": "File",
+          "artifact": {
+            "size": 173745,
+            "MD5": "3a21bb1bbc96251d4df6a54baeca0afc",
+            "url": "https://edge.forgecdn.net/files/6542/592/morejs-forge-1.20.1-0.10.1.jar",
+            "path": "mods/morejs-forge-1.20.1-0.10.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:60089:5338457",
+          "name": "Mouse Tweaks",
+          "type": "File",
+          "artifact": {
+            "size": 76237,
+            "MD5": "ce4b5bbb9ef6a7905c458ab599ef4cb2",
+            "url": "https://edge.forgecdn.net/files/5338/457/MouseTweaks-forge-mc1.20.1-2.25.1.jar",
+            "path": "mods/MouseTweaks-forge-mc1.20.1-2.25.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:897116:7110922",
+          "name": "MrCrayfish's Furniture Mod: Refurbished",
+          "type": "File",
+          "artifact": {
+            "size": 6689588,
+            "MD5": "53bf35be2dc746e3fd7805a4e63a46a6",
+            "url": "https://edge.forgecdn.net/files/7110/922/refurbished_furniture-forge-1.20.1-1.0.20.jar",
+            "path": "mods/refurbished_furniture-forge-1.20.1-1.0.20.jar"
+          }
+        },
+        {
+          "id": "curseforge:492574:4580511",
+          "name": "My Server Is Compatible",
+          "type": "File",
+          "artifact": {
+            "size": 3482,
+            "MD5": "61d6f7c70030cbdacbbb0053cf120b79",
+            "url": "https://edge.forgecdn.net/files/4580/511/MyServerIsCompatible-1.20-1.0.jar",
+            "path": "mods/MyServerIsCompatible-1.20-1.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:691002:4654234",
+          "name": "Mystical Oak Tree",
+          "type": "File",
+          "artifact": {
+            "size": 231836,
+            "MD5": "52b84ce21ca85530418519cc782b650b",
+            "url": "https://edge.forgecdn.net/files/4654/234/mysticaloaktree-1.20-1.11.jar",
+            "path": "mods/mysticaloaktree-1.20-1.11.jar"
+          }
+        },
+        {
+          "id": "curseforge:252848:4712189",
+          "name": "Nature's Compass",
+          "type": "File",
+          "artifact": {
+            "size": 215119,
+            "MD5": "7c05072645b1aae529b1e38c74b87c4c",
+            "url": "https://edge.forgecdn.net/files/4712/189/NaturesCompass-1.20.1-1.11.2-forge.jar",
+            "path": "mods/NaturesCompass-1.20.1-1.11.2-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:1140741:6003074",
+          "name": "NeoAuth",
+          "type": "File",
+          "artifact": {
+            "size": 50687,
+            "MD5": "5e9c443ee9fdc1c0b440e8a7fccebfeb",
+            "url": "https://edge.forgecdn.net/files/6003/74/NeoAuth-1.20.1-1.0.3.jar",
+            "path": "mods/NeoAuth-1.20.1-1.0.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:670011:5340329",
+          "name": "Nether Depths Upgrade",
+          "type": "File",
+          "artifact": {
+            "size": 595410,
+            "MD5": "ba46064717d5a66eca40582a0bd434ba",
+            "url": "https://edge.forgecdn.net/files/5340/329/netherdepthsupgrade-3.1.5-1.20.jar",
+            "path": "mods/netherdepthsupgrade-3.1.5-1.20.jar"
+          }
+        },
+        {
+          "id": "curseforge:241160:4939735",
+          "name": "NetherPortalFix",
+          "type": "File",
+          "artifact": {
+            "size": 217831,
+            "MD5": "f5efd2c259b0538da0f62bb2d9dc2106",
+            "url": "https://edge.forgecdn.net/files/4939/735/netherportalfix-forge-1.20-13.0.1.jar",
+            "path": "mods/netherportalfix-forge-1.20-13.0.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:651876:4618572",
+          "name": "Night Lights",
+          "type": "File",
+          "artifact": {
+            "size": 377881,
+            "MD5": "ef8bd4be30a00b9b9c6a9280886d5938",
+            "url": "https://edge.forgecdn.net/files/4618/572/nightlights-1.20.1-1.1.jar",
+            "path": "mods/nightlights-1.20.1-1.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:634062:4610474",
+          "name": "No Chat Reports",
+          "type": "File",
+          "artifact": {
+            "size": 272740,
+            "MD5": "3153d1e860c6fefe6dac26efdb5c40c6",
+            "url": "https://edge.forgecdn.net/files/4610/474/NoChatReports-FORGE-1.20.1-v2.2.2.jar",
+            "path": "mods/NoChatReports-FORGE-1.20.1-v2.2.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:1442925:7538450",
+          "name": "No Chat Restrictions",
+          "type": "File",
+          "artifact": {
+            "size": 9676,
+            "MD5": "dbd8ffddf8d747fdf41656e839dfae3a",
+            "url": "https://edge.forgecdn.net/files/7538/450/NoChatRestrictions-Forge-MC1.20.1-v1.0.0.jar",
+            "path": "mods/NoChatRestrictions-Forge-MC1.20.1-v1.0.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:738663:5760231",
+          "name": "Not Enough Recipe Book [NERB]",
+          "type": "File",
+          "artifact": {
+            "size": 21667,
+            "MD5": "fa8240906f36683f66de537b34587643",
+            "url": "https://edge.forgecdn.net/files/5760/231/Not Enough Recipe Book-FORGE-0.4.1+1.20.1.jar",
+            "path": "mods/Not Enough Recipe Book-FORGE-0.4.1+1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:509575:5080064",
+          "name": "Observable",
+          "type": "File",
+          "artifact": {
+            "size": 473368,
+            "MD5": "254da313c461c30e58a5bc1499469985",
+            "url": "https://edge.forgecdn.net/files/5080/64/observable-4.4.1.jar",
+            "path": "mods/observable-4.4.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:916747:6274623",
+          "name": "OctoLib",
+          "type": "File",
+          "artifact": {
+            "size": 424035,
+            "MD5": "6b2fd012966b13a96ce4f68ae42eab8c",
+            "url": "https://edge.forgecdn.net/files/6274/623/OctoLib-FORGE-0.5.0.1+1.20.1.jar",
+            "path": "mods/OctoLib-FORGE-0.5.0.1+1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:581495:6020952",
+          "name": "Oculus",
+          "type": "File",
+          "artifact": {
+            "size": 2851119,
+            "MD5": "1dd891634ac21591b5a692471f112572",
+            "url": "https://edge.forgecdn.net/files/6020/952/oculus-mc1.20.1-1.8.0.jar",
+            "path": "mods/oculus-mc1.20.1-1.8.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:354047:6404009",
+          "name": "Ok Zoomer - It's Zoom!",
+          "type": "File",
+          "artifact": {
+            "size": 520782,
+            "MD5": "b7186e5d53962614bc6f1b540715c7ee",
+            "url": "https://edge.forgecdn.net/files/6404/9/ok_zoomer-forge-5.4.0-beta.8.jar",
+            "path": "mods/ok_zoomer-forge-5.4.0-beta.8.jar"
+          }
+        },
+        {
+          "id": "curseforge:454487:4574905",
+          "name": "Online Detector (Forge)",
+          "type": "File",
+          "artifact": {
+            "size": 183482,
+            "MD5": "7c3232491e7323930e57845fa947279f",
+            "url": "https://edge.forgecdn.net/files/4574/905/online_detector-1.20-6.0.0.jar",
+            "path": "mods/online_detector-1.20-6.0.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:769203:7707202",
+          "name": "Oreganized",
+          "type": "File",
+          "artifact": {
+            "size": 3654692,
+            "MD5": "c0ac28c10899d494f0ea8e469b989d50",
+            "url": "https://edge.forgecdn.net/files/7707/202/Oreganized 1.20.1-4.3.2.jar",
+            "path": "mods/Oreganized 1.20.1-4.3.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:689467:7221527",
+          "name": "Packet Fixer",
+          "type": "File",
+          "artifact": {
+            "size": 188673,
+            "MD5": "da8492dc74813d847ba128c23253c376",
+            "url": "https://edge.forgecdn.net/files/7221/527/packetfixer-3.3.1-1.18-1.20.4-merged.jar",
+            "path": "mods/packetfixer-3.3.1-1.18-1.20.4-merged.jar"
+          }
+        },
+        {
+          "id": "curseforge:365460:4625518",
+          "name": "Pam's HarvestCraft 2 - Trees",
+          "type": "File",
+          "artifact": {
+            "size": 777303,
+            "MD5": "39a319227f0fb70bec5f9b6d7bd9b34f",
+            "url": "https://edge.forgecdn.net/files/4625/518/pamhc2trees-1.20-1.0.2.jar",
+            "path": "mods/pamhc2trees-1.20-1.0.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:880630:6231030",
+          "name": "Panda's Falling Trees",
+          "type": "File",
+          "artifact": {
+            "size": 4025908,
+            "MD5": "542bd503ba871bb74f3ce229ebc45048",
+            "url": "https://edge.forgecdn.net/files/6231/30/fallingtrees-forge-mc1.20-0.13.2-SNAPSHOT.jar",
+            "path": "mods/fallingtrees-forge-mc1.20-0.13.2-SNAPSHOT.jar"
+          }
+        },
+        {
+          "id": "curseforge:975460:6245108",
+          "name": "PandaLib",
+          "type": "File",
+          "artifact": {
+            "size": 864398,
+            "MD5": "019a3540059282663ce2ed634dbfd09c",
+            "url": "https://edge.forgecdn.net/files/6245/108/pandalib-forge-mc1.20-0.5.2-SNAPSHOT.jar",
+            "path": "mods/pandalib-forge-mc1.20-0.5.2-SNAPSHOT.jar"
+          }
+        },
+        {
+          "id": "curseforge:289240:5046069",
+          "name": "Paragliders",
+          "type": "File",
+          "artifact": {
+            "size": 589055,
+            "MD5": "35eba1f897eb09eaff91579d65696565",
+            "url": "https://edge.forgecdn.net/files/5046/69/Paraglider-forge-20.1.3.jar",
+            "path": "mods/Paraglider-forge-20.1.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:421897:8055453",
+          "name": "Particle Rain",
+          "type": "File",
+          "artifact": {
+            "size": 1239956,
+            "MD5": "2b9e2497655c09a4c1f2899e15a5ff26",
+            "url": "https://edge.forgecdn.net/files/8055/453/particlerain-4.0.0-beta.10+1.20.1-forge.jar",
+            "path": "mods/particlerain-4.0.0-beta.10+1.20.1-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:379887:4869702",
+          "name": "Passable Foliage 🌳 (Neo/Forge)",
+          "type": "File",
+          "artifact": {
+            "size": 30618,
+            "MD5": "3381182154bb5d0d699e91912b5e300d",
+            "url": "https://edge.forgecdn.net/files/4869/702/PassableFoliage-1.20.1-forge-8.2.1.jar",
+            "path": "mods/PassableFoliage-1.20.1-forge-8.2.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:306770:7731017",
+          "name": "Patchouli",
+          "type": "File",
+          "artifact": {
+            "size": 642732,
+            "MD5": "78bd223d069fa9491e940d99a8f426b3",
+            "url": "https://edge.forgecdn.net/files/7731/17/Patchouli-1.20.1-85-FORGE.jar",
+            "path": "mods/Patchouli-1.20.1-85-FORGE.jar"
+          }
+        },
+        {
+          "id": "curseforge:867232:6675233",
+          "name": "Perfect Plushies",
+          "type": "File",
+          "artifact": {
+            "size": 437616,
+            "MD5": "ed826155594c856bf5bef1f1ad3a85a8",
+            "url": "https://edge.forgecdn.net/files/6675/233/perfectplushies-forge-1.20.1-1.13.3.jar",
+            "path": "mods/perfectplushies-forge-1.20.1-1.13.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:443900:6368313",
+          "name": "Pipez",
+          "type": "File",
+          "artifact": {
+            "size": 431585,
+            "MD5": "277bb1f28f6752a00ba3f78ddf53367d",
+            "url": "https://edge.forgecdn.net/files/6368/313/pipez-forge-1.20.1-1.2.21.jar",
+            "path": "mods/pipez-forge-1.20.1-1.2.21.jar"
+          }
+        },
+        {
+          "id": "curseforge:283644:6274231",
+          "name": "Placebo",
+          "type": "File",
+          "artifact": {
+            "size": 282474,
+            "MD5": "13133ab9989e8474931cd7a86bd19cc5",
+            "url": "https://edge.forgecdn.net/files/6274/231/Placebo-1.20.1-8.6.3.jar",
+            "path": "mods/Placebo-1.20.1-8.6.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:997634:8214829",
+          "name": "Platform",
+          "type": "File",
+          "artifact": {
+            "size": 512461,
+            "MD5": "df08ab6aa4081252c22d3869142748dc",
+            "url": "https://edge.forgecdn.net/files/8214/829/Platform-forge-1.20.1-1.3.4.jar",
+            "path": "mods/Platform-forge-1.20.1-1.3.4.jar"
+          }
+        },
+        {
+          "id": "curseforge:345779:5095685",
+          "name": "Plonk",
+          "type": "File",
+          "artifact": {
+            "size": 151684,
+            "MD5": "c59949bc880bb748900a0eba4f76d6ff",
+            "url": "https://edge.forgecdn.net/files/5095/685/plonk-1.20.1-10.0.5-forge.jar",
+            "path": "mods/plonk-1.20.1-10.0.5-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:576589:5350440",
+          "name": "PolyLib",
+          "type": "File",
+          "artifact": {
+            "size": 1343694,
+            "MD5": "ffb6c10b010e7e4fd5eba9f864182593",
+            "url": "https://edge.forgecdn.net/files/5350/440/polylib-forge-2000.0.3-build.143.jar",
+            "path": "mods/polylib-forge-2000.0.3-build.143.jar"
+          }
+        },
+        {
+          "id": "curseforge:622888:7188949",
+          "name": "Ponder for KubeJS",
+          "type": "File",
+          "artifact": {
+            "size": 2285835,
+            "MD5": "cf7fbaba26523ba7966e4976023f1cd6",
+            "url": "https://edge.forgecdn.net/files/7188/949/ponderjs-1.20.1-2.1.0.jar",
+            "path": "mods/ponderjs-1.20.1-2.1.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:1231499:7714110",
+          "name": "Portable blueprints",
+          "type": "File",
+          "artifact": {
+            "size": 946103,
+            "MD5": "0403e131be9ff16cfaeb873de46cd812",
+            "url": "https://edge.forgecdn.net/files/7714/110/portable_blueprints-v2.0.11-mv1.20.1.jar",
+            "path": "mods/portable_blueprints-v2.0.11-mv1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:851131:7102154",
+          "name": "Portfolio",
+          "type": "File",
+          "artifact": {
+            "size": 460118,
+            "MD5": "3ce565fa1553b63e51a3e1e456e10df8",
+            "url": "https://edge.forgecdn.net/files/7102/154/portfolio-1.20.1-1.5.0-forge.jar",
+            "path": "mods/portfolio-1.20.1-1.5.0-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:819845:4951461",
+          "name": "PowerfulJS",
+          "type": "File",
+          "artifact": {
+            "size": 731791,
+            "MD5": "33494b3bcaf7f2bd53ee74e341eade25",
+            "url": "https://edge.forgecdn.net/files/4951/461/powerfuljs-1.6.1.jar",
+            "path": "mods/powerfuljs-1.6.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:991341:6157071",
+          "name": "Pufferfish's Attributes [Fabric & Forge & NeoForge]",
+          "type": "File",
+          "artifact": {
+            "size": 228642,
+            "MD5": "fb6b0f606077a77dd9d8011b3ff2d170",
+            "url": "https://edge.forgecdn.net/files/6157/71/puffish_attributes-0.7.2-1.20-forge.jar",
+            "path": "mods/puffish_attributes-0.7.2-1.20-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:835091:6614501",
+          "name": "Pufferfish's Skills [Fabric & Forge & NeoForge]",
+          "type": "File",
+          "artifact": {
+            "size": 571979,
+            "MD5": "22b49b30b4c84be1616e83b765792c98",
+            "url": "https://edge.forgecdn.net/files/6614/501/puffish_skills-0.16.1-1.20-forge.jar",
+            "path": "mods/puffish_skills-0.16.1-1.20-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:495476:6918565",
+          "name": "Puzzles Lib",
+          "type": "File",
+          "artifact": {
+            "size": 1342987,
+            "MD5": "19f23e3040eaadc7c30ae38f5a3dec68",
+            "url": "https://edge.forgecdn.net/files/6918/565/PuzzlesLib-v8.1.33-1.20.1-Forge.jar",
+            "path": "mods/PuzzlesLib-v8.1.33-1.20.1-Forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:973932:8694434",
+          "name": "Quality Food",
+          "type": "File",
+          "artifact": {
+            "size": 916288,
+            "MD5": "2466b1b7c766e455e70a1d71846f83cc",
+            "url": "https://edge.forgecdn.net/files/8694/434/quality_food-1.20.1-2.4.3-all.jar",
+            "path": "mods/quality_food-1.20.1-2.4.3-all.jar"
+          }
+        },
+        {
+          "id": "curseforge:243121:6427817",
+          "name": "Quark",
+          "type": "File",
+          "artifact": {
+            "size": 14935230,
+            "MD5": "6eef0d0ac52df0c239cb443abc137f3d",
+            "url": "https://edge.forgecdn.net/files/6427/817/Quark-4.0-462.jar",
+            "path": "mods/Quark-4.0-462.jar"
+          }
+        },
+        {
+          "id": "curseforge:580129:6004490",
+          "name": "Quests Additions (Forge)",
+          "type": "File",
+          "artifact": {
+            "size": 112015,
+            "MD5": "285f47b10614f6cb3258ec04df16b44b",
+            "url": "https://edge.forgecdn.net/files/6004/490/questsadditions-1.4.7.jar",
+            "path": "mods/questsadditions-1.4.7.jar"
+          }
+        },
+        {
+          "id": "curseforge:446870:5814102",
+          "name": "RSInfinityBooster",
+          "type": "File",
+          "artifact": {
+            "size": 33622,
+            "MD5": "81099ce9a1b9ca5b6738bf614f9c6c69",
+            "url": "https://edge.forgecdn.net/files/5814/102/RSInfinityBooster-1.20.1-1.0+41.jar",
+            "path": "mods/RSInfinityBooster-1.20.1-1.0+41.jar"
+          }
+        },
+        {
+          "id": "curseforge:602199:6029352",
+          "name": "Radiant Gear (Fabric/Forge/Quilt)",
+          "type": "File",
+          "artifact": {
+            "size": 47170,
+            "MD5": "19cb99849c8fe9856530b8173240b90a",
+            "url": "https://edge.forgecdn.net/files/6029/352/radiantgear-forge-2.2.0+1.20.1.jar",
+            "path": "mods/radiantgear-forge-2.2.0+1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:570017:5706069",
+          "name": "Radium Reforged",
+          "type": "File",
+          "artifact": {
+            "size": 713454,
+            "MD5": "3a46fb58e8ff12213e4dbc909f47a77d",
+            "url": "https://edge.forgecdn.net/files/5706/69/radium-mc1.20.1-0.12.4+git.26c9d8e.jar",
+            "path": "mods/radium-mc1.20.1-0.12.4+git.26c9d8e.jar"
+          }
+        },
+        {
+          "id": "curseforge:984099:5167239",
+          "name": "Rainbow Oaks Renewed",
+          "type": "File",
+          "artifact": {
+            "size": 2119903,
+            "MD5": "a9d45fe38ca9b17596bda22e94828033",
+            "url": "https://edge.forgecdn.net/files/5167/239/rainbowoaks-forge-1.20-1.0.0.jar",
+            "path": "mods/rainbowoaks-forge-1.20-1.0.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:1020759:6197443",
+          "name": "Raw's Visual keybinder",
+          "type": "File",
+          "artifact": {
+            "size": 94833,
+            "MD5": "33e028286f87913beba38bd1322df9d3",
+            "url": "https://edge.forgecdn.net/files/6197/443/visual_keybinder-1.20.1 - 0.1.7.jar",
+            "path": "mods/visual_keybinder-1.20.1 - 0.1.7.jar"
+          }
+        },
+        {
+          "id": "curseforge:1096531:6341096",
+          "name": "ReHooked",
+          "type": "File",
+          "artifact": {
+            "size": 241055,
+            "MD5": "1adbc3bb406daa5ace83533c4097b2ea",
+            "url": "https://edge.forgecdn.net/files/6341/96/rehooked-1.8.3-1.20.1.jar",
+            "path": "mods/rehooked-1.8.3-1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:907856:6165709",
+          "name": "Recipe Essentials[Forge/Fabric]",
+          "type": "File",
+          "artifact": {
+            "size": 50739,
+            "MD5": "570607c1e36e86f2180fdfb960b50dff",
+            "url": "https://edge.forgecdn.net/files/6165/709/recipeessentials-1.20.1-4.0.jar",
+            "path": "mods/recipeessentials-1.20.1-4.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:243076:4844585",
+          "name": "Refined Storage",
+          "type": "File",
+          "artifact": {
+            "size": 3300191,
+            "MD5": "aa6c64a4912eaef8478c5820fe03bbae",
+            "url": "https://edge.forgecdn.net/files/4844/585/refinedstorage-1.12.4.jar",
+            "path": "mods/refinedstorage-1.12.4.jar"
+          }
+        },
+        {
+          "id": "curseforge:1431536:8862850",
+          "name": "Refined Storage (Fixes) Mixin",
+          "type": "File",
+          "artifact": {
+            "size": 230755,
+            "MD5": "88f0e05538b87e511b5b908d62eb3360",
+            "url": "https://edge.forgecdn.net/files/8862/850/MCT-RS-Mixin-1.20.1-1.1.0-b451-release.jar",
+            "path": "mods/MCT-RS-Mixin-1.20.1-1.1.0-b451-release.jar"
+          }
+        },
+        {
+          "id": "curseforge:272302:4626171",
+          "name": "Refined Storage Addons",
+          "type": "File",
+          "artifact": {
+            "size": 33771,
+            "MD5": "0f37070308d5b2c022cdef50574290d8",
+            "url": "https://edge.forgecdn.net/files/4626/171/refinedstorageaddons-0.10.0.jar",
+            "path": "mods/refinedstorageaddons-0.10.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:1411826:8812535",
+          "name": "Reliable EMI (REMI)",
+          "type": "File",
+          "artifact": {
+            "size": 919492,
+            "MD5": "49ac4ab4adbebbacfea51f90590dc2a2",
+            "url": "https://edge.forgecdn.net/files/8812/535/remi-forge-1.20.1-4.6.8.jar",
+            "path": "mods/remi-forge-1.20.1-4.6.8.jar"
+          }
+        },
+        {
+          "id": "curseforge:445274:6976293",
+          "name": "Relics",
+          "type": "File",
+          "artifact": {
+            "size": 1518437,
+            "MD5": "450bc342776c6e63294453377c50dd1c",
+            "url": "https://edge.forgecdn.net/files/6976/293/relics-1.20.1-0.8.0.11.jar",
+            "path": "mods/relics-1.20.1-0.8.0.11.jar"
+          }
+        },
+        {
+          "id": "curseforge:832644:5101541",
+          "name": "Resource Pack Overrides",
+          "type": "File",
+          "artifact": {
+            "size": 84339,
+            "MD5": "e104ab9263aae79fd2fcb4f0f9f258cc",
+            "url": "https://edge.forgecdn.net/files/5101/541/ResourcePackOverrides-v8.0.3-1.20.1-Forge.jar",
+            "path": "mods/ResourcePackOverrides-v8.0.3-1.20.1-Forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:714059:6231176",
+          "name": "Resourceful Config",
+          "type": "File",
+          "artifact": {
+            "size": 136923,
+            "MD5": "947463b04c043937cd24506842f737a3",
+            "url": "https://edge.forgecdn.net/files/6231/176/resourcefulconfig-forge-1.20.1-2.1.3.jar",
+            "path": "mods/resourcefulconfig-forge-1.20.1-2.1.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:570073:5659871",
+          "name": "Resourceful Lib",
+          "type": "File",
+          "artifact": {
+            "size": 432753,
+            "MD5": "a040c6cc86f653fddf280ff3af9068f0",
+            "url": "https://edge.forgecdn.net/files/5659/871/resourcefullib-forge-1.20.1-2.1.29.jar",
+            "path": "mods/resourcefullib-forge-1.20.1-2.1.29.jar"
+          }
+        },
+        {
+          "id": "curseforge:416294:6186971",
+          "name": "Rhino",
+          "type": "File",
+          "artifact": {
+            "size": 1798244,
+            "MD5": "59387620b0ef6becbff02c7c1636ad3e",
+            "url": "https://edge.forgecdn.net/files/6186/971/rhino-forge-2001.2.3-build.10.jar",
+            "path": "mods/rhino-forge-2001.2.3-build.10.jar"
+          }
+        },
+        {
+          "id": "curseforge:622967:7354928",
+          "name": "Ribbits",
+          "type": "File",
+          "artifact": {
+            "size": 2223589,
+            "MD5": "78738d0963058eb2dd061146a6fd86e8",
+            "url": "https://edge.forgecdn.net/files/7354/928/Ribbits-1.20.1-Forge-3.0.5.jar",
+            "path": "mods/Ribbits-1.20.1-Forge-3.0.5.jar"
+          }
+        },
+        {
+          "id": "curseforge:371033:6336745",
+          "name": "Rotten Creatures",
+          "type": "File",
+          "artifact": {
+            "size": 2595007,
+            "MD5": "b93a055c1819d1c24cf3bf4d4ca490e3",
+            "url": "https://edge.forgecdn.net/files/6336/745/rottencreatures-forge-1.20.1-1.1.0.jar",
+            "path": "mods/rottencreatures-forge-1.20.1-1.1.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:1441305:8579840",
+          "name": "SVDialog",
+          "type": "File",
+          "artifact": {
+            "size": 1246322,
+            "MD5": "3a33da77a581f835ce5f04673a5b0b95",
+            "url": "https://edge.forgecdn.net/files/8579/840/SVDialog-0.6.jar",
+            "path": "mods/SVDialog-0.6.jar"
+          }
+        },
+        {
+          "id": "curseforge:964817:6948522",
+          "name": "Sawmill",
+          "type": "File",
+          "artifact": {
+            "size": 644298,
+            "MD5": "fa74a173a390409754af770c77197111",
+            "url": "https://edge.forgecdn.net/files/6948/522/sawmill-1.20-1.4.10.jar",
+            "path": "mods/sawmill-1.20-1.4.10.jar"
+          }
+        },
+        {
+          "id": "curseforge:961802:8613699",
+          "name": "Scholar",
+          "type": "File",
+          "artifact": {
+            "size": 849896,
+            "MD5": "8388850796a2578e3ed6dbe571963b2e",
+            "url": "https://edge.forgecdn.net/files/8613/699/scholar-1.20.1-1.2.5.1-forge.jar",
+            "path": "mods/scholar-1.20.1-1.2.5.1-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:858542:5284015",
+          "name": "Searchables",
+          "type": "File",
+          "artifact": {
+            "size": 77732,
+            "MD5": "9f5418e9c08c18a375ef42fada4bcef2",
+            "url": "https://edge.forgecdn.net/files/5284/15/Searchables-forge-1.20.1-1.0.3.jar",
+            "path": "mods/Searchables-forge-1.20.1-1.0.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:690971:7887078",
+          "name": "SeasonHud",
+          "type": "File",
+          "artifact": {
+            "size": 236181,
+            "MD5": "cc0fcd58a8be8c4124a820b69c1f1019",
+            "url": "https://edge.forgecdn.net/files/7887/78/seasonhud-forge-1.20.1-2.0.4.jar",
+            "path": "mods/seasonhud-forge-1.20.1-2.0.4.jar"
+          }
+        },
+        {
+          "id": "curseforge:1179699:6491455",
+          "name": "SelectiveBounds",
+          "type": "File",
+          "artifact": {
+            "size": 187000,
+            "MD5": "aac1db807fd0866d1eb2f7aea6146594",
+            "url": "https://edge.forgecdn.net/files/6491/455/selectivebounds-forge-1.20.1-0.0.2.jar",
+            "path": "mods/selectivebounds-forge-1.20.1-0.0.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:291874:6398227",
+          "name": "Serene Seasons",
+          "type": "File",
+          "artifact": {
+            "size": 160887,
+            "MD5": "83f15593668f8242dbf0e1517b4dc831",
+            "url": "https://edge.forgecdn.net/files/6398/227/SereneSeasons-forge-1.20.1-9.1.0.2.jar",
+            "path": "mods/SereneSeasons-forge-1.20.1-9.1.0.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:1462779:7632353",
+          "name": "Serene Seasons Fix - Revived",
+          "type": "File",
+          "artifact": {
+            "size": 19299,
+            "MD5": "a11a11dbd6f2b60c2530a986e85507b1",
+            "url": "https://edge.forgecdn.net/files/7632/353/sereneseasonsfix-1.20.1-1.2.0.jar",
+            "path": "mods/sereneseasonsfix-1.20.1-1.2.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:1166778:6028801",
+          "name": "SerializerDebug",
+          "type": "File",
+          "artifact": {
+            "size": 400461,
+            "MD5": "19de481a1d63cce26fec3e147b093821",
+            "url": "https://edge.forgecdn.net/files/6028/801/serializer_debug-1.0.1.jar",
+            "path": "mods/serializer_debug-1.0.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:365281:4612683",
+          "name": "ServerConfig Updater",
+          "type": "File",
+          "artifact": {
+            "size": 14142,
+            "MD5": "e1ad0d55b3a0ab40205a0d8c82de4127",
+            "url": "https://edge.forgecdn.net/files/4612/683/serverconfigupdater-4.0.2.jar",
+            "path": "mods/serverconfigupdater-4.0.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:550579:5929264",
+          "name": "ServerCore",
+          "type": "File",
+          "artifact": {
+            "size": 1508496,
+            "MD5": "7ba2ff373f4f1a44a01513c49a2e8b65",
+            "url": "https://edge.forgecdn.net/files/5929/264/servercore-forge-1.5.2+1.20.1.jar",
+            "path": "mods/servercore-forge-1.5.2+1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:411896:5188041",
+          "name": "Sewing Kit",
+          "type": "File",
+          "artifact": {
+            "size": 210967,
+            "MD5": "69fc12eaa8ede5a2cea66fa54d850333",
+            "url": "https://edge.forgecdn.net/files/5188/41/SewingKit-1.20.1-1.8.1.jar",
+            "path": "mods/SewingKit-1.20.1-1.8.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:1058468:5818385",
+          "name": "Shipping Bin",
+          "type": "File",
+          "artifact": {
+            "size": 164855,
+            "MD5": "8dbe4fcf98addc5699f5ece042439761",
+            "url": "https://edge.forgecdn.net/files/5818/385/ShippingBin-forge-1.20.1-4.jar",
+            "path": "mods/ShippingBin-forge-1.20.1-4.jar"
+          }
+        },
+        {
+          "id": "curseforge:243190:7249331",
+          "name": "Shoulder Surfing Reloaded",
+          "type": "File",
+          "artifact": {
+            "size": 253861,
+            "MD5": "e30a5b3ba918ccc723b3cecc6fcdb516",
+            "url": "https://edge.forgecdn.net/files/7249/331/ShoulderSurfing-Forge-1.20.1-4.16.0.jar",
+            "path": "mods/ShoulderSurfing-Forge-1.20.1-4.16.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:334853:4964550",
+          "name": "Simple Discord Rich Presence (Forge /  Fabric)",
+          "type": "File",
+          "artifact": {
+            "size": 1198997,
+            "MD5": "8ba6c024a9affa595738a26205ddf52f",
+            "url": "https://edge.forgecdn.net/files/4964/550/SimpleDiscordRichPresence-forge-4.0.3-build.40+mc1.20.1.jar",
+            "path": "mods/SimpleDiscordRichPresence-forge-4.0.3-build.40+mc1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:631990:5603815",
+          "name": "Simple Hats",
+          "type": "File",
+          "artifact": {
+            "size": 1413531,
+            "MD5": "5617686a811a3c1f6523166b7af7f0a8",
+            "url": "https://edge.forgecdn.net/files/5603/815/simplehats-forge-1.20.1-0.3.2.jar",
+            "path": "mods/simplehats-forge-1.20.1-0.3.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:394140:5828475",
+          "name": "Simple Magnets",
+          "type": "File",
+          "artifact": {
+            "size": 140496,
+            "MD5": "789d4e6cd928344b34d38d7b2cf24a49",
+            "url": "https://edge.forgecdn.net/files/5828/475/simplemagnets-1.1.12-forge-mc1.20.1.jar",
+            "path": "mods/simplemagnets-1.1.12-forge-mc1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:1234653:7952794",
+          "name": "Simple Recall Potion",
+          "type": "File",
+          "artifact": {
+            "size": 16629,
+            "MD5": "14e5949543d057537d8a707cf9d4d94b",
+            "url": "https://edge.forgecdn.net/files/7952/794/simplerecall-1.0.6-1.20.1.jar",
+            "path": "mods/simplerecall-1.0.6-1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:1290362:6713691",
+          "name": "SkillExpNotifier",
+          "type": "File",
+          "artifact": {
+            "size": 42109,
+            "MD5": "c63d22ee7c59046669db6654ba7f79dd",
+            "url": "https://edge.forgecdn.net/files/6713/691/skillsexpnotifier-5.4.1-SNAPSHOT.jar",
+            "path": "mods/skillsexpnotifier-5.4.1-SNAPSHOT.jar"
+          }
+        },
+        {
+          "id": "curseforge:450659:5566900",
+          "name": "Small Ships [Fabric & Forge]",
+          "type": "File",
+          "artifact": {
+            "size": 1816687,
+            "MD5": "c52bf453f18b87f43cae36acf628eb60",
+            "url": "https://edge.forgecdn.net/files/5566/900/smallships-forge-1.20.1-2.0.0-b1.4.jar",
+            "path": "mods/smallships-forge-1.20.1-2.0.0-b1.4.jar"
+          }
+        },
+        {
+          "id": "curseforge:661293:5654964",
+          "name": "SmartBrainLib (Forge/Fabric/Quilt)",
+          "type": "File",
+          "artifact": {
+            "size": 362338,
+            "MD5": "d5a060ce11b8c13268b821dfe5a936e4",
+            "url": "https://edge.forgecdn.net/files/5654/964/SmartBrainLib-forge-1.20.1-1.15.jar",
+            "path": "mods/SmartBrainLib-forge-1.20.1-1.15.jar"
+          }
+        },
+        {
+          "id": "curseforge:410500:5301670",
+          "name": "Snow Pig [Forge]",
+          "type": "File",
+          "artifact": {
+            "size": 7133502,
+            "MD5": "dc54d4a349fcea2ec52aa3b3cf65dda3",
+            "url": "https://edge.forgecdn.net/files/5301/670/snowpig-1.20.1-6.0.3.jar",
+            "path": "mods/snowpig-1.20.1-6.0.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:308663:7472648",
+          "name": "Snow! Real Magic! ⛄ (Neo/Forge)",
+          "type": "File",
+          "artifact": {
+            "size": 346619,
+            "MD5": "d1736ff9c822c4fb02616c17de03e350",
+            "url": "https://edge.forgecdn.net/files/7472/648/SnowRealMagic-1.20.1-Forge-10.7.0.jar",
+            "path": "mods/SnowRealMagic-1.20.1-Forge-10.7.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:566142:5928029",
+          "name": "Snowy Spirit",
+          "type": "File",
+          "artifact": {
+            "size": 5362591,
+            "MD5": "8d281f47b68918f177f7f1e5f12bbeae",
+            "url": "https://edge.forgecdn.net/files/5928/29/snowyspirit-1.20-3.0.10.jar",
+            "path": "mods/snowyspirit-1.20-3.0.10.jar"
+          }
+        },
+        {
+          "id": "curseforge:556372:7449738",
+          "name": "Snuffles",
+          "type": "File",
+          "artifact": {
+            "size": 228158,
+            "MD5": "72d61b60b0cbc247d346bc664ce77999",
+            "url": "https://edge.forgecdn.net/files/7449/738/snuffles-1.2.0.1.jar",
+            "path": "mods/snuffles-1.2.0.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:1661835:8696776",
+          "name": "Society Coins",
+          "type": "File",
+          "artifact": {
+            "size": 10669,
+            "MD5": "3fd35ab7338d3f6db2ee4a853c41566e",
+            "url": "https://edge.forgecdn.net/files/8696/776/SocietyCoins.zip",
+            "path": "mods/SocietyCoins.zip"
+          }
+        },
+        {
+          "id": "curseforge:1347329:8757714",
+          "name": "Society Trading",
+          "type": "File",
+          "artifact": {
+            "size": 223387,
+            "MD5": "6132bfc66bab25c03111aa0035d0f7f1",
+            "url": "https://edge.forgecdn.net/files/8757/714/society_trading-1.2.9.jar",
+            "path": "mods/society_trading-1.2.9.jar"
+          }
+        },
+        {
+          "id": "curseforge:1424785:8684561",
+          "name": "Society Tweaks",
+          "type": "File",
+          "artifact": {
+            "size": 69954758,
+            "MD5": "73dc77157d3e6013a804c935d8b117c3",
+            "url": "https://edge.forgecdn.net/files/8684/561/society-1.22.jar",
+            "path": "mods/society-1.22.jar"
+          }
+        },
+        {
+          "id": "curseforge:551736:6044481",
+          "name": "Sodium/Embeddium Dynamic Lights",
+          "type": "File",
+          "artifact": {
+            "size": 511601,
+            "MD5": "687c18cefa558ca8101ef97914d9ba6b",
+            "url": "https://edge.forgecdn.net/files/6044/481/sodiumdynamiclights-forge-1.0.10-1.20.1.jar",
+            "path": "mods/sodiumdynamiclights-forge-1.0.10-1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:1103431:6100812",
+          "name": "Sodium/Embeddium Options API",
+          "type": "File",
+          "artifact": {
+            "size": 443978,
+            "MD5": "75807590ae2648ecdeb855705868ce59",
+            "url": "https://edge.forgecdn.net/files/6100/812/sodiumoptionsapi-forge-1.0.10-1.20.1.jar",
+            "path": "mods/sodiumoptionsapi-forge-1.0.10-1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:422301:8434160",
+          "name": "Sophisticated Backpacks",
+          "type": "File",
+          "artifact": {
+            "size": 1130746,
+            "MD5": "ca675d78c7eba8c508f8f8b1cbd2e043",
+            "url": "https://edge.forgecdn.net/files/8434/160/sophisticatedbackpacks-1.20.1-3.24.60.1982.jar",
+            "path": "mods/sophisticatedbackpacks-1.20.1-3.24.60.1982.jar"
+          }
+        },
+        {
+          "id": "curseforge:618298:8467444",
+          "name": "Sophisticated Core",
+          "type": "File",
+          "artifact": {
+            "size": 1622529,
+            "MD5": "328aec32b4148fbdedd42df499aba772",
+            "url": "https://edge.forgecdn.net/files/8467/444/sophisticatedcore-1.20.1-1.3.71.2181.jar",
+            "path": "mods/sophisticatedcore-1.20.1-1.3.71.2181.jar"
+          }
+        },
+        {
+          "id": "curseforge:619320:8467484",
+          "name": "Sophisticated Storage",
+          "type": "File",
+          "artifact": {
+            "size": 1818347,
+            "MD5": "1ecde1a238e2d46a93945ad21d92940f",
+            "url": "https://edge.forgecdn.net/files/8467/484/sophisticatedstorage-1.20.1-1.4.74.1997.jar",
+            "path": "mods/sophisticatedstorage-1.20.1-1.4.74.1997.jar"
+          }
+        },
+        {
+          "id": "curseforge:1226755:8434199",
+          "name": "Sophisticated Storage Create Integration",
+          "type": "File",
+          "artifact": {
+            "size": 129598,
+            "MD5": "d45a3fb92d1eedb86be6da491a6fd1b0",
+            "url": "https://edge.forgecdn.net/files/8434/199/sophisticatedstoragecreateintegration-1.20.1-0.1.22.190.jar",
+            "path": "mods/sophisticatedstoragecreateintegration-1.20.1-0.1.22.190.jar"
+          }
+        },
+        {
+          "id": "curseforge:857737:6886321",
+          "name": "Species",
+          "type": "File",
+          "artifact": {
+            "size": 42114388,
+            "MD5": "3fb4bc2ee270255038b08971dec18243",
+            "url": "https://edge.forgecdn.net/files/6886/321/species-3.5.jar",
+            "path": "mods/species-3.5.jar"
+          }
+        },
+        {
+          "id": "curseforge:878047:5816336",
+          "name": "Spice of Life Onion",
+          "type": "File",
+          "artifact": {
+            "size": 285625,
+            "MD5": "ec2194e64bdd85f3969b76dc583276cc",
+            "url": "https://edge.forgecdn.net/files/5816/336/SoLOnion_FORGE_v1.4.5_mc1.20.1.jar",
+            "path": "mods/SoLOnion_FORGE_v1.4.5_mc1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:1240935:8602382",
+          "name": "Splendid Slimes",
+          "type": "File",
+          "artifact": {
+            "size": 511858,
+            "MD5": "031370e91f131a65414e77569195c628",
+            "url": "https://edge.forgecdn.net/files/8602/382/splendid_slimes-0.20.5.jar",
+            "path": "mods/splendid_slimes-0.20.5.jar"
+          }
+        },
+        {
+          "id": "curseforge:923510:5345186",
+          "name": "Squid No Glitch",
+          "type": "File",
+          "artifact": {
+            "size": 87910,
+            "MD5": "f73491c210b6249e597dd23487177c3d",
+            "url": "https://edge.forgecdn.net/files/5345/186/squidnoglitch-mc1.20.1-v1.0.3-forge.jar",
+            "path": "mods/squidnoglitch-mc1.20.1-v1.0.3-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:1066037:8070773",
+          "name": "Stardew Fishing",
+          "type": "File",
+          "artifact": {
+            "size": 1339256,
+            "MD5": "c00553de37502240842cf32a7ab70274",
+            "url": "https://edge.forgecdn.net/files/8070/773/stardew_fishing-3.7-1.20.1.jar",
+            "path": "mods/stardew_fishing-3.7-1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:897337:6155118",
+          "name": "Stardew Valley Theme for Jade",
+          "type": "File",
+          "artifact": {
+            "size": 15112,
+            "MD5": "db892079cbf4e13941def82005d7097e",
+            "url": "https://edge.forgecdn.net/files/6155/118/JadeStardewValleyTheme.zip",
+            "path": "mods/JadeStardewValleyTheme.zip"
+          }
+        },
+        {
+          "id": "curseforge:1119120:5801228",
+          "name": "Stardewful Plaques",
+          "type": "File",
+          "artifact": {
+            "size": 5552,
+            "MD5": "0b45b70272f0315d79c53ba5a139c9ba",
+            "url": "https://edge.forgecdn.net/files/5801/228/Stardew_plaques v1.0.zip",
+            "path": "mods/Stardew_plaques v1.0.zip"
+          }
+        },
+        {
+          "id": "curseforge:688223:6201654",
+          "name": "Storage Labels",
+          "type": "File",
+          "artifact": {
+            "size": 252608,
+            "MD5": "1b3b916aa6c7617a26bbec174c8584e3",
+            "url": "https://edge.forgecdn.net/files/6201/654/labels-1.20-2.0.0.jar",
+            "path": "mods/labels-1.20-2.0.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:682564:5207884",
+          "name": "Straw Statues",
+          "type": "File",
+          "artifact": {
+            "size": 572195,
+            "MD5": "f9f887e57a20bdc7a524a3ca1a1a5e7e",
+            "url": "https://edge.forgecdn.net/files/5207/884/StrawStatues-v8.0.3-1.20.1-Forge.jar",
+            "path": "mods/StrawStatues-v8.0.3-1.20.1-Forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:832882:6732854",
+          "name": "Structure Essentials[Forge/Fabric]",
+          "type": "File",
+          "artifact": {
+            "size": 63134,
+            "MD5": "6406a36779802a9de3c993a09b9e9126",
+            "url": "https://edge.forgecdn.net/files/6732/854/structureessentials-1.20.1-4.8.jar",
+            "path": "mods/structureessentials-1.20.1-4.8.jar"
+          }
+        },
+        {
+          "id": "curseforge:1087551:6858579",
+          "name": "Structurify",
+          "type": "File",
+          "artifact": {
+            "size": 789793,
+            "MD5": "89b3eb5bf0f673eb1e87e94f499ca29d",
+            "url": "https://edge.forgecdn.net/files/6858/579/structurify-forge-1.0.21+mc1.20.1.jar",
+            "path": "mods/structurify-forge-1.0.21+mc1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:1172429:8603038",
+          "name": "Sturdy Farmland - Growth Edition",
+          "type": "File",
+          "artifact": {
+            "size": 148552,
+            "MD5": "0dd219e0ad40767073a67fc393aa5b0c",
+            "url": "https://edge.forgecdn.net/files/8603/38/dew_drop_farmland_growth-9.0.jar",
+            "path": "mods/dew_drop_farmland_growth-9.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:438332:4715408",
+          "name": "SuperMartijn642's Config Lib",
+          "type": "File",
+          "artifact": {
+            "size": 206584,
+            "MD5": "cbece61946d4e059e90806c19dd66082",
+            "url": "https://edge.forgecdn.net/files/4715/408/supermartijn642configlib-1.1.8-forge-mc1.20.jar",
+            "path": "mods/supermartijn642configlib-1.1.8-forge-mc1.20.jar"
+          }
+        },
+        {
+          "id": "curseforge:454372:7426391",
+          "name": "SuperMartijn642's Core Lib",
+          "type": "File",
+          "artifact": {
+            "size": 516246,
+            "MD5": "6091b2e333a68799d035e17929ec34a6",
+            "url": "https://edge.forgecdn.net/files/7426/391/supermartijn642corelib-1.1.19-forge-mc1.20.1.jar",
+            "path": "mods/supermartijn642corelib-1.1.19-forge-mc1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:412082:7884611",
+          "name": "Supplementaries",
+          "type": "File",
+          "artifact": {
+            "size": 13667742,
+            "MD5": "31e94bb39e718edf97d49d8c67ac941a",
+            "url": "https://edge.forgecdn.net/files/7884/611/supplementaries-1.20-3.1.43-forge.jar",
+            "path": "mods/supplementaries-1.20-3.1.43-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:953094:5139065",
+          "name": "Tanuki Decor",
+          "type": "File",
+          "artifact": {
+            "size": 3012590,
+            "MD5": "c9a7e2bd948850914d93ded1ebf4d617",
+            "url": "https://edge.forgecdn.net/files/5139/65/tanukidecor-20.1.1.0.jar",
+            "path": "mods/tanukidecor-20.1.1.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:306549:7613269",
+          "name": "Tips",
+          "type": "File",
+          "artifact": {
+            "size": 127186,
+            "MD5": "b447605e76fade36276ce28b5ef0e332",
+            "url": "https://edge.forgecdn.net/files/7613/269/Tips-Forge-1.20.1-12.1.9.jar",
+            "path": "mods/Tips-Forge-1.20.1-12.1.9.jar"
+          }
+        },
+        {
+          "id": "curseforge:287342:5468426",
+          "name": "Titanium",
+          "type": "File",
+          "artifact": {
+            "size": 622068,
+            "MD5": "75baf7f67163a1da0fbb6a8bc98fa012",
+            "url": "https://edge.forgecdn.net/files/5468/426/titanium-1.20.1-3.8.32.jar",
+            "path": "mods/titanium-1.20.1-3.8.32.jar"
+          }
+        },
+        {
+          "id": "curseforge:271740:4711316",
+          "name": "Toast Control",
+          "type": "File",
+          "artifact": {
+            "size": 26957,
+            "MD5": "f1bcf2e30adc3ac2e00d7f9d1a4780c6",
+            "url": "https://edge.forgecdn.net/files/4711/316/ToastControl-1.20.1-8.0.3.jar",
+            "path": "mods/ToastControl-1.20.1-8.0.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:550678:4627738",
+          "name": "Too Fast",
+          "type": "File",
+          "artifact": {
+            "size": 3875,
+            "MD5": "33c8f4dc6703ee68b415ed203b3a380c",
+            "url": "https://edge.forgecdn.net/files/4627/738/toofast-1.20-0.4.3.5.jar",
+            "path": "mods/toofast-1.20-0.4.3.5.jar"
+          }
+        },
+        {
+          "id": "curseforge:260262:5929061",
+          "name": "Tool Belt",
+          "type": "File",
+          "artifact": {
+            "size": 253567,
+            "MD5": "040527fce7ada8c7ea90430e89541ac6",
+            "url": "https://edge.forgecdn.net/files/5929/61/ToolBelt-1.20.1-1.20.02.jar",
+            "path": "mods/ToolBelt-1.20.1-1.20.02.jar"
+          }
+        },
+        {
+          "id": "curseforge:1327508:8368399",
+          "name": "Tooltip Overhaul",
+          "type": "File",
+          "artifact": {
+            "size": 573562,
+            "MD5": "c3482294b7680889679464679e07ba0e",
+            "url": "https://edge.forgecdn.net/files/8368/399/tooltipoverhaul-forge-1.20.1-1.5.0.jar",
+            "path": "mods/tooltipoverhaul-forge-1.20.1-1.5.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:254268:5849456",
+          "name": "Torchmaster",
+          "type": "File",
+          "artifact": {
+            "size": 119348,
+            "MD5": "5ccfbdd3ad8436df3b99967e746ac2cd",
+            "url": "https://edge.forgecdn.net/files/5849/456/torchmaster-20.1.9.jar",
+            "path": "mods/torchmaster-20.1.9.jar"
+          }
+        },
+        {
+          "id": "curseforge:235577:7364652",
+          "name": "TrashSlot",
+          "type": "File",
+          "artifact": {
+            "size": 117939,
+            "MD5": "9f4aa554c49a537432994a5b2c8d860e",
+            "url": "https://edge.forgecdn.net/files/7364/652/trashslot-forge-1.20.1-15.1.3.jar",
+            "path": "mods/trashslot-forge-1.20.1-15.1.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:1392862:7266979",
+          "name": "Trials Chambers Reuploaded",
+          "type": "File",
+          "artifact": {
+            "size": 8337744,
+            "MD5": "2bab6c21a8a5efb5e2133ca3ff33aa19",
+            "url": "https://edge.forgecdn.net/files/7266/979/Trials-2.3.3.jar",
+            "path": "mods/Trials-2.3.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:482265:5259004",
+          "name": "Trofers",
+          "type": "File",
+          "artifact": {
+            "size": 252600,
+            "MD5": "a0096c71988fed197d3b7427e828f7ae",
+            "url": "https://edge.forgecdn.net/files/5259/4/trofers-forge-5.0.2.jar",
+            "path": "mods/trofers-forge-5.0.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:496913:4998195",
+          "name": "Twigs",
+          "type": "File",
+          "artifact": {
+            "size": 2766476,
+            "MD5": "726e5fbe4661a26c6dcfb24e54607bad",
+            "url": "https://edge.forgecdn.net/files/4998/195/Twigs-1.20.1-3.1.0.jar",
+            "path": "mods/Twigs-1.20.1-3.1.0.jar"
+          }
+        },
+        {
+          "id": "curseforge:451789:7570011",
+          "name": "Untitled Duck Mod (Forge)",
+          "type": "File",
+          "artifact": {
+            "size": 303415,
+            "MD5": "a20c98f1b1872ce26396715c0fad8a3f",
+            "url": "https://edge.forgecdn.net/files/7570/11/untitledduckmod-1.5.2-forge-1.20.1.jar",
+            "path": "mods/untitledduckmod-1.5.2-forge-1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:568300:8084434",
+          "name": "Unusual Fish Mod",
+          "type": "File",
+          "artifact": {
+            "size": 5047780,
+            "MD5": "44bbb4fb84d1b850b4487f362c91eac8",
+            "url": "https://edge.forgecdn.net/files/8084/434/unusualfishmod-1.1.10.jar",
+            "path": "mods/unusualfishmod-1.1.10.jar"
+          }
+        },
+        {
+          "id": "curseforge:640645:6392870",
+          "name": "Updated Aquaculture",
+          "type": "File",
+          "artifact": {
+            "size": 705425,
+            "MD5": "b586f7c80fbf47ce459109dcc37971e6",
+            "url": "https://edge.forgecdn.net/files/6392/870/updated_aquaculture-1.1.zip",
+            "path": "mods/updated_aquaculture-1.1.zip"
+          }
+        },
+        {
+          "id": "curseforge:417430:8229712",
+          "name": "Vanilla Backport",
+          "type": "File",
+          "artifact": {
+            "size": 56051142,
+            "MD5": "d38797d58bf537348cf0d62d04f335d1",
+            "url": "https://edge.forgecdn.net/files/8229/712/VanillaBackport-forge-1.20.1-1.1.7.10.jar",
+            "path": "mods/VanillaBackport-forge-1.20.1-1.1.7.10.jar"
+          }
+        },
+        {
+          "id": "curseforge:1082807:8485290",
+          "name": "Veggies Delight (A Farmer's Delight Add-on)",
+          "type": "File",
+          "artifact": {
+            "size": 598808,
+            "MD5": "94911dfce01e2cd029359982f4227d53",
+            "url": "https://edge.forgecdn.net/files/8485/290/VeggiesDelight-1.20.1-1.9.3.jar",
+            "path": "mods/VeggiesDelight-1.20.1-1.9.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:917969:4903601",
+          "name": "VerdantVibes",
+          "type": "File",
+          "artifact": {
+            "size": 312114,
+            "MD5": "efc663f4d4cdaf5f80139b3873591bfe",
+            "url": "https://edge.forgecdn.net/files/4903/601/verdantvibes-1.0.3-1.20.1.jar",
+            "path": "mods/verdantvibes-1.0.3-1.20.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:1026508:7427731",
+          "name": "Via Romana: Infrastructure-Driven Fast Travel",
+          "type": "File",
+          "artifact": {
+            "size": 1246319,
+            "MD5": "8c3a7d02cfd147705de77375c8b912a0",
+            "url": "https://edge.forgecdn.net/files/7427/731/via_romana-2.2.2+1.20.1-forge.jar",
+            "path": "mods/via_romana-2.2.2+1.20.1-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:949719:5847856",
+          "name": "Vintage Delight",
+          "type": "File",
+          "artifact": {
+            "size": 1120218,
+            "MD5": "7fd01c5fec5c8ed7c8c99c100696c91c",
+            "url": "https://edge.forgecdn.net/files/5847/856/vintagedelight-0.1.6.jar",
+            "path": "mods/vintagedelight-0.1.6.jar"
+          }
+        },
+        {
+          "id": "curseforge:834607:7005578",
+          "name": "WATERFrAMES: Multimedia Displays",
+          "type": "File",
+          "artifact": {
+            "size": 254657,
+            "MD5": "05bf118cecf2a9a88cb45c24fe35803a",
+            "url": "https://edge.forgecdn.net/files/7005/578/waterframes-FORGE-mc1.20.1-v2.1.20.jar",
+            "path": "mods/waterframes-FORGE-mc1.20.1-v2.1.20.jar"
+          }
+        },
+        {
+          "id": "curseforge:869524:6965729",
+          "name": "WATERMeDIA: Multimedia API",
+          "type": "File",
+          "artifact": {
+            "size": 37857681,
+            "MD5": "ff45726b6e83011d42aaa8e01851982f",
+            "url": "https://edge.forgecdn.net/files/6965/729/watermedia-2.1.34.jar",
+            "path": "mods/watermedia-2.1.34.jar"
+          }
+        },
+        {
+          "id": "curseforge:1167473:7021437",
+          "name": "WATERViSION: Videoplayer",
+          "type": "File",
+          "artifact": {
+            "size": 82079,
+            "MD5": "c934bcbabeb242ce7da79e3f16d1406c",
+            "url": "https://edge.forgecdn.net/files/7021/437/watervision-FG-mc1.20.1-v0.1.0-alpha.jar",
+            "path": "mods/watervision-FG-mc1.20.1-v0.1.0-alpha.jar"
+          }
+        },
+        {
+          "id": "curseforge:1062863:5550049",
+          "name": "Watering Cans [Dew Drop]",
+          "type": "File",
+          "artifact": {
+            "size": 47597,
+            "MD5": "c7a3ab96ceccb4c087c1e41d75fe1549",
+            "url": "https://edge.forgecdn.net/files/5550/49/dew_drop_watering_cans-1.0.2.jar",
+            "path": "mods/dew_drop_watering_cans-1.0.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:245755:6856603",
+          "name": "Waystones",
+          "type": "File",
+          "artifact": {
+            "size": 518286,
+            "MD5": "c0991381d238b6e1ba9526132b8a9a7c",
+            "url": "https://edge.forgecdn.net/files/6856/603/waystones-forge-1.20.1-14.1.17.jar",
+            "path": "mods/waystones-forge-1.20.1-14.1.17.jar"
+          }
+        },
+        {
+          "id": "curseforge:945479:6315241",
+          "name": "What Are They Up To (Watut)",
+          "type": "File",
+          "artifact": {
+            "size": 435496,
+            "MD5": "345d3ecdf94dffaa0e3ba55538c65f80",
+            "url": "https://edge.forgecdn.net/files/6315/241/watut-forge-1.20.1-1.2.3.jar",
+            "path": "mods/watut-forge-1.20.1-1.2.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:1351466:8579611",
+          "name": "Whimsy Deco",
+          "type": "File",
+          "artifact": {
+            "size": 538886,
+            "MD5": "60a9d7464a56059e9b01447b746e9a6a",
+            "url": "https://edge.forgecdn.net/files/8579/611/whimsy_deco-1.2.jar",
+            "path": "mods/whimsy_deco-1.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:636321:7515974",
+          "name": "Windswept!",
+          "type": "File",
+          "artifact": {
+            "size": 10295487,
+            "MD5": "e590baff2605d3de0ad2d911909e0485",
+            "url": "https://edge.forgecdn.net/files/7515/974/windswept-1.20.1-3.0.4.jar",
+            "path": "mods/windswept-1.20.1-3.0.4.jar"
+          }
+        },
+        {
+          "id": "curseforge:962921:5959231",
+          "name": "XXL Packets",
+          "type": "File",
+          "artifact": {
+            "size": 17337,
+            "MD5": "3a612255d3e95de5206466c2837909da",
+            "url": "https://edge.forgecdn.net/files/5959/231/xlpackets-forge-1.20.1-1.0.5.jar",
+            "path": "mods/xlpackets-forge-1.20.1-1.0.5.jar"
+          }
+        },
+        {
+          "id": "curseforge:421850:5769971",
+          "name": "YUNG's API (Forge/NeoForge)",
+          "type": "File",
+          "artifact": {
+            "size": 370524,
+            "MD5": "fe79f43dba8edbb8ede99f4e358e5b0c",
+            "url": "https://edge.forgecdn.net/files/5769/971/YungsApi-1.20-Forge-4.0.6.jar",
+            "path": "mods/YungsApi-1.20-Forge-4.0.6.jar"
+          }
+        },
+        {
+          "id": "curseforge:667299:6336646",
+          "name": "YetAnotherConfigLib",
+          "type": "File",
+          "artifact": {
+            "size": 1105891,
+            "MD5": "2437cb642e24726a83f864e345f24479",
+            "url": "https://edge.forgecdn.net/files/6336/646/yet_another_config_lib_v3-3.6.6+1.20.1-forge.jar",
+            "path": "mods/yet_another_config_lib_v3-3.6.6+1.20.1-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:968868:7335229",
+          "name": "Zeta",
+          "type": "File",
+          "artifact": {
+            "size": 1006518,
+            "MD5": "98b72e20dacbdb4da4bd187f56ed4012",
+            "url": "https://edge.forgecdn.net/files/7335/229/Zeta-1.0-31.jar",
+            "path": "mods/Zeta-1.0-31.jar"
+          }
+        },
+        {
+          "id": "curseforge:465532:7236701",
+          "name": "Zetter — Painting Mod",
+          "type": "File",
+          "artifact": {
+            "size": 1343037,
+            "MD5": "ee8ddb517cf62fa49c4d33bb2e794b0a",
+            "url": "https://edge.forgecdn.net/files/7236/701/zetter-1.20.1-0.21.7.jar",
+            "path": "mods/zetter-1.20.1-0.21.7.jar"
+          }
+        },
+        {
+          "id": "curseforge:844662:8063556",
+          "name": "[EMF] Entity Model Features [Fabric & Forge]",
+          "type": "File",
+          "artifact": {
+            "size": 752458,
+            "MD5": "23e5601dd7e6e2ffab26179e4f5cabeb",
+            "url": "https://edge.forgecdn.net/files/8063/556/entity_model_features-3.2.4-1.20.1-forge.jar",
+            "path": "mods/entity_model_features-3.2.4-1.20.1-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:568563:7930617",
+          "name": "[ETF] Entity Texture Features - [Fabric & Forge]",
+          "type": "File",
+          "artifact": {
+            "size": 944851,
+            "MD5": "bb8a57f4e9965654c344854fb45dd540",
+            "url": "https://edge.forgecdn.net/files/7930/617/entity_texture_features_1.20.1-forge-7.1.jar",
+            "path": "mods/entity_texture_features_1.20.1-forge-7.1.jar"
+          }
+        },
+        {
+          "id": "curseforge:864599:5468182",
+          "name": "[Let's Do] API ",
+          "type": "File",
+          "artifact": {
+            "size": 1440591,
+            "MD5": "82d392dd5ef6064d8988592a35b3b403",
+            "url": "https://edge.forgecdn.net/files/5468/182/letsdo-API-forge-1.2.15-forge.jar",
+            "path": "mods/letsdo-API-forge-1.2.15-forge.jar"
+          }
+        },
+        {
+          "id": "curseforge:1038130:5824482",
+          "name": "[Let's Do] Bakery - Farm&Charm Compat",
+          "type": "File",
+          "artifact": {
+            "size": 1084974,
+            "MD5": "15eb37ec33a9f9dff00f5dc1003679ff",
+            "url": "https://edge.forgecdn.net/files/5824/482/letsdo-bakery-forge-2.0.3.jar",
+            "path": "mods/letsdo-bakery-forge-2.0.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:858691:5320668",
+          "name": "[Let's Do] Beachparty",
+          "type": "File",
+          "artifact": {
+            "size": 3549757,
+            "MD5": "7da98a50f01ec43b15c602c423503c65",
+            "url": "https://edge.forgecdn.net/files/5320/668/letsdo-beachparty-forge-1.1.5.jar",
+            "path": "mods/letsdo-beachparty-forge-1.1.5.jar"
+          }
+        },
+        {
+          "id": "curseforge:1038106:5652315",
+          "name": "[Let's Do] Brewery - Farm&Charm Compat",
+          "type": "File",
+          "artifact": {
+            "size": 1409972,
+            "MD5": "00d05e12929f3190d7f164023ff4833b",
+            "url": "https://edge.forgecdn.net/files/5652/315/letsdo-brewery-forge-2.0.3.jar",
+            "path": "mods/letsdo-brewery-forge-2.0.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:1038117:5652318",
+          "name": "[Let's Do] Candlelight - Farm&Charm Compat",
+          "type": "File",
+          "artifact": {
+            "size": 2359843,
+            "MD5": "e84d46d1705e8b50e73318fa257b5860",
+            "url": "https://edge.forgecdn.net/files/5652/318/letsdo-candlelight-forge-2.0.2.jar",
+            "path": "mods/letsdo-candlelight-forge-2.0.2.jar"
+          }
+        },
+        {
+          "id": "curseforge:1038103:5824225",
+          "name": "[Let's Do] Farm & Charm",
+          "type": "File",
+          "artifact": {
+            "size": 1838745,
+            "MD5": "7e908f0676ab6458061e963a1795c29d",
+            "url": "https://edge.forgecdn.net/files/5824/225/letsdo-farm_and_charm-forge-1.0.4.jar",
+            "path": "mods/letsdo-farm_and_charm-forge-1.0.4.jar"
+          }
+        },
+        {
+          "id": "curseforge:1062363:5988125",
+          "name": "[Let's Do] Furniture",
+          "type": "File",
+          "artifact": {
+            "size": 2816299,
+            "MD5": "5e335eb9a539cb96b9c7a6f26bc752c1",
+            "url": "https://edge.forgecdn.net/files/5988/125/letsdo-furniture-forge-1.0.4.jar",
+            "path": "mods/letsdo-furniture-forge-1.0.4.jar"
+          }
+        },
+        {
+          "id": "curseforge:951221:6458889",
+          "name": "[Let's Do] HerbalBrews",
+          "type": "File",
+          "artifact": {
+            "size": 735868,
+            "MD5": "8260ace33a59f8c85b86945510b07471",
+            "url": "https://edge.forgecdn.net/files/6458/889/letsdo-herbalbrews-forge-1.0.12.jar",
+            "path": "mods/letsdo-herbalbrews-forge-1.0.12.jar"
+          }
+        },
+        {
+          "id": "curseforge:821483:6164451",
+          "name": "[Let's Do] Meadow",
+          "type": "File",
+          "artifact": {
+            "size": 2675635,
+            "MD5": "551cd5246dd347ce136ccf6a77790f84",
+            "url": "https://edge.forgecdn.net/files/6164/451/letsdo-meadow-forge-1.3.23.jar",
+            "path": "mods/letsdo-meadow-forge-1.3.23.jar"
+          }
+        },
+        {
+          "id": "curseforge:930072:6855728",
+          "name": "[Let's Do] NetherVinery (unsupported)",
+          "type": "File",
+          "artifact": {
+            "size": 650907,
+            "MD5": "7f7402718eb28a8f4ab3294281fd037a",
+            "url": "https://edge.forgecdn.net/files/6855/728/letsdo-nethervinery-forge-1.2.19.jar",
+            "path": "mods/letsdo-nethervinery-forge-1.2.19.jar"
+          }
+        },
+        {
+          "id": "curseforge:704465:6965751",
+          "name": "[Let's Do] Vinery",
+          "type": "File",
+          "artifact": {
+            "size": 2041283,
+            "MD5": "bf692e0100772cfa90b9878a38c1f28a",
+            "url": "https://edge.forgecdn.net/files/6965/751/letsdo-vinery-forge-1.4.41.jar",
+            "path": "mods/letsdo-vinery-forge-1.4.41.jar"
+          }
+        },
+        {
+          "id": "curseforge:1071657:6164482",
+          "name": "[Let's Do] WilderNature",
+          "type": "File",
+          "artifact": {
+            "size": 2097218,
+            "MD5": "e5f8302f47a3389512df11c9a329bde0",
+            "url": "https://edge.forgecdn.net/files/6164/482/letsdo-wildernature-forge-1.0.5.jar",
+            "path": "mods/letsdo-wildernature-forge-1.0.5.jar"
+          }
+        },
+        {
+          "id": "curseforge:615134:4784395",
+          "name": "bad packets",
+          "type": "File",
+          "artifact": {
+            "size": 27919,
+            "MD5": "4ac6c52d62eadf03c64df02ee74f42b5",
+            "url": "https://edge.forgecdn.net/files/4784/395/badpackets-forge-0.4.3.jar",
+            "path": "mods/badpackets-forge-0.4.3.jar"
+          }
+        },
+        {
+          "id": "curseforge:658587:4587214",
+          "name": "playerAnimator",
+          "type": "File",
+          "artifact": {
+            "size": 181437,
+            "MD5": "46f8554181d4d240075ea4919d01fd01",
+            "url": "https://edge.forgecdn.net/files/4587/214/player-animation-lib-forge-1.0.2-rc1+1.20.jar",
+            "path": "mods/player-animation-lib-forge-1.0.2-rc1+1.20.jar"
+          }
+        },
+        {
+          "id": "curseforge:361579:4738952",
+          "name": "spark",
+          "type": "File",
+          "artifact": {
+            "size": 3114590,
+            "MD5": "95dcd3b5400cc5eb5d0478a744e6ef98",
+            "url": "https://edge.forgecdn.net/files/4738/952/spark-1.10.53-forge.jar",
+            "path": "mods/spark-1.10.53-forge.jar"
+          }
+        }
+      ]
+    }
+  ]
+}

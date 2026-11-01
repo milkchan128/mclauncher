@@ -1,0 +1,35 @@
+{
+  "name": "Society: Sunlit Valley",
+  "version": "4.1.5A",
+  "minecraftVersion": "1.20.1",
+  "forgeVersion": "47.4.0",
+  "serverId": "mlkc-society-4.1.5A",
+  "projectUrl": "https://www.curseforge.com/minecraft/modpacks/society-sunlit-valley",
+  "sourceRevision": "f00b8473bbf16ac0d0d3f3afbc01be0519f9dd9b",
+  "archive": {
+    "url": "https://edge.forgecdn.net/files/8980/840/Society-Sunlit-Valley-4.1.5A.zip",
+    "sha256": "6902439ba377c139b712cc42132d73498ff1f5ee77d795d141d255098391d7c9"
+  },
+  "installer": {
+    "url": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.20.1-47.4.0/forge-1.20.1-47.4.0-installer.jar",
+    "sha256": "f3f57465e2cbdc328193f77ba7f0c94cb64405f31ed556753d9275e8bdc06e2c"
+  },
+  "generated": [
+    {
+      "path": "net/minecraftforge/forge/1.20.1-47.4.0/forge-1.20.1-47.4.0-client.jar",
+      "sha1": "b268fd6fb2c4829a72e8d0d6c75b7fefbec8479c"
+    },
+    {
+      "path": "net/minecraft/client/1.20.1-20230612.114412/client-1.20.1-20230612.114412-slim.jar",
+      "sha1": "de86b035d2da0f78940796bb95c39a932ed84834"
+    },
+    {
+      "path": "net/minecraft/client/1.20.1-20230612.114412/client-1.20.1-20230612.114412-extra.jar",
+      "sha1": "8c5a95cbce940cfdb304376ae9fea47968d02587"
+    },
+    {
+      "path": "net/minecraft/client/1.20.1-20230612.114412/client-1.20.1-20230612.114412-srg.jar",
+      "sha1": "3c8aa19b710a3a68f721210eb69b74594d13e218"
+    }
+  ]
+}
