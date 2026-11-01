@@ -23,7 +23,16 @@ if(fs.existsSync(legacyUserDataPath)){
 LangLoader.setupLanguage()
 
 // Setup auto updater.
+let autoUpdaterInitialized = false
 function initAutoUpdater(event, data) {
+    if(autoUpdaterInitialized){
+        return false
+    }
+    autoUpdaterInitialized = true
+    autoUpdater.autoDownload = true
+    autoUpdater.autoInstallOnAppQuit = true
+    autoUpdater.allowDowngrade = false
+    autoUpdater.disableWebInstaller = true
 
     if(data){
         autoUpdater.allowPrerelease = true
@@ -45,6 +54,9 @@ function initAutoUpdater(event, data) {
     autoUpdater.on('update-downloaded', (info) => {
         event.sender.send('autoUpdateNotification', 'update-downloaded', info)
     })
+    autoUpdater.on('download-progress', (info) => {
+        event.sender.send('autoUpdateNotification', 'download-progress', { percent: info.percent })
+    })
     autoUpdater.on('update-not-available', (info) => {
         event.sender.send('autoUpdateNotification', 'update-not-available', info)
     })
@@ -52,8 +64,9 @@ function initAutoUpdater(event, data) {
         event.sender.send('autoUpdateNotification', 'checking-for-update')
     })
     autoUpdater.on('error', (err) => {
-        event.sender.send('autoUpdateNotification', 'realerror', err)
+        event.sender.send('autoUpdateNotification', 'realerror', { message: err.message, code: err.code })
     }) 
+    return true
 }
 
 // Open channel to listen for update actions.
@@ -65,13 +78,14 @@ ipcMain.on('autoUpdateAction', (event, arg, data) => {
     switch(arg){
         case 'initAutoUpdater':
             console.log('Initializing auto updater.')
-            initAutoUpdater(event, data)
-            event.sender.send('autoUpdateNotification', 'ready')
+            if(initAutoUpdater(event, data)){
+                event.sender.send('autoUpdateNotification', 'ready')
+            }
             break
         case 'checkForUpdate':
             autoUpdater.checkForUpdates()
                 .catch(err => {
-                    event.sender.send('autoUpdateNotification', 'realerror', err)
+                    event.sender.send('autoUpdateNotification', 'realerror', { message: err.message, code: err.code })
                 })
             break
         case 'allowPrereleaseChange':
@@ -87,7 +101,7 @@ ipcMain.on('autoUpdateAction', (event, arg, data) => {
             }
             break
         case 'installUpdateNow':
-            autoUpdater.quitAndInstall()
+            autoUpdater.quitAndInstall(true, true)
             break
         default:
             console.log('Unknown argument', arg)

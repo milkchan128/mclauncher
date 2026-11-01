@@ -12,6 +12,7 @@ const isDev                          = require('./assets/js/isdev')
 const { LoggerUtil }                 = require('helios-core')
 const Lang                           = require('./assets/js/langloader')
 const updatesEnabled                 = require('fs').existsSync(require('path').join(process.resourcesPath, 'app-update.yml'))
+const projectURL                     = require('../package.json').homepage
 
 const loggerUICore             = LoggerUtil.getLogger('UICore')
 const loggerAutoUpdater        = LoggerUtil.getLogger('AutoUpdater')
@@ -49,11 +50,14 @@ if(!isDev && updatesEnabled){
                 loggerAutoUpdater.info('New update available', info.version)
                 
                 if(process.platform === 'darwin'){
-                    info.darwindownload = `https://github.com/peunsu/MRSLauncher/releases/download/v${info.version}/MRS-Launcher-setup-${info.version}${process.arch === 'arm64' ? '-arm64' : '-x64'}.dmg`
+                    info.darwindownload = `${projectURL}/releases/download/v${info.version}/mlkc-Client-setup-${info.version}-${process.arch === 'arm64' ? 'arm64' : 'x64'}.dmg`
                     showUpdateUI(info)
                 }
                 
                 populateSettingsUpdateInformation(info)
+                break
+            case 'download-progress':
+                settingsUpdateButtonStatus(Lang.queryJS('uicore.autoUpdate.downloadingProgress', { percent: Math.floor(info.percent) }), true)
                 break
             case 'update-downloaded':
                 loggerAutoUpdater.info('Update ' + info.version + ' ready to be installed.')
@@ -66,7 +70,7 @@ if(!isDev && updatesEnabled){
                 break
             case 'update-not-available':
                 loggerAutoUpdater.info('No new update found.')
-                settingsUpdateButtonStatus(Lang.queryJS('uicore.autoUpdate.checkForUpdatesButton'))
+                populateSettingsUpdateInformation(null)
                 break
             case 'ready':
                 updateCheckListener = setInterval(() => {
@@ -75,6 +79,10 @@ if(!isDev && updatesEnabled){
                 ipcRenderer.send('autoUpdateAction', 'checkForUpdate')
                 break
             case 'realerror':
+                settingsUpdateTitle.textContent = Lang.queryJS('settings.updates.checkFailedTitle')
+                settingsUpdateButtonStatus(Lang.queryJS('settings.updates.checkForUpdatesButton'), false, () => {
+                    ipcRenderer.send('autoUpdateAction', 'checkForUpdate')
+                })
                 if(info != null && info.code != null){
                     if(info.code === 'ERR_UPDATER_INVALID_RELEASE_FEED'){
                         loggerAutoUpdater.info('No suitable releases found.')
