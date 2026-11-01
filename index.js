@@ -13,6 +13,12 @@ const { pathToFileURL }                 = require('url')
 const { AZURE_CLIENT_ID, MSFT_OPCODE, MSFT_REPLY_TYPE, MSFT_ERROR, SHELL_OPCODE } = require('./app/assets/js/ipcconstants')
 const LangLoader                        = require('./app/assets/js/langloader')
 
+// 이름 변경 후에도 기존 계정과 설정을 유지한다.
+const legacyUserDataPath = path.join(app.getPath('appData'), '밀튜디오 - 모드런처')
+if(fs.existsSync(legacyUserDataPath)){
+    app.setPath('userData', legacyUserDataPath)
+}
+
 // Setup Lang
 LangLoader.setupLanguage()
 
@@ -243,7 +249,6 @@ function createWindow() {
     remoteMain.enable(win.webContents)
 
     const data = {
-        bkid: Math.floor((Math.random() * fs.readdirSync(path.join(__dirname, 'app', 'assets', 'images', 'backgrounds')).length)),
         lang: (str, placeHolders) => LangLoader.queryEJS(str, placeHolders)
     }
     Object.entries(data).forEach(([key, val]) => ejse.data(key, val))

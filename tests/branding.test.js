@@ -11,10 +11,9 @@ const root = path.join(__dirname, '..')
 Lang.setupLanguage()
 
 test('앱 제목과 모든 화면의 로고가 커스텀 브랜드를 사용한다', () => {
-    assert.equal(pkg.productName, '밀튜디오 - 모드런처')
+    assert.equal(pkg.productName, 'mlkc Client')
     assert.equal(Lang.queryEJS('app.title'), pkg.productName)
     const html = ejs.render(fs.readFileSync(path.join(root, 'app/app.ejs'), 'utf8'), {
-        bkid: 0,
         lang: (key, values) => Lang.queryEJS(key, values)
     }, { filename: path.join(root, 'app/app.ejs') })
     assert.ok(html.includes(`<title>${pkg.productName}</title>`))
@@ -41,15 +40,17 @@ test('Windows 아이콘에 작업 표시줄부터 설치 파일까지 필요한 
     assert.deepEqual(icon, fs.readFileSync(path.join(root, 'app/assets/images/Icon.ico')))
 })
 
-test('업데이트 배포 설정이 없으면 초기화·확인·설치 요청이 원본 업데이트를 실행하지 않는다', () => {
+test('이름 변경 후 기존 설정을 보존하고 원본 자동 업데이트를 실행하지 않는다', () => {
     const listeners = {}
+    let preservedPath
+    const legacyPath = path.join(root, '밀튜디오 - 모드런처')
     const updater = new Proxy({}, {
         get: (_, key) => () => assert.fail(`업데이터 호출: ${String(key)}`)
     })
     const mocks = {
         '@electron/remote/main': { initialize() {} },
         electron: {
-            app: { on() {}, disableHardwareAcceleration() {} },
+            app: { on() {}, disableHardwareAcceleration() {}, getPath: () => root, setPath: (name, value) => { preservedPath = { name, value } } },
             ipcMain: {
                 on: (name, callback) => { listeners[name] = callback },
                 handle() {}
@@ -57,7 +58,7 @@ test('업데이트 배포 설정이 없으면 초기화·확인·설치 요청�
         },
         'electron-updater': { autoUpdater: updater },
         'ejs-electron': {},
-        fs: { existsSync: () => false },
+        fs: { existsSync: file => file === legacyPath },
         './app/assets/js/isdev': false,
         './app/assets/js/langloader': { setupLanguage() {} }
     }
@@ -69,4 +70,5 @@ test('업데이트 배포 설정이 없으면 초기화·확인·설치 요청�
     for(const action of ['initAutoUpdater', 'checkForUpdate', 'allowPrereleaseChange', 'installUpdateNow']){
         assert.doesNotThrow(() => listeners.autoUpdateAction({}, action))
     }
+    assert.deepEqual(preservedPath, { name: 'userData', value: legacyPath })
 })

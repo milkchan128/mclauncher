@@ -4,8 +4,18 @@
     --brand-text: #f5f0ff;
 }
 
+body {
+    background-image: linear-gradient(rgba(24, 20, 34, 0.46), rgba(24, 20, 34, 0.46)), url('../images/backgrounds/mlkc-pencil.png') !important;
+    background-position: center;
+    background-size: cover;
+}
+
 #frameBar {
     background-color: var(--brand-ink);
+}
+
+#welcomeContainer {
+    background: rgba(24, 20, 34, 0.12);
 }
 
 #frameTitleDock {

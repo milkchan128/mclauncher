@@ -1,8 +1,8 @@
 {
-  "name": "milkstudio-mod-launcher",
-  "version": "3.0.9",
-  "productName": "밀튜디오 - 모드런처",
-  "description": "밀튜디오 마인크래프트 모드런처",
+  "name": "mlkc-client",
+  "version": "3.0.10",
+  "productName": "mlkc Client",
+  "description": "밀튜디오 클라이언트 - Society: Sunlit Valley",
   "author": "Daniel Scalzi (https://github.com/dscalzi/), peunsu (https://github.com/peunsu)",
   "license": "UNLICENSED",
   "homepage": "https://github.com/peunsu/MRSLauncher",

@@ -48,6 +48,7 @@
                                 </svg>
                             </a>
                         </div>
+                        <% if(lang('landing.mediaMapURL')) { %>
                         <div class="mediaContainer">
                             <a href="<%- lang('landing.mediaMapURL') %>" class="mediaURL" id="mapURL">
                                 <svg id="mapSVG" class="mediaSVG" viewBox="0 0 512 512">
@@ -57,6 +58,7 @@
                                 </svg>
                             </a>
                         </div>
+                        <% } %>
                         <div class="mediaContainer">
                             <a href="<%- lang('landing.mediaGitHubURL') %>" class="mediaURL" id="githubURL">
                                 <svg id="githubSVG" class="mediaSVG" viewbox="0 0 98 98">
@@ -104,6 +106,7 @@
                                 </svg>
                             </a>
                         </div> -->
+                        <% if(lang('landing.mediaDiscordURL')) { %>
                         <div class="mediaContainer">
                             <a href="<%- lang('landing.mediaDiscordURL') %>" class="mediaURL" id="discordURL">
                                 <svg id="discordSVG" class="mediaSVG" viewBox="35.34 34.3575 70.68 68.71500">
@@ -113,6 +116,7 @@
                                 </svg>
                             </a>
                         </div>
+                        <% } %>
                     </div>
                 </div>
             </div>
