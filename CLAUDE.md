@@ -32,7 +32,7 @@
 ## Git Commit Rules
 
 - After completing changes, run tests and validation. If successful, review `git status` and `git diff`, then create separate commits by feature or concern with concise, descriptive Korean commit messages.
-- Never commit pre-existing changes or user-owned work without permission. Inform the user if changes cannot be safely separated.
+- Never commit pre-existing changes or user-owned work without permission. Inform the user if changes cannot be safely separated. 
 - After committing, verify the working tree status and report commit hashes and messages. Never run `git push`, force-push, or merge branches unless explicitly requested. Always honor requests not to commit.
 
 ## Final Instructions
