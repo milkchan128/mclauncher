@@ -1,6 +1,7 @@
-appId: 'mrslauncher'
-productName: 'MRS Launcher'
-artifactName: 'MRS-Launcher-setup-${version}.${ext}'
+appId: 'kr.mlkc.modlauncher'
+productName: '밀튜디오 - 모드런처'
+artifactName: 'Milkstudio-ModLauncher-setup-${version}.${ext}'
+publish: null
 
 copyright: 'Copyright © 2018-2026 Daniel Scalzi, Copyright © 2024 peunsu'
 
@@ -8,13 +9,15 @@ asar: true
 compression: 'maximum'
 
 files:
-  - '!{dist,.gitignore,.vscode,docs,dev-app-update.yml,.nvmrc,eslint.config.mjs}'
+  - '!{dist,.gitignore,.vscode,docs,dev-app-update.yml,.nvmrc,eslint.config.mjs,AGENTS.md,CLAUDE.md,mlkclogo.png,mlkc-logo-discord.gif,tests}'
 
 extraResources:
   - 'libraries'
 
 # Windows Configuration
-win: 
+win:
+  executableName: 'Milkstudio-ModLauncher'
+  icon: 'build/icon.ico'
   target: 
     - target: 'nsis'
       arch: 'x64'
@@ -33,7 +36,7 @@ mac:
       arch:
         - 'x64'
         - 'arm64'
-  artifactName: 'MRS-Launcher-setup-${version}-${arch}.${ext}'
+  artifactName: 'Milkstudio-ModLauncher-setup-${version}-${arch}.${ext}'
   category: 'public.app-category.games'
 
 # Linux Configuration

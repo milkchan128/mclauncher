@@ -1452,6 +1452,11 @@ function populateAboutVersionInformation(){
  * of the current version. This value is displayed on the UI.
  */
 function populateReleaseNotes(){
+    if(!updatesEnabled){
+        settingsAboutChangelogText.textContent = Lang.queryEJS('settings.noReleaseNotes')
+        settingsAboutChangelogButton.hidden = true
+        return
+    }
     $.ajax({
         url: 'https://github.com/peunsu/MRSLauncher/releases.atom',
         success: (data) => {
@@ -1535,6 +1540,13 @@ function populateSettingsUpdateInformation(data){
             settingsUpdateButtonStatus(Lang.queryJS('settings.updates.downloadingButton'), true)
         }
     } else {
+        if(!updatesEnabled){
+            settingsUpdateTitle.textContent = Lang.queryJS('settings.updates.manualUpdateTitle')
+            settingsUpdateChangelogCont.style.display = 'none'
+            populateVersionInformation(remote.app.getVersion(), settingsUpdateVersionValue, settingsUpdateVersionTitle, settingsUpdateVersionCheck)
+            settingsUpdateButtonStatus(Lang.queryJS('settings.updates.manualUpdateButton'), true)
+            return
+        }
         settingsUpdateTitle.innerHTML = Lang.queryJS('settings.updates.latestVersionTitle')
         settingsUpdateChangelogCont.style.display = 'none'
         populateVersionInformation(remote.app.getVersion(), settingsUpdateVersionValue, settingsUpdateVersionTitle, settingsUpdateVersionCheck)

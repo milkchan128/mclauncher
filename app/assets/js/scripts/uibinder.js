@@ -59,7 +59,7 @@ function getCurrentView(){
 
 async function showMainUI(data){
 
-    if(!isDev){
+    if(!isDev && updatesEnabled){
         loggerAutoUpdater.info('Initializing..')
         ipcRenderer.send('autoUpdateAction', 'initAutoUpdater', ConfigManager.getAllowPrerelease())
     }

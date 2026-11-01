@@ -1,7 +1,7 @@
 # Custom Language File for Launcher Customizer
 
 [ejs.app]
-title = "MRS Launcher"
+title = "밀튜디오 - 모드런처"
 
 [ejs.landing]
 mediaHomeURL = "https://mysticred.space"
@@ -14,10 +14,15 @@ mediaYouTubeURL = "#"
 mediaDiscordURL = "https://discord.gg/Z8j6ahF4MJ"
 
 [ejs.settings]
+launcherUpdatesHeaderDesc = "전용 업데이트 서버 연결 전까지 새 설치 파일로 수동 업데이트합니다."
 sourceGithubLink = "https://github.com/peunsu/MRSLauncher"
 supportLink = "https://github.com/peunsu/MRSLauncher/issues"
 
 [ejs.welcome]
-welcomeHeader = "Mystic Red Space"
-welcomeDescription = "2017년, 작은 모드팩 서버로 시작한 Mystic Red Space는 오랜 시간동안 모드팩 유저의 사랑을 받으면서 현재까지 수십 개 이상의 모드팩 서버를 제공하였습니다.  이제 MRS는 단순한 마인크래프트 모드팩 서버를 넘어서, 더 많은 사람들이 마인크래프트 모드 정보를 쉽게 접하고 모드팩에 대한 관심을 키울 수 있는 모드 커뮤니티로 한 걸음 나아가고 있습니다."
-welcomeDescCTA = "모드팩을 사랑하는 당신을 위한 최고의 선물이 되겠습니다."
+welcomeHeader = "밀튜디오 - 모드런처"
+welcomeDescription = "모드팩 선택부터 Java 설치와 게임 파일 관리까지, 밀튜디오에서 간편하게 준비하세요. 마인크래프트 계정을 연결하고 함께할 모드팩을 선택하면 모험을 시작할 수 있습니다."
+welcomeDescCTA = "당신의 다음 모험을 준비하세요."
+
+[js.settings.updates]
+manualUpdateTitle = "수동 업데이트를 사용합니다"
+manualUpdateButton = "전용 업데이트 서버 연결 예정"

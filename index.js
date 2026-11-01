@@ -52,6 +52,10 @@ function initAutoUpdater(event, data) {
 
 // Open channel to listen for update actions.
 ipcMain.on('autoUpdateAction', (event, arg, data) => {
+    // 커스텀 업데이트 설정이 없으면 원본 런처 업데이트를 받지 않는다.
+    if(!fs.existsSync(path.join(process.resourcesPath, 'app-update.yml'))){
+        return
+    }
     switch(arg){
         case 'initAutoUpdater':
             console.log('Initializing auto updater.')
@@ -148,8 +152,8 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGIN, (ipcEvent, ...arguments_) => {
             let queryMap = {}
             
             new URL(uri).searchParams.forEach((v, k) => {
-                queryMap[k] = v;
-            });
+                queryMap[k] = v
+            })
 
             ipcEvent.reply(MSFT_OPCODE.REPLY_LOGIN, MSFT_REPLY_TYPE.SUCCESS, queryMap, msftAuthViewSuccess)
 

@@ -1,0 +1,71 @@
+:root {
+    --brand-accent: #c4a9ff;
+    --brand-ink: #181422;
+    --brand-text: #f5f0ff;
+}
+
+#frameBar {
+    background-color: var(--brand-ink);
+}
+
+#frameTitleDock {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#frameTitleLogo {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+
+#welcomeImageSeal,
+#loginImageSeal {
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    object-fit: contain;
+}
+
+#welcomeHeader {
+    color: var(--brand-text);
+    letter-spacing: 0;
+}
+
+#welcomeDescription {
+    text-align: center;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    line-height: 1.8;
+    text-shadow: none;
+}
+
+#welcomeDescCTA,
+#welcomeButton:hover,
+#welcomeButton:focus-visible {
+    color: var(--brand-accent);
+}
+
+#image_seal,
+#settingsAboutLogo,
+#loadSpinnerImage {
+    object-fit: contain;
+}
+
+#loadSpinnerImage {
+    width: 160px;
+    animation: brand-pulse 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes brand-pulse {
+    from { opacity: 0.6; }
+    to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #loadSpinnerImage {
+        animation: none;
+    }
+}

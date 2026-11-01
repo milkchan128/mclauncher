@@ -1,8 +1,8 @@
 {
-  "name": "mrslauncher",
+  "name": "milkstudio-mod-launcher",
   "version": "3.0.9",
-  "productName": "MRS Launcher",
-  "description": "Modded Minecraft Launcher",
+  "productName": "밀튜디오 - 모드런처",
+  "description": "밀튜디오 마인크래프트 모드런처",
   "author": "Daniel Scalzi (https://github.com/dscalzi/), peunsu (https://github.com/peunsu)",
   "license": "UNLICENSED",
   "homepage": "https://github.com/peunsu/MRSLauncher",
@@ -13,14 +13,15 @@
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder build",
+    "dist": "electron-builder build --publish never",
     "dist:win": "npm run dist -- -w",
     "dist:mac": "npm run dist -- -m",
     "dist:linux": "npm run dist -- -l",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "node --test"
   },
   "engines": {
-    "node": "22.x.x"
+    "node": "24.x"
   },
   "dependencies": {
     "@electron/remote": "^2.1.3",

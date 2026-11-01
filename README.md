@@ -1,6 +1,35 @@
-<p align="center"><img src="./app/assets/images/Icon.png" width="150px" height="150px" alt="mystic red space"></p>
+<p align="center"><img src="./app/assets/images/Icon.png" width="150px" height="150px" alt="밀튜디오 로고"></p>
 
-<h1 align="center">MRS Launcher</h1>
+<h1 align="center">밀튜디오 - 모드런처</h1>
+
+## 밀튜디오 커스텀 빌드
+
+MRS Launcher를 기반으로 이름과 로고를 변경한 마인크래프트 모드런처입니다. 원본 프로젝트와 Helios Launcher의 출처 및 라이선스는 유지합니다. 아래 MRS 소개와 다운로드 링크는 원본 프로젝트의 참고 자료입니다.
+
+Node.js 24에서 프로젝트 루트의 PowerShell로 실행하세요.
+
+```powershell
+npm.cmd ci
+node node_modules/electron/install.js
+npm.cmd test
+npm.cmd run lint
+npm.cmd run dist:win
+```
+
+Windows x64 설치 파일은 `dist/Milkstudio-ModLauncher-setup-3.0.9.exe`에 생성됩니다. `electron/install.js`는 npm에서 설치 스크립트를 생략한 환경에서도 Electron 실행 파일을 준비합니다. 빌드 명령은 릴리스를 게시하지 않습니다. 코드 서명 인증서는 별도로 설정해야 합니다.
+
+Windows에서 `winCodeSign` 압축 해제 중 `Cannot create symbolic link` 오류가 발생하면 macOS용 파일의 링크 생성이 원인일 수 있습니다. 이번 환경은 빌더가 내려받은 도구에서 `darwin`, `linux` 항목을 제외하고 Windows 도구만 `%LOCALAPPDATA%/electron-builder/Cache/winCodeSign/winCodeSign-2.6.0`에 풀어 해결했습니다. 시스템 권한 설정은 변경하지 않았습니다.
+
+개발용 앱은 필요할 때 직접 `npm.cmd start`로 실행하세요.
+
+- 앱 제목: **밀튜디오 - 모드런처**
+- 로고: 제공된 `mlkclogo.png`를 `app/assets/images/Icon.png`, `build/icon.png`에 반영했습니다. Windows용 다중 해상도 아이콘은 `app/assets/images/Icon.ico`, `build/icon.ico`입니다.
+- 앱 ID: `kr.mlkc.modlauncher`, 실행 파일: `Milkstudio-ModLauncher.exe`
+- 기본 게임 데이터: Windows의 `%APPDATA%/.milkstudio-modlauncher`. 기존 MRS 데이터는 이동하거나 삭제하지 않습니다.
+- 모드팩 배포 주소는 아직 기존 MRS의 `https://cdn.mysticred.space/launcher/distribution.json`입니다. 전용 서버를 연결하려면 `app/assets/js/distromanager.js`의 `REMOTE_DISTRO_URL`을 변경하세요. 홈페이지·디스코드 등은 `app/assets/lang/_custom.toml`에서 변경합니다.
+- 원본 MRS 자동 업데이트와 릴리스 노트 조회는 비활성화했습니다. 전용 업데이트를 연결하기 전에는 새 설치 파일로 수동 업데이트하세요. 배포 전에 `app/assets/js/ipcconstants.js`의 Microsoft 인증 클라이언트 ID도 전용 값으로 설정해야 합니다. 설정 방법은 `docs/MicrosoftAuth.md`를 참고하세요.
+
+---
 
 <h3 align="center"><a href="https://github.com/dscalzi/HeliosLauncher">Forked from Helios Launcher</a></h3>
 
@@ -88,7 +117,7 @@ ctrl + shift + i
 
 **시스템 요구사항**
 
-* [Node.js][nodejs] v22
+* [Node.js][nodejs] v24
 
 ---
 
