@@ -3,7 +3,7 @@ const path = require('path')
 const crypto = require('crypto')
 const { execFileSync } = require('child_process')
 const yaml = require('js-yaml')
-const { appBuilderPath } = require('app-builder-bin')
+const { buildBlockMap } = require('app-builder-lib/out/targets/blockmap/blockmap')
 const pkg = require('../package.json')
 
 const root = path.join(__dirname, '..')
@@ -44,7 +44,7 @@ async function main(){
     const fileName = `mlkc-Client-setup-${pkg.version}.exe`
     const output = path.join(root, 'dist', fileName)
     compileSetup(path.join(engineDir, fileName), output)
-    execFileSync(appBuilderPath, ['blockmap', '--input', output, '--output', output + '.blockmap'], { stdio: 'inherit', windowsHide: true })
+    await buildBlockMap(output, 'gzip', output + '.blockmap')
     const bytes = await fs.readFile(output)
     const sha512 = crypto.createHash('sha512').update(bytes).digest('base64')
     const metadata = {
