@@ -661,6 +661,17 @@ async function dlAsync(login = true) {
         return
     }
 
+    // 게임 멀티플레이 목록에 서버를 넣어 둔다. 실패해도 실행은 계속한다.
+    try {
+        await require('./assets/js/modpack').ensureServerListed(
+            path.join(ConfigManager.getInstanceDirectory(), serv.rawServer.id),
+            serv.rawServer.name,
+            serv.rawServer.address
+        )
+    } catch(error){
+        loggerLaunchSuite.warn('Unable to add the server to servers.dat.', error)
+    }
+
     const fullRepairModule = new FullRepair(
         ConfigManager.getCommonDirectory(),
         ConfigManager.getInstanceDirectory(),

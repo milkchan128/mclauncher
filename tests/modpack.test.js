@@ -11,7 +11,7 @@ const { once } = require('node:events')
 const Zip = require('adm-zip')
 const { HeliosDistribution } = require('helios-core/common')
 const { DistributionIndexProcessor, downloadQueue } = require('helios-core/dl')
-const { extractOverrides, ensureDownload, getManagedMods } = require('../app/assets/js/modpack')
+const { extractOverrides, ensureDownload, getManagedMods, ensureServerListed } = require('../app/assets/js/modpack')
 const raw = require('../app/assets/modpack/distribution.json')
 
 test('Society 4.1.5A의 367개 모드와 Forge 47.4.0이 society-sunlit.vultr.sjh.kr 전용으로 구성된다', () => {
@@ -150,4 +150,36 @@ test('검증된 캐시는 재사용하고 다운로드 해시가 다르면 기�
     })
     await assert.rejects(exported.exports.ensureDownload({ url: 'https://example.invalid/pack.zip', sha256: '0'.repeat(64) }, target), /무결성 검증/)
     assert.deepEqual(await fs.readFile(target), content)
+})
+
+test('게임 서버 목록 맨 위에 서버를 추가하고 기존 서버는 그대로 둔다', async t => {
+    const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'mlkc-servers-'))
+    t.after(() => fs.remove(dir))
+    const file = path.join(dir, 'servers.dat')
+    // 마인크래프트가 쓰는 형식: 루트 컴파운드 { servers: [ { name, ip, icon, acceptTextures } ] }
+    const str = s => { const b = Buffer.from(s); const h = Buffer.alloc(2); h.writeUInt16BE(b.length); return Buffer.concat([h, b]) }
+    const tag = (type, name, payload) => Buffer.concat([Buffer.from([type]), str(name), payload])
+    const user = Buffer.concat([tag(8, 'name', str('친구 서버')), tag(8, 'ip', str('friend.example')), tag(8, 'icon', str('aWNvbg==')), tag(1, 'acceptTextures', Buffer.from([1])), Buffer.from([0])])
+    const head = Buffer.from([10, 0, 0, 0, 1])
+    const original = Buffer.concat([Buffer.from([10]), str(''), tag(9, 'servers', Buffer.concat([head, user])), Buffer.from([0])])
+    await fs.writeFile(file, original)
+
+    assert.equal(await ensureServerListed(dir, '대충모인팀 Society: Sunlit Valley', 'society-sunlit.vultr.sjh.kr'), true)
+    const written = await fs.readFile(file)
+    const ours = Buffer.concat([tag(8, 'name', str('대충모인팀 Society: Sunlit Valley')), tag(8, 'ip', str('society-sunlit.vultr.sjh.kr')), Buffer.from([0])])
+    assert.deepEqual(written, Buffer.concat([Buffer.from([10]), str(''), tag(9, 'servers', Buffer.concat([Buffer.from([10, 0, 0, 0, 2]), ours, user])), Buffer.from([0])]))
+
+    // 이미 있으면 다시 추가하지 않는다.
+    assert.equal(await ensureServerListed(dir, '대충모인팀 Society: Sunlit Valley', 'Society-Sunlit.vultr.sjh.kr'), false)
+    assert.deepEqual(await fs.readFile(file), written)
+
+    // 파일이 없으면 새로 만든다.
+    await fs.remove(file)
+    assert.equal(await ensureServerListed(dir, 'A', 'a.example'), true)
+    assert.equal(await ensureServerListed(dir, 'A', 'a.example:25565'), false)
+
+    // 읽을 수 없는 파일은 건드리지 않는다.
+    await fs.writeFile(file, original.subarray(0, 20))
+    await assert.rejects(ensureServerListed(dir, 'A', 'a.example'))
+    assert.deepEqual(await fs.readFile(file), original.subarray(0, 20))
 })
