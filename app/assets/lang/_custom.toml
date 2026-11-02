@@ -53,6 +53,11 @@ downloadingProgress = "업데이트 다운로드 중 {percent}%"
 [js.landing.serverStatus]
 online = "온라인 {count}명"
 
+[js.landing.systemScan]
+javaDownloadPrepare = "Java 17 자동 설치 준비 중.."
+javaDownloadFailureTitle = "Java를 설치하지 못했습니다"
+javaDownloadFailureText = "인터넷 연결을 확인한 뒤 게임 시작을 다시 눌러 주세요."
+
 [js.landing.notice]
 none = "등록된 공지사항이 없습니다"
 failed = "공지사항을 불러오지 못했습니다"
