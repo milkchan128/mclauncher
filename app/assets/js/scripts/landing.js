@@ -182,14 +182,13 @@ function updateSelectedServer(serv){
 }
 
 /**
- * 하단 띠에 서버 이름, 주소, 버전을 표시한다.
+ * 하단 띠에 서버 이름과 버전을 표시한다. 서버 주소는 화면에 보여 주지 않는다.
  *
  * @param {HeliosServer} serv 선택된 서버. 없으면 null.
  */
 function setServerInfo(serv){
     const forge = serv?.modules.find(m => m.rawModule.type === 'ForgeHosted')
     document.getElementById('landingServerName').textContent = serv != null ? serv.rawServer.name : Lang.queryJS('landing.selectedServer.noSelection')
-    document.getElementById('landingServerAddress').textContent = serv != null ? serv.hostname : ''
     document.getElementById('landingServerVersion').textContent = serv == null ? '' : [
         'Minecraft ' + serv.rawServer.minecraftVersion,
         forge != null ? 'Forge ' + forge.getMavenComponents().version.split('-').pop() : null
@@ -222,7 +221,7 @@ server_selection_button.onclick = async e => {
         name.className = 'serverFlyoutName'
         name.textContent = serv.rawServer.name
         meta.className = 'serverFlyoutMeta'
-        meta.textContent = serv.hostname + ' · Minecraft ' + serv.rawServer.minecraftVersion
+        meta.textContent = 'Minecraft ' + serv.rawServer.minecraftVersion
         item.append(name, meta)
         item.onclick = () => {
             closeServerFlyout()

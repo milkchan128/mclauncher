@@ -204,7 +204,7 @@
             <Image x:Name="BandLogo" Width="44" Height="44" Margin="0,0,14,0" VerticalAlignment="Center"/>
             <StackPanel VerticalAlignment="Center">
               <TextBlock Text="밀튜디오" Foreground="{StaticResource Ink}" FontSize="22" FontWeight="SemiBold"/>
-              <TextBlock Text="society-sunlit.vultr.sjh.kr" Foreground="#D0CDD8" FontSize="12" Margin="0,4,0,0"/>
+              <TextBlock Text="함께 시작하는 마인크래프트" Foreground="#D0CDD8" FontSize="12" Margin="0,4,0,0"/>
             </StackPanel>
           </StackPanel>
         </Border>

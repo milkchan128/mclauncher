@@ -33,7 +33,7 @@ supportLink = "https://github.com/milkchan128/mclauncher/issues"
 [ejs.welcome]
 welcomeHeader = "mlkc Client"
 welcomeDescription = "밀튜디오 클라이언트에 오신 것을 환영합니다. 마인크래프트 계정을 연결하면 서버 접속에 필요한 파일을 자동으로 준비할 수 있습니다."
-welcomeDescCTA = "society-sunlit.vultr.sjh.kr에서 함께 시작하세요."
+welcomeDescCTA = "대충모인팀 서버에서 함께 시작하세요."
 
 [js.settings.updates]
 manualUpdateTitle = "설치 버전에서 자동 업데이트를 사용할 수 있습니다"

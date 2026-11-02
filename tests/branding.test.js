@@ -31,6 +31,10 @@ test('앱 제목과 모든 화면의 로고가 커스텀 브랜드를 사용한�
     const withoutServer = text => text.replaceAll(name, '').replaceAll(address, '')
     assert.doesNotMatch(withoutServer(html.replace(/<[^>]*>/g, '')), /Society|Sunlit Valley/i)
     assert.doesNotMatch(pkg.description, /Society|Sunlit Valley/i)
+    // 서버 주소는 앱과 설치 화면 어디에도 보여 주지 않는다.
+    assert.ok(!html.includes(address))
+    assert.ok(!fs.readFileSync(path.join(root, 'installer/Window.xaml'), 'utf8').includes(address))
+    assert.ok(!require('../app/assets/modpack/distribution.json').servers[0].description.includes(address))
     assert.doesNotMatch(withoutServer(fs.readFileSync(path.join(root, 'installer/Window.xaml'), 'utf8')), /Society|Sunlit Valley/i)
     assert.ok(html.includes('필요한 모드를 자동으로 설치한 뒤 게임을 시작합니다.'))
     assert.deepEqual(fs.readFileSync(path.join(root, 'app/assets/images/Icon.png')), fs.readFileSync(path.join(root, 'build/icon.png')))
