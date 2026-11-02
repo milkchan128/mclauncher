@@ -17,7 +17,9 @@ test('앱 제목과 모든 화면의 로고가 커스텀 브랜드를 사용한�
         lang: (key, values) => Lang.queryEJS(key, values)
     }, { filename: path.join(root, 'app/app.ejs') })
     assert.ok(html.includes(`<title>${pkg.productName}</title>`))
-    for(const id of ['welcomeImageSeal', 'image_seal', 'settingsAboutLogo', 'loadSpinnerImage']){
+    // 메인 화면 띠의 image_seal은 서버 로고를 쓴다.
+    assert.match(html, /id="image_seal" src="assets\/images\/servers\/society-sunlit-valley\.png"/)
+    for(const id of ['welcomeImageSeal', 'settingsAboutLogo', 'loadSpinnerImage']){
         assert.match(html, new RegExp(`id="${id}"[^>]*alt="밀튜디오 로고"`))
     }
     assert.ok(html.includes('id="loginOptionMicrosoft"'))
