@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "app/assets/css/launcher.css"
+        ],
+        "createdAt": "2026-11-02T00:18:54.224Z",
+        "reason": "Claude triage: L2230 is the GitHub-style blockquote rule inside rendered release notes (.settingsChangelogText blockquote), a faint 3px grey line, not an accent card border"
+      }
+    ]
+  }
+}
