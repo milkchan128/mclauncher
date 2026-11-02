@@ -3481,19 +3481,30 @@ input:checked + .toggleSwitchSlider:before {
     background: rgba(0, 0, 0, 0.50);
 }
 
-/* Main overlay content. */
+/* Main overlay content, styled like a Windows 11 dialog. */
 #overlayContent {
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    /*justify-content: space-between;*/
-    width: 300px;
-    /*height: 35%;*/
+    align-items: stretch;
+    width: 400px;
+    max-width: calc(100% - 32px);
     box-sizing: border-box;
-    padding: 15px 0px;
-    /* background-color: #424242; */
-    text-align: center;
+    padding: 24px 24px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    background: #2b2930;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+    text-align: left;
+    animation: overlay-dialog-in 0.25s cubic-bezier(0, 0, 0, 1);
+}
+@keyframes overlay-dialog-in {
+    from { opacity: 0; transform: scale(1.05); }
+}
+@media (prefers-reduced-motion: reduce) {
+    #overlayContent {
+        animation: none;
+    }
 }
 
 /* Main overlay content anchor styles. */
@@ -3525,65 +3536,71 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Overlay title styles. */
 #overlayTitle {
-    font-family: 'Pretendard Medium';
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: 1px;
+    font: 20px 'Pretendard SemiBold', sans-serif;
     -webkit-user-select: initial;
 }
 
 /* Overlay description styles. */
 #overlayDesc {
-    font-size: 12px;
-    font-weight: bold;
+    color: #d0cdd8;
+    font-size: 13px;
+    line-height: 1.6;
+    word-break: keep-all;
     -webkit-user-select: initial;
 }
 
 /* Div which contains action buttons. */
 #overlayActionContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    margin-top: 16px !important;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    gap: 8px;
+}
+#overlayDismissWrapper {
+    display: contents;
 }
 
-/* Overlay acknowledge button styles. */
-#overlayAcknowledge {
-    background: none;
-    border: 1px solid #ffffff;
-    color: white;
-    font-family: 'Pretendard Medium';
-    font-weight: bold;
-    border-radius: 2px;
-    padding: 0px 8.1px;
+/* Overlay acknowledge (primary) and dismiss (secondary) buttons. */
+#overlayAcknowledge,
+#overlayDismiss {
+    height: 34px;
+    padding: 0 16px;
+    border-radius: 6px;
+    font: 14px 'Pretendard Regular', sans-serif;
     cursor: pointer;
-    transition: 0.25s ease;
+    transition: background-color 0.15s ease, filter 0.15s ease;
 }
-#overlayAcknowledge:hover,
-#overlayAcknowledge:focus {
-    box-shadow: 0px 0px 10px 0px #fff;
-    outline: none;
+#overlayAcknowledge {
+    border: 0;
+    background: var(--landing-accent);
+    color: #000000;
+}
+#overlayAcknowledge.overlayDanger {
+    background: #c42b1c;
+    color: #ffffff;
+}
+#overlayAcknowledge:hover {
+    filter: brightness(1.08);
 }
 #overlayAcknowledge:active {
-    border-color: rgba(255, 255, 255, 0.75);
-    color: rgba(255, 255, 255, 0.75);
+    filter: brightness(0.92);
 }
-
-/* Overlay dismiss option styles. */
 #overlayDismiss {
-    font-weight: bold;
-    font-size: 10px;
-    text-decoration: none;
-    padding-top: 2.5px;
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    background: rgba(255, 255, 255, 0.07);
+    color: #ffffff;
 }
 #overlayDismiss:hover {
-    color: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.12);
 }
 #overlayDismiss:active {
-    color: rgba(165, 165, 165, 0.75);
+    background: rgba(255, 255, 255, 0.04);
+}
+#overlayAcknowledge:focus-visible,
+#overlayDismiss:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
 }
 
 /* * *
