@@ -28,11 +28,11 @@ const DiscordWrapper          = require('./assets/js/discordwrapper')
 const ProcessBuilder          = require('./assets/js/processbuilder')
 
 // Launch Elements
-const launch_content          = document.getElementById('launch_content')
-const launch_details          = document.getElementById('launch_details')
-const launch_progress         = document.getElementById('launch_progress')
-const launch_progress_label   = document.getElementById('launch_progress_label')
-const launch_details_text     = document.getElementById('launch_details_text')
+const landingContainer        = document.getElementById('landingContainer')
+const launch_button           = document.getElementById('launch_button')
+const launch_hint             = launch_button.title
+const cartBubbleText          = document.getElementById('cartBubbleText')
+const cartBubblePercent       = document.getElementById('cartBubblePercent')
 const server_selection_button = document.getElementById('server_selection_button')
 const user_text               = document.getElementById('user_text')
 
@@ -40,39 +40,56 @@ const loggerLanding = LoggerUtil.getLogger('Landing')
 
 /* Launch Progress Wrapper Functions */
 
+// 실행 중에는 게임 시작 버튼이 실행 중지 버튼이 되고, 진행 상황은 스티브 위 말풍선에 표시한다.
+// 실행마다 새 AbortController를 만들고, 중지하면 준비 단계와 게임 프로세스를 모두 끝낸다.
+let launchAbort = new AbortController()
+
 /**
- * Show/hide the loading area.
- * 
- * @param {boolean} loading True if the loading area should be shown, otherwise false.
+ * 실행 상태를 바꾼다. busy는 준비 중(카트가 빠르게 달림), running은 게임 실행 중이다.
+ *
+ * @param {'busy'|'running'|null} state 실행 상태. 실행 중이 아니면 null.
  */
-function toggleLaunchArea(loading){
-    if(loading){
-        launch_details.style.display = 'flex'
-        launch_content.style.display = 'none'
+function setLaunchState(state){
+    if(state == null){
+        landingContainer.removeAttribute('launch')
     } else {
-        launch_details.style.display = 'none'
-        launch_content.style.display = 'inline-flex'
+        landingContainer.setAttribute('launch', state)
+        closeServerFlyout()
+    }
+    launch_button.title = state == null ? launch_hint : ''
+    const rate = state === 'busy' ? 4 : 1
+    for(const anim of document.getElementById('landingStage').getAnimations({ subtree: true })){
+        if(['landing-scroll', 'landing-ties', 'landing-cart-wheel'].includes(anim.animationName)){
+            anim.updatePlaybackRate(rate)
+        }
     }
 }
 
 /**
- * Set the details text of the loading area.
- * 
- * @param {string} details The new text for the loading details.
+ * Show/hide the loading state.
+ *
+ * @param {boolean} loading True if the game is being prepared, otherwise false.
  */
-function setLaunchDetails(details){
-    launch_details_text.innerHTML = details
+function toggleLaunchArea(loading){
+    setLaunchState(loading ? 'busy' : proc != null ? 'running' : null)
 }
 
 /**
- * Set the value of the loading progress bar and display that value.
- * 
+ * Set the text of the speech bubble above Steve.
+ *
+ * @param {string} details The new text for the loading details.
+ */
+function setLaunchDetails(details){
+    cartBubbleText.innerHTML = details
+}
+
+/**
+ * Display the progress in the speech bubble.
+ *
  * @param {number} percent Percentage (0-100)
  */
 function setLaunchPercentage(percent){
-    launch_progress.setAttribute('max', 100)
-    launch_progress.setAttribute('value', percent)
-    launch_progress_label.innerHTML = percent + '%'
+    cartBubblePercent.textContent = percent > 0 ? percent + '%' : ''
 }
 
 /**
@@ -91,11 +108,54 @@ function setDownloadPercentage(percent){
  * @param {boolean} val True to enable, false to disable.
  */
 function setLaunchEnabled(val){
-    document.getElementById('launch_button').disabled = !val
+    launch_button.disabled = !val
+}
+
+/**
+ * 실행 중지 전에 한 번 더 묻는다.
+ */
+function confirmStopLaunch(){
+    const ack = document.getElementById('overlayAcknowledge')
+    const running = landingContainer.getAttribute('launch') === 'running'
+    setOverlayContent(
+        '정말로 중지하시겠어요?',
+        running
+            ? '실행 중인 게임을 바로 종료합니다. 저장되지 않은 내용은 사라질 수 있어요.'
+            : '게임 준비를 멈춥니다. 이미 받은 파일은 남아 있어 다음 실행 때 다시 사용합니다.',
+        '중지',
+        '계속 실행'
+    )
+    ack.classList.add('overlayDanger')
+    setOverlayHandler(() => {
+        ack.classList.remove('overlayDanger')
+        toggleOverlay(false)
+        stopLaunch()
+    })
+    setDismissHandler(() => {
+        ack.classList.remove('overlayDanger')
+        toggleOverlay(false)
+    })
+    toggleOverlay(true, true)
+}
+
+/**
+ * 준비 중인 작업과 실행 중인 게임을 멈추고 시작 버튼으로 돌아간다.
+ */
+function stopLaunch(){
+    loggerLanding.info('Launch stopped by user.')
+    launchAbort.abort()
+    proc = null
+    remote.getCurrentWindow().setProgressBar(-1)
+    setLaunchState(null)
 }
 
 // Bind launch button
-document.getElementById('launch_button').addEventListener('click', async e => {
+launch_button.addEventListener('click', async e => {
+    if(landingContainer.hasAttribute('launch')){
+        confirmStopLaunch()
+        return
+    }
+    launchAbort = new AbortController()
     loggerLanding.info('Launching game..')
     try {
         const server = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
@@ -119,7 +179,9 @@ document.getElementById('launch_button').addEventListener('click', async e => {
         }
     } catch(err) {
         loggerLanding.error('Unhandled error in during launch process.', err)
-        showLaunchFailure(Lang.queryJS('landing.launch.failureTitle'), Lang.queryJS('landing.launch.failureText'))
+        if(!launchAbort.signal.aborted){
+            showLaunchFailure(Lang.queryJS('landing.launch.failureTitle'), Lang.queryJS('landing.launch.failureText'))
+        }
     }
 })
 
@@ -320,6 +382,7 @@ function showLaunchFailure(title, desc){
  */
 async function asyncSystemScan(effectiveJavaOptions, launchAfter = true){
 
+    const signal = launchAbort.signal
     setLaunchDetails(Lang.queryJS('landing.systemScan.checking'))
     toggleLaunchArea(true)
     setLaunchPercentage(0, 100)
@@ -384,7 +447,7 @@ async function asyncSystemScan(effectiveJavaOptions, launchAfter = true){
 
         // TODO Callback hell, refactor
         // TODO Move this out, separate concerns.
-        if(launchAfter){
+        if(launchAfter && !signal.aborted){
             await dlAsync()
         }
     }
@@ -392,6 +455,8 @@ async function asyncSystemScan(effectiveJavaOptions, launchAfter = true){
 }
 
 async function downloadJava(effectiveJavaOptions, launchAfter = true) {
+
+    const signal = launchAbort.signal
 
     // TODO Error handling.
     // asset can be null.
@@ -451,7 +516,9 @@ async function downloadJava(effectiveJavaOptions, launchAfter = true) {
 
     // TODO Callback hell
     // Refactor the launch functions
-    asyncSystemScan(effectiveJavaOptions, launchAfter)
+    if(!signal.aborted){
+        asyncSystemScan(effectiveJavaOptions, launchAfter)
+    }
 
 }
 
@@ -472,6 +539,14 @@ async function dlAsync(login = true) {
 
     const loggerLaunchSuite = LoggerUtil.getLogger('LaunchSuite')
 
+    // 사용자가 중지한 실행의 오류는 보여 주지 않는다.
+    const signal = launchAbort.signal
+    const fail = (title, desc) => {
+        if(!signal.aborted){
+            showLaunchFailure(title, desc)
+        }
+    }
+
     setLaunchDetails(Lang.queryJS('landing.dlAsync.loadingServerInfo'))
 
     let distro
@@ -481,7 +556,10 @@ async function dlAsync(login = true) {
         onDistroRefresh(distro)
     } catch(err) {
         loggerLaunchSuite.error('Unable to refresh distribution index.', err)
-        showLaunchFailure(Lang.queryJS('landing.dlAsync.fatalError'), Lang.queryJS('landing.dlAsync.unableToLoadDistributionIndex'))
+        fail(Lang.queryJS('landing.dlAsync.fatalError'), Lang.queryJS('landing.dlAsync.unableToLoadDistributionIndex'))
+        return
+    }
+    if(signal.aborted){
         return
     }
 
@@ -504,11 +582,12 @@ async function dlAsync(login = true) {
             instanceDir: path.join(ConfigManager.getInstanceDirectory(), serv.rawServer.id),
             cacheDir: path.join(ConfigManager.getLauncherDirectory(), 'modpack-cache'),
             javaExecutable: ConfigManager.getJavaExecutable(serv.rawServer.id),
-            onProgress: setLaunchDetails
+            onProgress: setLaunchDetails,
+            signal
         })
     } catch(error){
         loggerLaunchSuite.error('Unable to prepare modpack.', error)
-        showLaunchFailure('모드팩 준비에 실패했습니다', error.message)
+        fail('모드팩 준비에 실패했습니다', error.message)
         return
     }
 
@@ -521,15 +600,17 @@ async function dlAsync(login = true) {
     )
 
     fullRepairModule.spawnReceiver()
+    const killRepair = () => fullRepairModule.childProcess?.kill()
+    signal.addEventListener('abort', killRepair, { once: true })
 
     fullRepairModule.childProcess.on('error', (err) => {
         loggerLaunchSuite.error('Error during launch', err)
-        showLaunchFailure(Lang.queryJS('landing.dlAsync.errorDuringLaunchTitle'), err.message || Lang.queryJS('landing.dlAsync.errorDuringLaunchText'))
+        fail(Lang.queryJS('landing.dlAsync.errorDuringLaunchTitle'), err.message || Lang.queryJS('landing.dlAsync.errorDuringLaunchText'))
     })
     fullRepairModule.childProcess.on('close', (code, _signal) => {
         if(code !== 0){
             loggerLaunchSuite.error(`Full Repair Module exited with code ${code}, assuming error.`)
-            showLaunchFailure(Lang.queryJS('landing.dlAsync.errorDuringLaunchTitle'), Lang.queryJS('landing.dlAsync.seeConsoleForDetails'))
+            fail(Lang.queryJS('landing.dlAsync.errorDuringLaunchTitle'), Lang.queryJS('landing.dlAsync.seeConsoleForDetails'))
         }
     })
 
@@ -543,7 +624,7 @@ async function dlAsync(login = true) {
         setLaunchPercentage(100)
     } catch (err) {
         loggerLaunchSuite.error('Error during file validation.')
-        showLaunchFailure(Lang.queryJS('landing.dlAsync.errorDuringFileVerificationTitle'), err.displayable || Lang.queryJS('landing.dlAsync.seeConsoleForDetails'))
+        fail(Lang.queryJS('landing.dlAsync.errorDuringFileVerificationTitle'), err.displayable || Lang.queryJS('landing.dlAsync.seeConsoleForDetails'))
         return
     }
     
@@ -559,7 +640,7 @@ async function dlAsync(login = true) {
             setDownloadPercentage(100)
         } catch(err) {
             loggerLaunchSuite.error('Error during file download.')
-            showLaunchFailure(Lang.queryJS('landing.dlAsync.errorDuringFileDownloadTitle'), err.displayable || Lang.queryJS('landing.dlAsync.seeConsoleForDetails'))
+            fail(Lang.queryJS('landing.dlAsync.errorDuringFileDownloadTitle'), err.displayable || Lang.queryJS('landing.dlAsync.seeConsoleForDetails'))
             return
         }
     } else {
@@ -569,7 +650,11 @@ async function dlAsync(login = true) {
     // Remove download bar.
     remote.getCurrentWindow().setProgressBar(-1)
 
+    signal.removeEventListener('abort', killRepair)
     fullRepairModule.destroyReceiver()
+    if(signal.aborted){
+        return
+    }
 
     setLaunchDetails(Lang.queryJS('landing.dlAsync.preparingToLaunch'))
 
@@ -585,7 +670,7 @@ async function dlAsync(login = true) {
     const modLoaderData = await distributionIndexProcessor.loadModLoaderVersionJson(serv)
     const versionData = await mojangIndexProcessor.getVersionJson()
 
-    if(login) {
+    if(login && !signal.aborted) {
         if(!await validateSelectedAccount()){
             toggleLaunchArea(false)
             return
@@ -599,6 +684,10 @@ async function dlAsync(login = true) {
         const SERVER_JOINED_REGEX = new RegExp(`\\[.+\\]: \\[CHAT\\] ${authUser.displayName} joined the game`)
 
         const onLoadComplete = () => {
+            if(signal.aborted){
+                return
+            }
+            setLaunchDetails('게임 실행 중이에요')
             toggleLaunchArea(false)
             if(hasRPC){
                 DiscordWrapper.updateDetails(Lang.queryJS('landing.discord.loading'))
@@ -638,13 +727,21 @@ async function dlAsync(login = true) {
             data = data.trim()
             if(data.indexOf('Could not find or load main class net.minecraft.launchwrapper.Launch') > -1){
                 loggerLaunchSuite.error('Game launch failed, LaunchWrapper was not downloaded properly.')
-                showLaunchFailure(Lang.queryJS('landing.dlAsync.errorDuringLaunchTitle'), Lang.queryJS('landing.dlAsync.launchWrapperNotDownloaded'))
+                fail(Lang.queryJS('landing.dlAsync.errorDuringLaunchTitle'), Lang.queryJS('landing.dlAsync.launchWrapperNotDownloaded'))
             }
         }
 
         try {
             // Build Minecraft process.
             proc = pb.build()
+            const gameProc = proc
+            signal.addEventListener('abort', () => gameProc.kill(), { once: true })
+            gameProc.on('close', () => {
+                if(proc === gameProc){
+                    proc = null
+                    setLaunchState(null)
+                }
+            })
 
             // Bind listeners to stdout.
             proc.stdout.on('data', tempListener)
@@ -667,7 +764,7 @@ async function dlAsync(login = true) {
         } catch(err) {
 
             loggerLaunchSuite.error('Error during launch', err)
-            showLaunchFailure(Lang.queryJS('landing.dlAsync.errorDuringLaunchTitle'), Lang.queryJS('landing.dlAsync.checkConsoleForDetails'))
+            fail(Lang.queryJS('landing.dlAsync.errorDuringLaunchTitle'), Lang.queryJS('landing.dlAsync.checkConsoleForDetails'))
 
         }
     }

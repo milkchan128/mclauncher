@@ -100,12 +100,14 @@ async function extractOverrides(archive, instanceDir){
     }
 }
 
-async function prepareModpack({ commonDir, instanceDir, cacheDir, javaExecutable, onProgress }){
+// signal이 중단되면 다음 단계로 넘어가지 않고 Forge 설치 프로세스도 끝낸다.
+async function prepareModpack({ commonDir, instanceDir, cacheDir, javaExecutable, onProgress, signal }){
     const readyFile = path.join(instanceDir, '.mlkc-pack-version')
     if(!await fs.pathExists(readyFile) || await fs.readFile(readyFile, 'utf8') !== pack.version){
         onProgress('서버 접속에 필요한 설정 파일을 준비하고 있습니다…')
         const archive = path.join(cacheDir, `society-${pack.version}.zip`)
         await ensureDownload(pack.archive, archive)
+        signal?.throwIfAborted()
         const manifest = JSON.parse(new AdmZip(archive).readAsText('manifest.json'))
         if(manifest.minecraft.version !== pack.minecraftVersion || !manifest.minecraft.modLoaders.some(loader => loader.id === `forge-${pack.forgeVersion}`)){
             throw new Error('모드팩의 Minecraft 또는 Forge 버전이 일치하지 않습니다.')
@@ -124,13 +126,15 @@ async function prepareModpack({ commonDir, instanceDir, cacheDir, javaExecutable
         onProgress('Forge 47.4.0을 설치하고 있습니다. 잠시 기다려 주세요…')
         const installer = path.join(cacheDir, `forge-${pack.forgeVersion}-installer.jar`)
         await ensureDownload(pack.installer, installer)
+        signal?.throwIfAborted()
         const profiles = path.join(commonDir, 'launcher_profiles.json')
         if(!await fs.pathExists(profiles)){
             await fs.outputJson(profiles, {})
         }
         try {
-            await promisify(execFile)(javaExecutable, ['-jar', path.resolve(installer), '--installClient', path.resolve(commonDir)], { cwd: path.resolve(cacheDir), windowsHide: true, timeout: 600000, maxBuffer: 32 * 1024 * 1024 })
+            await promisify(execFile)(javaExecutable, ['-jar', path.resolve(installer), '--installClient', path.resolve(commonDir)], { cwd: path.resolve(cacheDir), windowsHide: true, timeout: 600000, maxBuffer: 32 * 1024 * 1024, signal })
         } catch(error){
+            signal?.throwIfAborted()
             console.error('Forge installer failed:', error)
             throw new Error('Forge 설치에 실패했습니다. 네트워크 연결과 Java 설정을 확인하고 다시 시도해 주세요.')
         }
@@ -140,6 +144,7 @@ async function prepareModpack({ commonDir, instanceDir, cacheDir, javaExecutable
             }
         }
     }
+    signal?.throwIfAborted()
     const versionId = `${pack.minecraftVersion}-forge-${pack.forgeVersion}`
     await fs.copy(path.join(__dirname, '..', 'modpack', 'forge-version.json'), path.join(commonDir, 'versions', versionId, `${versionId}.json`))
 }

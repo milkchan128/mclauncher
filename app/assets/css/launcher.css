@@ -2986,56 +2986,85 @@ input:checked + .toggleSwitchSlider:before {
     outline-offset: 2px;
 }
 
-/* Launch progress. landing.js swaps #launch_content and #launch_details. */
-#launch_details {
-    width: 320px;
-    flex-shrink: 0;
-    display: none;
-    align-items: center;
-    gap: 14px;
-    animation: landing-fade-up 0.4s var(--landing-ease);
-}
-#launch_details_left {
-    flex-shrink: 0;
-}
-#launch_progress_label {
-    display: inline-block;
-    min-width: 56px;
-    font: 22px 'Pretendard SemiBold', sans-serif;
-    font-variant-numeric: tabular-nums;
-}
-#launch_details_right {
-    flex: 1;
-    min-width: 0;
+/* Launch state. landing.js sets #landingContainer[launch] to busy or running:
+   the start button turns into a red stop button and progress goes to the bubble. */
+.launchStart,
+.launchStop {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     gap: 8px;
 }
-#launch_progress {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 6px;
-    border: 0;
-    border-radius: 999px;
-    overflow: hidden;
+.launchStop,
+#landingContainer[launch] .launchStart,
+#landingContainer[launch] #server_selection_button {
+    display: none;
 }
-#launch_progress::-webkit-progress-bar {
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.12);
+#landingContainer[launch] .launchStop {
+    display: flex;
 }
-#launch_progress::-webkit-progress-value {
-    border-radius: 999px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent) no-repeat, var(--landing-accent);
-    background-size: 40% 100%, 100% 100%;
-    animation: landing-progress-shimmer 1.4s linear infinite;
+#landingContainer[launch] #launch_button {
+    background: #c42b1c;
+    color: #ffffff;
 }
-#launch_details_text {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    color: #d0cdd8;
+#landingContainer[launch] #launch_button::after {
+    display: none;
+}
+#landingContainer[launch] #launch_button:hover:not(:disabled) {
+    box-shadow: 0 6px 20px -6px rgba(196, 43, 28, 0.8);
+}
+#landingContainer[launch] #launch_button:hover:not(:disabled) svg {
+    transform: scale(1.1);
+}
+
+/* Speech bubble above Steve's head. */
+#cartBubble {
+    position: absolute;
+    left: 42%;
+    bottom: calc(100% + 8px);
+    width: max-content;
+    max-width: 260px;
+    padding: 7px 12px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    border-radius: 8px;
+    background: rgba(250, 249, 252, 0.96);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    color: #1d1b22;
     font-size: 12px;
+    line-height: 1.4;
+    word-break: keep-all;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, 6px) scale(0.92);
+    transform-origin: 50% 100%;
+    transition: opacity 0.2s ease, transform 0.25s var(--landing-ease), visibility 0s 0.25s;
+}
+#cartBubble::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    border: 6px solid transparent;
+    border-top-color: rgba(250, 249, 252, 0.96);
+    transform: translateX(-50%);
+}
+#landingContainer[launch] #cartBubble {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0) scale(1);
+    transition: opacity 0.2s ease, transform 0.25s var(--landing-ease);
+}
+#cartBubblePercent {
+    flex-shrink: 0;
+    color: #005fb8;
+    font-family: 'Pretendard SemiBold', sans-serif;
+    font-variant-numeric: tabular-nums;
+}
+#cartBubblePercent:empty,
+#landingContainer[launch="running"] #cartBubblePercent {
+    display: none;
 }
 
 /* News panel open: notice bar and band leave the stage. */
@@ -3115,10 +3144,6 @@ input:checked + .toggleSwitchSlider:before {
 }
 @keyframes landing-cart-wheel {
     to { transform: rotate(360deg); }
-}
-@keyframes landing-progress-shimmer {
-    from { background-position: -100% 0, 0 0; }
-    to { background-position: 250% 0, 0 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

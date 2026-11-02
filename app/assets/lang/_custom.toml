@@ -5,6 +5,7 @@ title = "mlkc Client"
 
 [ejs.landing]
 launchButton = "게임 시작"
+launchStopButton = "실행 중지"
 launchButtonHint = "필요한 모드를 자동으로 설치한 뒤 게임을 시작합니다."
 railLabel = "주 메뉴"
 railHome = "홈"
