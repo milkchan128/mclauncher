@@ -2626,6 +2626,56 @@ input:checked + .toggleSwitchSlider:before {
     animation: landing-rise-in 0.7s var(--landing-ease) 0.1s backwards;
     transition: transform 0.5s var(--landing-ease), opacity 0.4s ease;
 }
+
+/* Minecart riding the rails along the top edge of the band. */
+#landingTrack {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    height: 40px;
+    container-type: inline-size;
+    pointer-events: none;
+}
+#landingTrack::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 5px;
+    background:
+        linear-gradient(#5f5970, #5f5970) top / 100% 2px no-repeat,
+        repeating-linear-gradient(90deg, #3d3439 0 7px, transparent 7px 18px) bottom / 100% 3px no-repeat;
+}
+#landingCart {
+    position: absolute;
+    left: 0;
+    bottom: 4px;
+    width: 57px;
+    height: 33px;
+    animation: landing-cart-ride 26s linear 1.2s infinite backwards;
+}
+#landingCart svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    animation: landing-cart-bob 0.5s steps(2) infinite;
+}
+.cartGlow {
+    fill: #ffd38a;
+    opacity: 0.35;
+    filter: blur(1.5px);
+}
+.cartWheel {
+    fill: #2c2934;
+    stroke: #8d879c;
+    stroke-width: 0.5;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: landing-cart-wheel 0.8s linear infinite;
+}
 #landingServer {
     min-width: 0;
     display: flex;
@@ -3007,6 +3057,16 @@ input:checked + .toggleSwitchSlider:before {
 @keyframes landing-flyout-in {
     from { opacity: 0; transform: translateY(12px); }
 }
+@keyframes landing-cart-ride {
+    from { transform: translateX(-60px); }
+    to { transform: translateX(100cqw); }
+}
+@keyframes landing-cart-bob {
+    to { transform: translateY(-1px); }
+}
+@keyframes landing-cart-wheel {
+    to { transform: rotate(360deg); }
+}
 @keyframes landing-progress-shimmer {
     from { background-position: -100% 0, 0 0; }
     to { background-position: 250% 0, 0 0; }
@@ -3018,6 +3078,10 @@ input:checked + .toggleSwitchSlider:before {
     #landingContainer *::after {
         animation: none !important;
         transition-duration: 0.01ms !important;
+    }
+    /* Park the minecart where it can be seen. */
+    #landingCart {
+        left: 20%;
     }
 }
 
