@@ -45,8 +45,9 @@
                 </div>
             </div>
             <div id="launch_content">
-                <button id="server_selection_button" type="button"><%- lang('landing.serverButton') %><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+                <button id="server_selection_button" type="button" aria-haspopup="listbox" aria-expanded="false"><%- lang('landing.serverButton') %><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
                 <button id="launch_button" type="button" title="<%= lang('landing.launchButtonHint') %>"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5l13 7.5-13 7.5z"/></svg><%- lang('landing.launchButton') %></button>
+                <div id="serverFlyout" role="listbox" aria-label="<%- lang('landing.serverButton') %>" hidden></div>
             </div>
             <div id="launch_details" role="status" aria-live="polite">
                 <div id="launch_details_left">

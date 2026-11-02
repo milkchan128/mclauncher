@@ -1959,17 +1959,23 @@ input:checked + .toggleSwitchSlider:before {
     max-height: 200px;
     overflow-y: auto;
     padding: 4px;
-    border: 1px solid var(--settings-line);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 8px;
-    background: var(--landing-tip);
+    background: rgba(44, 42, 50, 0.86);
+    backdrop-filter: blur(30px) saturate(1.4);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    animation: settings-select-in 0.25s cubic-bezier(0, 0, 0, 1);
+}
+@keyframes settings-select-in {
+    from { opacity: 0; transform: translateY(-8px); }
 }
 /* Hide the items when the select box is closed. */
 .settingsSelectOptions[hidden] {
     display: none;
 }
 .settingsSelectOptions div {
-    padding: 6px 10px;
+    position: relative;
+    padding: 6px 10px 6px 14px;
     border-radius: 4px;
     font-size: 13px;
     cursor: pointer;
@@ -1978,7 +1984,22 @@ input:checked + .toggleSwitchSlider:before {
 /* Hover + selected styles. */
 .settingsSelectOptions div:hover,
 .settingsSelectOptions div[selected] {
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.06);
+}
+.settingsSelectOptions div[selected]:hover {
+    background-color: rgba(255, 255, 255, 0.09);
+}
+/* Selected option gets the Windows 11 accent pill. */
+.settingsSelectOptions div[selected]::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 3px;
+    height: 16px;
+    border-radius: 2px;
+    background: var(--landing-accent);
+    transform: translateY(-50%);
 }
 
 /* * *
@@ -2285,7 +2306,8 @@ input:checked + .toggleSwitchSlider:before {
 
 @media (prefers-reduced-motion: reduce) {
     .settingsNavItem,
-    .settingsTab > * {
+    .settingsTab > *,
+    .settingsSelectOptions {
         animation: none;
     }
 }
@@ -2700,6 +2722,7 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Launch buttons. */
 #launch_content {
+    position: relative;
     display: inline-flex;
     flex-shrink: 0;
     gap: 8px;
@@ -2734,6 +2757,88 @@ input:checked + .toggleSwitchSlider:before {
 }
 #server_selection_button:hover svg {
     transform: translateY(2px);
+}
+#server_selection_button[aria-expanded="true"] {
+    background: rgba(255, 255, 255, 0.12);
+}
+#server_selection_button[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+}
+
+/* Server flyout, styled like a Windows 11 menu. */
+#serverFlyout {
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    bottom: calc(100% + 8px);
+    width: 320px;
+    padding: 4px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    background: rgba(44, 42, 50, 0.86);
+    backdrop-filter: blur(30px) saturate(1.4);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    animation: landing-flyout-in 0.25s cubic-bezier(0, 0, 0, 1);
+}
+#serverFlyout[hidden] {
+    display: none;
+}
+.serverFlyoutItem {
+    position: relative;
+    padding: 8px 12px 8px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    color: #ffffff;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+}
+.serverFlyoutItem:hover,
+.serverFlyoutItem:focus-visible,
+.serverFlyoutItem[aria-selected="true"] {
+    background: rgba(255, 255, 255, 0.06);
+}
+.serverFlyoutItem[aria-selected="true"]:hover {
+    background: rgba(255, 255, 255, 0.09);
+}
+.serverFlyoutItem:active {
+    background: rgba(255, 255, 255, 0.04);
+}
+.serverFlyoutItem:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: -2px;
+}
+.serverFlyoutItem[aria-selected="true"]::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 3px;
+    height: 16px;
+    border-radius: 2px;
+    background: var(--landing-accent);
+    transform: translateY(-50%);
+}
+.serverFlyoutName {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font: 14px 'Pretendard SemiBold', sans-serif;
+}
+.serverFlyoutMeta {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #a7a3b0;
+    font-size: 12px;
 }
 #launch_button {
     position: relative;
@@ -2898,6 +3003,9 @@ input:checked + .toggleSwitchSlider:before {
 @keyframes landing-shine {
     0% { transform: translateX(-120%) skewX(-20deg); }
     30%, 100% { transform: translateX(320%) skewX(-20deg); }
+}
+@keyframes landing-flyout-in {
+    from { opacity: 0; transform: translateY(12px); }
 }
 @keyframes landing-progress-shimmer {
     from { background-position: -100% 0, 0 0; }

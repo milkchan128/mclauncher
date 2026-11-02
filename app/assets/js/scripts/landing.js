@@ -196,10 +196,68 @@ function setServerInfo(serv){
     ].filter(Boolean).join(' · ')
 }
 // Real text is set in uibinder.js on distributionIndexDone.
-server_selection_button.onclick = async e => {
-    e.currentTarget.blur()
-    await toggleServerSelection(true)
+const serverFlyout = document.getElementById('serverFlyout')
+
+function closeServerFlyout(){
+    serverFlyout.hidden = true
+    server_selection_button.setAttribute('aria-expanded', 'false')
 }
+
+// 서버 버튼은 Windows 11 메뉴처럼 버튼 위에 목록을 펼친다.
+server_selection_button.onclick = async e => {
+    e.stopPropagation()
+    if(!serverFlyout.hidden){
+        closeServerFlyout()
+        return
+    }
+    const selected = ConfigManager.getSelectedServer()
+    serverFlyout.replaceChildren(...(await DistroAPI.getDistribution()).servers.map(serv => {
+        const item = document.createElement('button')
+        const name = document.createElement('span')
+        const meta = document.createElement('span')
+        item.type = 'button'
+        item.className = 'serverFlyoutItem'
+        item.setAttribute('role', 'option')
+        item.setAttribute('aria-selected', serv.rawServer.id === selected)
+        name.className = 'serverFlyoutName'
+        name.textContent = serv.rawServer.name
+        meta.className = 'serverFlyoutMeta'
+        meta.textContent = serv.hostname + ' · Minecraft ' + serv.rawServer.minecraftVersion
+        item.append(name, meta)
+        item.onclick = () => {
+            closeServerFlyout()
+            server_selection_button.focus()
+            if(serv.rawServer.id !== selected){
+                updateSelectedServer(serv)
+                refreshServerStatus(true)
+            }
+        }
+        return item
+    }))
+    serverFlyout.hidden = false
+    server_selection_button.setAttribute('aria-expanded', 'true')
+    const current = serverFlyout.querySelector('[aria-selected="true"]') ?? serverFlyout.firstElementChild
+    current?.focus()
+}
+
+serverFlyout.addEventListener('keydown', e => {
+    e.stopPropagation()
+    const items = Array.from(serverFlyout.children)
+    const i = items.indexOf(document.activeElement)
+    if(e.key === 'Escape'){
+        closeServerFlyout()
+        server_selection_button.focus()
+    } else if(e.key === 'ArrowDown' || e.key === 'ArrowUp'){
+        e.preventDefault()
+        items[(i + (e.key === 'ArrowDown' ? 1 : items.length - 1)) % items.length]?.focus()
+    }
+})
+
+document.addEventListener('click', e => {
+    if(!serverFlyout.hidden && !serverFlyout.contains(e.target)){
+        closeServerFlyout()
+    }
+})
 
 const refreshServerStatus = async (fade = false) => {
     loggerLanding.info('Refreshing Server Status')
