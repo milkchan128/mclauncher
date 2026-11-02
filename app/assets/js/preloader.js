@@ -1,4 +1,26 @@
-/* global document */
+/* global document, window */
+// 메인 화면 콘솔 창에 보여 줄 로그를 모은다. 로거는 만들어질 때 console 함수를 붙잡으므로
+// 다른 모듈을 불러오기 전에 감싼다. 최근 2000줄만 보관한다.
+if(typeof window !== 'undefined'){
+    const { inspect } = require('util')
+    window.launcherLogs = []
+    for(const level of ['log', 'info', 'warn', 'error']){
+        const original = console[level].bind(console)
+        console[level] = (...args) => {
+            original(...args)
+            const entry = {
+                level,
+                text: args.map(a => typeof a === 'string' ? a : inspect(a)).join(' ').replace(/\x1b\[[0-9;]*m/g, '')
+            }
+            window.launcherLogs.push(entry)
+            if(window.launcherLogs.length > 2000){
+                window.launcherLogs.shift()
+            }
+            window.dispatchEvent(new CustomEvent('launcherlog', { detail: entry }))
+        }
+    }
+}
+
 const {ipcRenderer}  = require('electron')
 const fs             = require('fs-extra')
 const os             = require('os')

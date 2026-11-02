@@ -138,6 +138,7 @@
             </div>
             <div id="launch_content">
                 <button id="server_selection_button" type="button" aria-haspopup="listbox" aria-expanded="false"><%- lang('landing.serverButton') %><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+                <button id="console_button" type="button" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7l5 5-5 5M12 17h7"/></svg><%- lang('landing.consoleButton') %></button>
                 <button id="launch_button" type="button" title="<%= lang('landing.launchButtonHint') %>"><span class="launchStart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5l13 7.5-13 7.5z"/></svg><%- lang('landing.launchButton') %></span><span class="launchStop"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1.5"/></svg><%- lang('landing.launchStopButton') %></span></button>
                 <div id="serverFlyout" role="listbox" aria-label="<%- lang('landing.serverButton') %>" hidden></div>
             </div>
@@ -201,5 +202,12 @@
             </div>
         </div>
     </main>
+    <dialog id="consoleDialog" aria-labelledby="consoleTitle">
+        <div id="consoleHeader">
+            <h2 id="consoleTitle"><%- lang('landing.consoleTitle') %></h2>
+            <button id="consoleClose" type="button" aria-label="<%= lang('landing.consoleClose') %>"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        </div>
+        <pre id="consoleOutput" tabindex="0"></pre>
+    </dialog>
     <script src="./assets/js/scripts/landing.js"></script>
 </div>

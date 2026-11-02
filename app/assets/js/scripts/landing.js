@@ -185,6 +185,53 @@ launch_button.addEventListener('click', async e => {
     }
 })
 
+/* Console: preloader.js가 모은 로그를 터미널처럼 보여 준다. */
+
+const consoleDialog = document.getElementById('consoleDialog')
+const consoleOutput = document.getElementById('consoleOutput')
+
+/**
+ * 콘솔 창에 로그 한 줄을 붙인다.
+ *
+ * @param {{level: string, text: string}} entry 로그 항목.
+ */
+function appendConsoleLine(entry){
+    const line = document.createElement('span')
+    line.className = 'consoleLine'
+    line.dataset.level = entry.level
+    line.textContent = entry.text + '\n'
+    consoleOutput.appendChild(line)
+}
+
+document.getElementById('console_button').addEventListener('click', () => {
+    consoleOutput.replaceChildren()
+    for(const entry of window.launcherLogs ?? []){
+        appendConsoleLine(entry)
+    }
+    consoleDialog.showModal()
+    consoleOutput.scrollTop = consoleOutput.scrollHeight
+})
+document.getElementById('consoleClose').addEventListener('click', () => consoleDialog.close())
+consoleDialog.addEventListener('click', e => {
+    if(e.target === consoleDialog){
+        consoleDialog.close()
+    }
+})
+window.addEventListener('launcherlog', e => {
+    if(!consoleDialog.open){
+        return
+    }
+    // 맨 아래를 보고 있을 때만 새 줄을 따라 내려간다.
+    const atBottom = consoleOutput.scrollHeight - consoleOutput.scrollTop - consoleOutput.clientHeight < 24
+    appendConsoleLine(e.detail)
+    if(consoleOutput.childElementCount > 2000){
+        consoleOutput.firstChild.remove()
+    }
+    if(atBottom){
+        consoleOutput.scrollTop = consoleOutput.scrollHeight
+    }
+})
+
 /* Easter egg: Steve's actions and pets */
 
 const cartSvg = document.getElementById('cartSvg')

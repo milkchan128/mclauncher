@@ -3096,6 +3096,110 @@ input:checked + .toggleSwitchSlider:before {
     transform: scale(1.1);
 }
 
+/* Console button (shown left of the stop button while launching) and its terminal dialog. */
+#console_button {
+    display: none;
+    height: 40px;
+    padding: 0 16px 0 12px;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.07);
+    color: #ffffff;
+    font: 14px 'Pretendard Regular', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+#landingContainer[launch] #console_button {
+    display: flex;
+}
+#console_button:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+#console_button:focus-visible,
+#consoleClose:focus-visible {
+    outline: 2px solid var(--landing-accent);
+    outline-offset: 2px;
+}
+#console_button svg,
+#consoleClose svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+#consoleDialog {
+    width: min(880px, calc(100% - 48px));
+    height: min(560px, calc(100% - 96px));
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    background: #1b1a1f;
+    color: #e6e6e6;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+}
+#consoleDialog[open] {
+    display: flex;
+    flex-direction: column;
+    animation: overlay-dialog-in 0.25s cubic-bezier(0, 0, 0, 1);
+}
+#consoleDialog::backdrop {
+    background: rgba(0, 0, 0, 0.45);
+}
+#consoleHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 10px 10px 18px;
+    background: #2b2930;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+#consoleTitle {
+    margin: 0;
+    font: 14px 'Pretendard SemiBold', sans-serif;
+}
+#consoleClose {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+}
+#consoleClose:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+#consoleOutput {
+    flex: 1;
+    margin: 0;
+    padding: 12px 18px;
+    overflow: auto;
+    font: 12px/1.55 Consolas, 'Cascadia Mono', monospace;
+    white-space: pre-wrap;
+    word-break: break-all;
+    user-select: text;
+}
+.consoleLine[data-level="warn"] {
+    color: #fce100;
+}
+.consoleLine[data-level="error"] {
+    color: #ff99a4;
+}
+@media (prefers-reduced-motion: reduce) {
+    #consoleDialog[open] {
+        animation: none;
+    }
+}
+
 /* Speech bubble above Steve's head. */
 #cartBubble {
     position: absolute;
