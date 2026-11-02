@@ -29,7 +29,7 @@ function compileSetup(payload, output){
         '/resource:' + path.join(root, 'installer', 'Window.xaml') + ',Window.xaml',
         '/resource:' + path.join(root, 'LICENSE.txt') + ',LICENSE.txt',
         '/resource:' + path.join(root, 'app/assets/images/Icon.png') + ',logo.png',
-        '/resource:' + path.join(root, 'app/assets/images/backgrounds/mlkc-pencil.png') + ',scene.png',
+        '/resource:' + path.join(root, 'app/assets/images/backgrounds/mlkc-dusk.jpg') + ',scene.jpg',
         path.join(root, 'installer', 'Setup.cs'), metadata
     ], { cwd: root, stdio: 'inherit', windowsHide: true })
     execFileSync(output, ['--self-test'], { windowsHide: true, timeout: 30000 })

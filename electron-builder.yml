@@ -14,7 +14,7 @@ compression: 'maximum'
 
 files:
   - '!{dist,.gitignore,.vscode,docs,dev-app-update.yml,.nvmrc,eslint.config.mjs,AGENTS.md,CLAUDE.md,mlkclogo.png,mlkc-logo-discord.gif,tests,installer,scripts}'
-  - '!app/assets/images/backgrounds/[0-9].png'
+  - '!app/assets/images/backgrounds/{[0-9],mlkc-pencil}.png'
 
 extraResources:
   - 'libraries'

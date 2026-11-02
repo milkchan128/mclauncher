@@ -224,7 +224,7 @@ internal sealed class SetupWindow
         acceptance = (CheckBox)window.FindName("AcceptLicense");
         allUsers = (RadioButton)window.FindName("AllUsers");
         pageContent = (Grid)window.FindName("PageContent");
-        ((ImageBrush)window.FindName("SceneBrush")).ImageSource = Image("scene.png");
+        ((ImageBrush)window.FindName("SceneBrush")).ImageSource = Image("scene.jpg");
         ((Image)window.FindName("BrandLogo")).Source = Image("logo.png");
         ((Image)window.FindName("BandLogo")).Source = Image("logo.png");
         ((TextBlock)window.FindName("VersionText")).Text = "버전 " + SetupBuild.Version;

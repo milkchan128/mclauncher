@@ -2624,7 +2624,7 @@ input:checked + .toggleSwitchSlider:before {
     content: '';
     position: absolute;
     inset: 0;
-    background: url('../images/backgrounds/mlkc-pencil.png') center 45% / cover no-repeat;
+    background: url('../images/backgrounds/mlkc-dusk.jpg') center 45% / cover no-repeat;
     animation: landing-bg-in 1.2s var(--landing-ease) backwards, landing-bg-drift 40s ease-in-out 1.2s infinite alternate;
 }
 

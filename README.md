@@ -28,7 +28,7 @@ Windows에서 `winCodeSign` 압축 해제 중 `Cannot create symbolic link` 오�
 - Microsoft 계정 로그인만 지원합니다. Mojang 로그인 화면·계정 추가·인증 코드를 제거했습니다. 기존 Mojang 저장 기록은 삭제하지 않으며 계정 선택 목록에서 제외합니다.
 - 한 번 로그인하면 계정 토큰을 저장하며 재실행 시 시작 업데이트 확인 후 세션을 복원해 런처로 바로 들어갑니다. 만료된 토큰은 자동으로 갱신하고 새 refresh token을 저장합니다. 연결 실패 시 계정을 삭제하지 않고 재시도·재로그인·다른 저장 계정 선택을 제공합니다. 명시적으로 로그아웃하면 자동 로그인하지 않습니다. Microsoft에서 재인증이 필요한 경우에는 다시 로그인해야 합니다.
 - 로고: 제공된 `mlkclogo.png`를 `app/assets/images/Icon.png`, `build/icon.png`에 반영했습니다. Windows용 다중 해상도 아이콘은 `app/assets/images/Icon.ico`, `build/icon.ico`입니다.
-- 배경: 직접 제작한 연필화 `app/assets/images/backgrounds/mlkc-pencil.png`를 모든 화면에 고정 적용합니다. 기존 무작위 배경은 빌드에서 제외합니다.
+- 배경: 단순한 저녁 하늘 그림 `app/assets/images/backgrounds/mlkc-dusk.jpg`를 모든 화면과 설치 화면에 고정 적용합니다. 이전 연필화 `mlkc-pencil.png`와 무작위 배경은 저장소에만 남기고 빌드에서 제외합니다.
 - 앱 ID: 기존 설치와의 연속성을 위해 `kr.mlkc.modlauncher`를 유지합니다. 실행 파일은 `mlkc-Client.exe`입니다. 이전 `밀튜디오 - 모드런처` 설정 폴더가 있으면 계속 사용해 계정과 설정을 보존합니다.
 - 기본 게임 데이터: Windows의 `%APPDATA%/.milkstudio-modlauncher`. 기존 MRS 데이터는 이동하거나 삭제하지 않습니다.
 - 서버는 **mc.mlkc.kr**, 기본 모드팩 버전은 **4.1.5A**입니다. 서버도 같은 버전으로 준비해야 합니다. 홈페이지 버튼은 모드팩 원본 페이지로 연결되며, 전용 주소가 없는 지도·디스코드 버튼은 숨깁니다. 모드팩 이름은 설치 화면·앱 소개·서버 표시 이름에 넣지 않습니다.
