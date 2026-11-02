@@ -3,10 +3,10 @@
   "servers": [
     {
       "id": "mlkc-society-4.1.5A",
-      "name": "밀튜디오",
-      "description": "밀튜디오 클라이언트 · mc.mlkc.kr",
+      "name": "대충모인팀 Society: Sunlit Valley",
+      "description": "밀튜디오 클라이언트 · society-sunlit.vultr.sjh.kr",
       "version": "4.1.5A",
-      "address": "mc.mlkc.kr",
+      "address": "society-sunlit.vultr.sjh.kr",
       "minecraftVersion": "1.20.1",
       "mainServer": true,
       "autoconnect": true,

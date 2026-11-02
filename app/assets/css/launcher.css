@@ -2671,6 +2671,9 @@ input:checked + .toggleSwitchSlider:before {
 }
 #landingServerName {
     margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font: 28px 'Pretendard SemiBold', sans-serif;
     letter-spacing: -0.01em;
     animation: landing-fade-up 0.6s var(--landing-ease) 0.3s backwards;

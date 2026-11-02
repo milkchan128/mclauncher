@@ -24,9 +24,12 @@ test('앱 제목과 모든 화면의 로고가 커스텀 브랜드를 사용한�
     assert.ok(!html.includes('id="loginOptionMojang"'))
     assert.ok(!html.includes('id="loginPassword"'))
     assert.ok(!html.includes('id="settingsAddMojangAccount"'))
-    assert.doesNotMatch(html.replace(/<[^>]*>/g, ''), /Society|Sunlit Valley/i)
+    // 모드팩 이름은 서버 이름과 서버 주소에만 쓴다.
+    const { name, address } = require('../app/assets/modpack/distribution.json').servers[0]
+    const withoutServer = text => text.replaceAll(name, '').replaceAll(address, '')
+    assert.doesNotMatch(withoutServer(html.replace(/<[^>]*>/g, '')), /Society|Sunlit Valley/i)
     assert.doesNotMatch(pkg.description, /Society|Sunlit Valley/i)
-    assert.doesNotMatch(fs.readFileSync(path.join(root, 'installer/Window.xaml'), 'utf8'), /Society|Sunlit Valley/i)
+    assert.doesNotMatch(withoutServer(fs.readFileSync(path.join(root, 'installer/Window.xaml'), 'utf8')), /Society|Sunlit Valley/i)
     assert.ok(html.includes('필요한 모드를 자동으로 설치한 뒤 게임을 시작합니다.'))
     assert.deepEqual(fs.readFileSync(path.join(root, 'app/assets/images/Icon.png')), fs.readFileSync(path.join(root, 'build/icon.png')))
 })

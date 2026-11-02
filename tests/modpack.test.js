@@ -14,12 +14,12 @@ const { DistributionIndexProcessor, downloadQueue } = require('helios-core/dl')
 const { extractOverrides, ensureDownload, getManagedMods } = require('../app/assets/js/modpack')
 const raw = require('../app/assets/modpack/distribution.json')
 
-test('Society 4.1.5A의 367개 모드와 Forge 47.4.0이 mc.mlkc.kr 전용으로 구성된다', () => {
+test('Society 4.1.5A의 367개 모드와 Forge 47.4.0이 society-sunlit.vultr.sjh.kr 전용으로 구성된다', () => {
     const distro = new HeliosDistribution(raw, 'common', 'instances')
     assert.equal(distro.servers.length, 1)
     const server = distro.getMainServer()
-    assert.equal(server.rawServer.name, '밀튜디오')
-    assert.equal(server.hostname, 'mc.mlkc.kr')
+    assert.equal(server.rawServer.name, '대충모인팀 Society: Sunlit Valley')
+    assert.equal(server.hostname, 'society-sunlit.vultr.sjh.kr')
     assert.equal(server.rawServer.version, '4.1.5A')
     assert.equal(server.rawServer.minecraftVersion, '1.20.1')
     assert.equal(server.effectiveJavaOptions.suggestedMajor, 17)
