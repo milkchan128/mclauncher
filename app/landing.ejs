@@ -40,17 +40,20 @@
             <div id="landingTrack">
                 <div id="landingCart">
                     <div id="cartBubble" role="status" aria-live="polite"><span id="cartBubbleText"></span><span id="cartBubblePercent"></span></div>
-                    <svg viewBox="0 -7 19 18" aria-hidden="true">
+                    <div id="landingPet" hidden></div>
+                    <svg id="cartSvg" viewBox="0 -7 19 18" aria-hidden="true">
                         <circle class="cartGlow" cx="16.5" cy="3" r="2.5"/>
-                        <g class="cartSteve" shape-rendering="crispEdges">
+                        <g class="steveBody" shape-rendering="crispEdges">
                             <rect x="6" y="-2" width="4" height="3" fill="#2f9c9c"/>
                             <g class="steveHead">
-                                <rect x="6" y="-6" width="4" height="4" fill="#c69c7a"/>
-                                <rect x="6" y="-6" width="4" height="1" fill="#3b2a1d"/>
-                                <rect x="6" y="-5" width="1" height="2" fill="#3b2a1d"/>
-                                <rect x="8" y="-4" width="1" height="1" fill="#ffffff"/>
-                                <rect x="9" y="-4" width="1" height="1" fill="#4b3fa6"/>
-                                <rect x="8" y="-3" width="1" height="1" fill="#7a4a35"/>
+                                <g class="steveFace">
+                                    <rect x="6" y="-6" width="4" height="4" fill="#c69c7a"/>
+                                    <rect x="6" y="-6" width="4" height="1" fill="#3b2a1d"/>
+                                    <rect x="6" y="-5" width="1" height="2" fill="#3b2a1d"/>
+                                    <rect x="8" y="-4" width="1" height="1" fill="#ffffff"/>
+                                    <rect x="9" y="-4" width="1" height="1" fill="#4b3fa6"/>
+                                    <rect x="8" y="-3" width="1" height="1" fill="#7a4a35"/>
+                                </g>
                             </g>
                         </g>
                         <g shape-rendering="crispEdges">
@@ -61,14 +64,65 @@
                             <rect x="10" y="2" width="1" height="6" fill="#5d576d"/>
                             <rect x="16" y="2" width="1" height="2" fill="#ffd38a"/>
                         </g>
-                        <g class="steveArm" shape-rendering="crispEdges">
-                            <rect x="9" y="0" width="3" height="1" fill="#2f9c9c"/>
-                            <rect x="12" y="0" width="1" height="1" fill="#c69c7a"/>
+                        <g class="steveBody" shape-rendering="crispEdges">
+                            <g class="steveArm">
+                                <rect x="9" y="0" width="3" height="1" fill="#2f9c9c"/>
+                                <rect x="12" y="0" width="1" height="1" fill="#c69c7a"/>
+                                <g class="steveApple"><rect x="12.5" y="-0.5" width="1.5" height="1.5" fill="#d7332e"/><rect x="13" y="-1" width="0.5" height="0.5" fill="#5b3a1e"/></g>
+                            </g>
                         </g>
                         <g class="cartWheel"><circle cx="4" cy="9" r="1.8"/><path d="M2.2 9h3.6M4 7.2v3.6"/></g>
                         <g class="cartWheel"><circle cx="12" cy="9" r="1.8"/><path d="M10.2 9h3.6M12 7.2v3.6"/></g>
                     </svg>
                 </div>
+                <!-- 스티브를 누르면 이 중 하나가 랜덤으로 와서 카트를 따라 달린다. -->
+                <template id="petWolf">
+                    <svg viewBox="-1 -1 14 8" aria-hidden="true" shape-rendering="crispEdges" fill="#c9c4bf">
+                        <rect x="0" y="1.5" width="2" height="1"/>
+                        <rect x="2" y="2" width="7" height="3" fill="#d8d4d0"/>
+                        <rect x="2" y="2" width="7" height="1" fill="#b8b2ad"/>
+                        <rect x="8" y="0" width="3" height="3" fill="#d8d4d0"/>
+                        <rect x="8" y="-1" width="1" height="1"/>
+                        <rect x="10" y="-1" width="1" height="1"/>
+                        <rect x="11" y="1" width="1.5" height="1.5" fill="#d8d4d0"/>
+                        <rect x="12" y="1" width="0.6" height="0.6" fill="#2b2324"/>
+                        <rect x="10" y="0.6" width="0.6" height="0.6" fill="#2b2324"/>
+                        <rect x="8" y="2" width="0.8" height="2" fill="#d23a3a"/>
+                    <g class="petLegs petLegsA"><rect x="3" y="5" width="1" height="2"/><rect x="7" y="5" width="1" height="2"/></g>
+                    <g class="petLegs petLegsB"><rect x="4" y="5" width="1" height="2"/><rect x="6" y="5" width="1" height="2"/></g>
+                    </svg>
+                </template>
+                <template id="petFox">
+                    <svg viewBox="-1 -1 14 8" aria-hidden="true" shape-rendering="crispEdges" fill="#2b2324">
+                        <rect x="-1" y="1" width="3" height="2" fill="#e0803a"/>
+                        <rect x="-1" y="1" width="1" height="2" fill="#f2e8dc"/>
+                        <rect x="2" y="2" width="6.5" height="3" fill="#e0803a"/>
+                        <rect x="3" y="4" width="4" height="1" fill="#f2e8dc"/>
+                        <rect x="8" y="0" width="3" height="3" fill="#e0803a"/>
+                        <rect x="8" y="-1" width="1" height="1" fill="#e0803a"/>
+                        <rect x="10" y="-1" width="1" height="1" fill="#e0803a"/>
+                        <rect x="9" y="2" width="2" height="1" fill="#f2e8dc"/>
+                        <rect x="11" y="1.5" width="1.5" height="1.5" fill="#f2e8dc"/>
+                        <rect x="12.2" y="1.5" width="0.6" height="0.6"/>
+                        <rect x="10" y="0.8" width="0.6" height="0.6"/>
+                    <g class="petLegs petLegsA"><rect x="3" y="5" width="1" height="2"/><rect x="7" y="5" width="1" height="2"/></g>
+                    <g class="petLegs petLegsB"><rect x="4" y="5" width="1" height="2"/><rect x="6" y="5" width="1" height="2"/></g>
+                    </svg>
+                </template>
+                <template id="petCat">
+                    <svg viewBox="-1 -1 14 8" aria-hidden="true" shape-rendering="crispEdges" fill="#1f1c24">
+                        <rect x="0" y="1" width="1" height="3" fill="#2a2730"/>
+                        <rect x="1" y="3" width="1" height="1" fill="#2a2730"/>
+                        <rect x="2" y="3" width="7" height="2" fill="#2a2730"/>
+                        <rect x="8" y="0.5" width="3.5" height="3" fill="#2a2730"/>
+                        <rect x="8" y="-0.5" width="1" height="1" fill="#2a2730"/>
+                        <rect x="10.5" y="-0.5" width="1" height="1" fill="#2a2730"/>
+                        <rect x="10.5" y="1.5" width="0.7" height="0.7" fill="#e8d44d"/>
+                        <rect x="11.5" y="2.3" width="0.5" height="0.5" fill="#e88aa0"/>
+                    <g class="petLegs petLegsA"><rect x="3" y="5" width="1" height="2"/><rect x="7" y="5" width="1" height="2"/></g>
+                    <g class="petLegs petLegsB"><rect x="4" y="5" width="1" height="2"/><rect x="6" y="5" width="1" height="2"/></g>
+                    </svg>
+                </template>
             </div>
             <div id="landingServer">
                 <div id="image_seal_container">

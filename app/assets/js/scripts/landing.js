@@ -59,7 +59,7 @@ function setLaunchState(state){
     launch_button.title = state == null ? launch_hint : ''
     const rate = state === 'busy' ? 4 : 1
     for(const anim of document.getElementById('landingStage').getAnimations({ subtree: true })){
-        if(['landing-scroll', 'landing-ties', 'landing-cart-wheel'].includes(anim.animationName)){
+        if(['landing-scroll', 'landing-ties', 'landing-cart-wheel', 'pet-run', 'pet-legs'].includes(anim.animationName)){
             anim.updatePlaybackRate(rate)
         }
     }
@@ -182,6 +182,76 @@ launch_button.addEventListener('click', async e => {
         if(!launchAbort.signal.aborted){
             showLaunchFailure(Lang.queryJS('landing.launch.failureTitle'), Lang.queryJS('landing.launch.failureText'))
         }
+    }
+})
+
+/* Easter egg: Steve's actions and pets */
+
+const cartSvg = document.getElementById('cartSvg')
+const landingPet = document.getElementById('landingPet')
+const STEVE_ACTS = ['wave', 'bow', 'cheer', 'hop', 'look', 'eat']
+const PETS = ['petWolf', 'petFox', 'petCat']
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+let steveActTimer
+let currentPet = null
+
+/**
+ * 스티브에게 동작 하나를 시킨다. 동작이 끝나면 다시 가만히 앉아 있는다.
+ *
+ * @param {string} act STEVE_ACTS 중 하나.
+ */
+function steveAct(act){
+    cartSvg.removeAttribute('data-act')
+    void cartSvg.getBoundingClientRect()
+    cartSvg.setAttribute('data-act', act)
+    clearTimeout(steveActTimer)
+    steveActTimer = setTimeout(() => cartSvg.removeAttribute('data-act'), 2000)
+}
+
+const pick = list => list[Math.floor(Math.random() * list.length)]
+
+// 몇 초마다 랜덤 동작을 한다.
+function scheduleSteveAct(){
+    setTimeout(() => {
+        if(!reduceMotion.matches && !document.hidden){
+            steveAct(pick(STEVE_ACTS))
+        }
+        scheduleSteveAct()
+    }, 5000 + Math.random() * 5000)
+}
+scheduleSteveAct()
+
+// 스티브를 누르면 하트가 나오고, 지금과 다른 펫이 랜덤으로 와서 따라 달린다.
+cartSvg.addEventListener('click', () => {
+    steveAct(pick(['wave', 'cheer', 'hop']))
+    for(let i = 0; i < 3; i++){
+        const heart = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+        heart.setAttribute('viewBox', '0 0 7 6')
+        heart.setAttribute('class', 'cartHeart')
+        heart.style.setProperty('--drift', `${(i - 1) * 14}px`)
+        heart.style.animationDelay = `${i * 0.12}s`
+        heart.innerHTML = '<path d="M1 0h2v1h1V0h2v1h1v2H6v1H5v1H4v1H3V5H2V4H1V3H0V1h1z"/>'
+        document.getElementById('landingCart').append(heart)
+        setTimeout(() => heart.remove(), 1400)
+    }
+    currentPet = pick(PETS.filter(p => p !== currentPet))
+    landingPet.replaceChildren(document.getElementById(currentPet).content.cloneNode(true))
+    landingPet.hidden = false
+    // 들어오는 애니메이션을 다시 재생한다.
+    landingPet.style.animation = 'none'
+    void landingPet.offsetWidth
+    landingPet.style.animation = ''
+})
+
+// 펫을 누르면 깡충 뛴다.
+landingPet.addEventListener('click', () => {
+    landingPet.classList.remove('petHop')
+    void landingPet.offsetWidth
+    landingPet.classList.add('petHop')
+})
+landingPet.addEventListener('animationend', e => {
+    if(e.animationName === 'pet-hop'){
+        landingPet.classList.remove('petHop')
     }
 })
 
