@@ -157,6 +157,20 @@ launch_button.addEventListener('click', async e => {
     }
     launchAbort = new AbortController()
     loggerLanding.info('Launching game..')
+    // 저장된 계정이 없으면 로그인 화면으로 보내고, 있으면 게임 준비 전에 세션을 확인한다.
+    if(ConfigManager.getSelectedAccount() == null){
+        showLoginOptions(VIEWS.landing)
+        return
+    }
+    setLaunchDetails(Lang.queryJS('uibinder.accountRestore.loading'))
+    toggleLaunchArea(true)
+    if(!await validateSelectedAccount()){
+        toggleLaunchArea(false)
+        return
+    }
+    if(launchAbort.signal.aborted){
+        return
+    }
     try {
         const server = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
         const jExe = ConfigManager.getJavaExecutable(ConfigManager.getSelectedServer())

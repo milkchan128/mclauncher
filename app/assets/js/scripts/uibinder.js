@@ -64,15 +64,6 @@ async function showMainUI(data){
         ipcRenderer.send('autoUpdateAction', 'initAutoUpdater', ConfigManager.getAllowPrerelease())
     }
 
-    const hasSavedAccount = ConfigManager.getSelectedAccount() != null
-    let isLoggedIn = false
-    if(hasSavedAccount){
-        document.getElementById('startupUpdatePanel').style.display = 'flex'
-        document.getElementById('startupUpdateStatus').textContent = Lang.queryJS('uibinder.accountRestore.loading')
-        isLoggedIn = await AuthManager.validateSelected()
-        if(isLoggedIn) updateSelectedAccount(ConfigManager.getSelectedAccount())
-    }
-
     await prepareSettings(true)
     updateSelectedServer(data.getServerById(ConfigManager.getSelectedServer()))
     refreshServerStatus()
@@ -80,26 +71,13 @@ async function showMainUI(data){
         document.getElementById('frameBar').style.backgroundColor = 'rgba(0, 0, 0, 0.5)'
         $('#main').show()
 
-        if(ConfigManager.isFirstLaunch() && !hasSavedAccount){
-            currentView = VIEWS.welcome
-            $(VIEWS.welcome).fadeIn(1000)
-        } else {
-            if(isLoggedIn){
-                currentView = VIEWS.landing
-                $(VIEWS.landing).fadeIn(1000)
-            } else {
-                loginOptionsCancelEnabled(false)
-                loginOptionsViewOnLoginSuccess = VIEWS.landing
-                loginOptionsViewOnLoginCancel = VIEWS.loginOptions
-                currentView = VIEWS.loginOptions
-                $(VIEWS.loginOptions).fadeIn(1000)
-            }
-        }
+        // 로그인은 게임을 시작할 때 확인하므로 항상 메인 화면으로 들어간다.
+        currentView = VIEWS.landing
+        $(VIEWS.landing).fadeIn(1000)
 
         setTimeout(() => {
             $('#loadingContainer').fadeOut(500, () => {
                 $('#loadSpinnerImage').removeClass('rotating')
-                if(hasSavedAccount && !isLoggedIn) showAccountRestoreError()
             })
         }, 250)
         
@@ -336,6 +314,19 @@ async function validateSelectedAccount(){
     return valid
 }
 
+/**
+ * 로그인 화면을 연다. 로그인하거나 취소하면 returnView로 돌아간다.
+ *
+ * @param {string} returnView 돌아갈 화면.
+ */
+function showLoginOptions(returnView){
+    loginOptionsCancelEnabled(true)
+    loginOptionsViewOnLoginSuccess = returnView
+    loginOptionsViewOnLoginCancel = VIEWS.loginOptions
+    loginOptionsViewOnCancel = returnView
+    switchView(getCurrentView(), VIEWS.loginOptions)
+}
+
 function showAccountRestoreError(){
     const returnView = getCurrentView() === VIEWS.loginOptions ? VIEWS.landing : getCurrentView()
     setOverlayContent(
@@ -351,11 +342,8 @@ function showAccountRestoreError(){
         }
     })
     setDismissHandler(() => {
-        loginOptionsCancelEnabled(false)
-        loginOptionsViewOnLoginSuccess = returnView
-        loginOptionsViewOnLoginCancel = VIEWS.loginOptions
         toggleOverlay(false)
-        switchView(getCurrentView(), VIEWS.loginOptions)
+        showLoginOptions(returnView)
     })
     if(Object.keys(ConfigManager.getAuthAccounts()).length > 1){
         const select = document.createElement('button')

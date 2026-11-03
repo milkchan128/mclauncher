@@ -79,8 +79,8 @@ ready = "최신 버전입니다. 클라이언트를 시작합니다…"
 error = "업데이트를 완료하지 못했습니다. 인터넷 연결을 확인한 뒤 다시 시도해 주세요."
 
 [js.uibinder.accountRestore]
-loading = "저장된 계정으로 로그인하고 있습니다…"
-failedTitle = "자동 로그인에 실패했습니다"
+loading = "Microsoft 계정을 확인하고 있습니다…"
+failedTitle = "계정을 확인하지 못했습니다"
 failedMessage = "저장된 계정 정보는 유지됩니다. 인터넷 연결을 확인한 뒤 다시 시도하거나 Microsoft 계정으로 다시 로그인해 주세요."
 retry = "다시 시도"
 login = "다시 로그인"

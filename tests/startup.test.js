@@ -76,13 +76,13 @@ app.on('browser-window-created', (_event, win) => {
                 (() => {
                     const visible = id => getComputedStyle(document.getElementById(id)).display !== 'none'
                     if(visible('loadingContainer')) return 'loading'
-                    if(visible('welcomeContainer')) { document.getElementById('welcomeButton').click(); return 'welcome' }
-                    if(visible('loginOptionsContainer') && !document.getElementById('loginOptionMicrosoft').disabled
-                        && typeof document.getElementById('loginOptionMicrosoft').onclick === 'function') return 'login'
+                    if(visible('welcomeContainer') || visible('loginOptionsContainer')) return 'login-first'
+                    if(visible('landingContainer') && !document.getElementById('launch_button').disabled) return 'landing'
                     return 'unexpected'
                 })()
             \`)
-            if(state === 'login'){
+            if(state === 'login-first'){ console.error('Login was required before the launcher'); app.exit(1); return }
+            if(state === 'landing'){
                 const before = await win.webContents.executeJavaScript(\`
                     (async () => {
                         await prepareModsTab()
@@ -117,7 +117,7 @@ app.on('browser-window-created', (_event, win) => {
                 \`)
                 fs.unlinkSync(before.firstPath); fs.unlinkSync(ownMod)
                 if(after.installed !== 1 || after.dropin !== 1){ console.error('Incorrect mod status or duplicate list', after); app.exit(1); return }
-                console.log('STARTUP_LOGIN_READY'); app.exit(0); return
+                console.log('STARTUP_LAUNCHER_READY'); app.exit(0); return
             }
             await new Promise(resolve => setTimeout(resolve, 100))
         }
@@ -132,6 +132,6 @@ setTimeout(() => app.exit(2), 20000).unref()
     delete env.ELECTRON_RUN_AS_NODE
     for(let attempt = 0; attempt < 2; attempt++){
         const { stdout } = await run(electron, [fixture, process.env.MLKC_STARTUP_APP || root], { env, windowsHide: true, timeout: 25000 })
-        assert.ok(stdout.includes('STARTUP_LOGIN_READY'))
+        assert.ok(stdout.includes('STARTUP_LAUNCHER_READY'))
     }
 })

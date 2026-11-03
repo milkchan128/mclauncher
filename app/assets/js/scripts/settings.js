@@ -547,10 +547,7 @@ ipcRenderer.on(MSFT_OPCODE.REPLY_LOGOUT, (_, ...arguments_) => {
                     validateSelectedAccount()
                 }
                 if(isLastAccount) {
-                    loginOptionsCancelEnabled(false)
-                    loginOptionsViewOnLoginSuccess = VIEWS.settings
-                    loginOptionsViewOnLoginCancel = VIEWS.loginOptions
-                    switchView(getCurrentView(), VIEWS.loginOptions)
+                    updateSelectedAccount(null)
                 }
                 if(msAccDomElementCache) {
                     msAccDomElementCache.remove()
@@ -558,9 +555,7 @@ ipcRenderer.on(MSFT_OPCODE.REPLY_LOGOUT, (_, ...arguments_) => {
                 }
             })
             .finally(() => {
-                if(!isLastAccount) {
-                    switchView(getCurrentView(), VIEWS.settings, 500, 500)
-                }
+                switchView(getCurrentView(), VIEWS.settings, 500, 500)
             })
 
     }
