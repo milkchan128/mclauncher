@@ -92,6 +92,12 @@ test('업데이터를 한 번만 초기화하고 다운로드 상태와 설치 �
     const updater = new EventEmitter()
     let checks = 0
     let installs = 0
+    updater.setFeedURL = options => {
+        assert.equal(options.provider, 'custom')
+        assert.equal(options.owner, 'milkchan128')
+        assert.equal(options.repo, 'mclauncher')
+        assert.equal(options.updateProvider, require('../app/assets/js/githubupdateprovider').GitHubUpdateProvider)
+    }
     updater.checkForUpdates = async () => { checks++ }
     updater.quitAndInstall = (...args) => { installs++; assert.deepEqual(args, [true, true]) }
     loadWithMocks('index.js', {

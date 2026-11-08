@@ -98,6 +98,7 @@ const fixtureElectron={...electron,BrowserWindow:FixtureWindow}
 const profile=path.join(__dirname,'profile-'+scenario)
 fs.mkdirSync(profile,{recursive:true})
 const updater=new EventEmitter()
+updater.setFeedURL=()=>{}
 let checks=0, window
 const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms))
 const hidden=()=>window.webContents.executeJavaScript("getComputedStyle(document.getElementById('main')).display==='none' && getComputedStyle(document.getElementById('loginOptionsContainer')).display==='none'")

@@ -14,6 +14,14 @@ const { AZURE_CLIENT_ID, MSFT_OPCODE, MSFT_REPLY_TYPE, MSFT_ERROR, SHELL_OPCODE 
 const LangLoader                        = require('./app/assets/js/langloader')
 const { createStartupUpdater }          = require('./app/assets/js/startupupdater')
 const startupUpdatesRequired = !isDev && process.platform === 'win32' && fs.existsSync(path.join(process.resourcesPath, 'app-update.yml'))
+if(startupUpdatesRequired){
+    autoUpdater.setFeedURL({
+        provider: 'custom',
+        owner: 'milkchan128',
+        repo: 'mclauncher',
+        updateProvider: require('./app/assets/js/githubupdateprovider').GitHubUpdateProvider
+    })
+}
 let startupUpdater
 
 ipcMain.on('startupUpdateAction', (event, action, allowPrerelease) => {
